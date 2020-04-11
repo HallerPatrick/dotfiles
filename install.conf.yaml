@@ -1,5 +1,10 @@
 - clean: ['~']
 
+- defaults:
+    link:
+      create: true
+      relink: true
+
 - link:
     ~/.profile: profile
     ~/.bash_profile: bash_profile
@@ -7,5 +12,5 @@
     ~/.gitconfig: gitconfig
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
-
-
+    ~/.vimrc: vimrc
+    ~/.config/nvim/init.vim: config/nvim/init
