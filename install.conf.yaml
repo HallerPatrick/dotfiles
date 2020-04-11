@@ -1,0 +1,11 @@
+- clean: ['~']
+
+- link:
+    ~/.profile: profile
+    ~/.bash_profile: bash_profile
+    ~/.bash_aliases: bash_aliases
+    ~/.gitconfig: gitconfig
+    ~/.zprofile: zprofile
+    ~/.zshrc: zshrc
+
+
