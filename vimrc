@@ -9,7 +9,7 @@
 "
 " author: Patrick (https://www.github.com/HallerPatrick/dotfiles)
 " email: patrickhaller40@googlemail.com
-" modified: 10.04.2020
+" modified: 12.04.2020
 "
 
 set nocompatible
@@ -165,19 +165,34 @@ nnoremap <A-l> <C-w>l
 call plug#begin()
 
 Plug 'dense-analysis/ale'
-Plug 'airblade/vim-rooter'
+
+"Visual
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
+Plug 'morhetz/gruvbox'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/goyo.vim'
 
-"Plug 'rust-lang/rust.vim'
-Plug 'arzg/vim-rust-syntax-ext'
-Plug 'kaicataldo/material.vim'
+
+" Utilities
+
+Plug 'airblade/vim-rooter'
+Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
+Plug 'mhinz/vim-startify'
+
+
+" Unused for now
+
+" Plug 'rust-lang/rust.vim'
+" Plug 'kaicataldo/material.vim'
+
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Used colors
-Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc-snippets'
+Plug 'honza/vim-snippets'
 
 " Autocompletion
 " Plug 'Shougo/deoplete.nvim'
@@ -194,7 +209,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-Plug 'terryma/vim-multiple-cursors'
 
 " Fuzzy Search
 Plug '/usr/local/opt/fzf'
@@ -211,11 +225,6 @@ Plug 'Raimondi/delimitMate'
 " Better visual selection
 Plug 'terryma/vim-expand-region'
 
-Plug 'voldikss/vim-floaterm'
-
-" Automatic window sizing
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -226,8 +235,6 @@ Plug 'honza/vim-snippets'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 
-" Testing
-Plug 'janko/vim-test'
 
 call plug#end()
 
@@ -373,6 +380,56 @@ set undofile
 " Allow folding by syntax
 set foldmethod=manual
 
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
 
-let g:lightline = { 'colorscheme' : 'wombat' }
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+      \ },
+      \ 'component_function': {
+      \   'method': 'NearestMethodOrFunction'
+      \ },
+      \ }
+
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'ctags'
+
+" Set the executive for some filetypes explicitly. Use the explicit executive
+" instead of the default one for these filetypes when using `:Vista` without
+" specifying the executive.
+let g:vista_executive_for = {
+  \ 'cpp': 'vim_lsp',
+  \ 'php': 'vim_lsp',
+  \ }
+
+" Declare the command including the executable and options used to generate ctags output
+" for some certain filetypes.The file path will be appened to your custom command.
+" For example:
+let g:vista_ctags_cmd = {
+      \ 'haskell': 'hasktags -x -o - -c',
+      \ }
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
