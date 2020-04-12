@@ -12,6 +12,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/patrickhaller/.oh-my-zsh
+source ~/.bash_aliases
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -37,8 +38,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
 )
-
-source $ZSH/oh-my-zsh.sh
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
@@ -92,20 +91,9 @@ export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
 export RUST_BACKTRACE=1
 
-# Dart
-export PATH="$PATH":"~/.pub-cache/bin"
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-# Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-export SCALA_HOME="/usr/local/bin/scala"
 
 # Golang
 export GOPATH=~/gospace
-export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
@@ -121,7 +109,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH://Users/patrickhaller/.emacs.d/bin"
 
 export ENABLE_FLUTTER_DESKTOP=true
-source /Users/patrickhaller/Library/Preferences/org.dystroy.broot/launcher/bash/br
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # export LDFLAGS="-L/usr/local/opt/readline/lib"
@@ -174,10 +161,3 @@ bindkey '^Z' fancy-ctrl-z
 # autoload -U promptinit; promptinit
 # prompt spaceship
 zle_highlight=(default:bold)
-source ~/.iterm2_shell_integration.zsh
-
-eval "$(pyenv init -)"
-
-
-# Created by `userpath` on 2020-03-31 22:56:08
-export PATH="$PATH:/Users/patrickhaller/.local/bin"
