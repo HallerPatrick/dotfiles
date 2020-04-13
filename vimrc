@@ -235,7 +235,7 @@ Plug 'honza/vim-snippets'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 
-
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 
