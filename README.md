@@ -1,7 +1,7 @@
 # 📄Dotfiles
 
 <p align="center">
-  <img src="./assets/banner.jpg"/>
+  <img src="./assets/banner.png"/>
 </p>
 
 # Usage / Installation
@@ -15,7 +15,7 @@ cd ~/.dotfiles
 ```
 
 This will clone all dotfiles and create symlinks to their according place, powered by
-[dotbot] https://github.com/anishathalye/dotbot
+[dotbot](https://github.com/anishathalye/dotbot)
 
 # Things I Use
 
@@ -39,6 +39,9 @@ A curated list of all possible apps and features I use:
 * [LiteIcon](https://freemacsoft.net/liteicon/), Custome System Icons
   * [Terminal Icon](https://github.com/dhanishgajjar/terminal-icons)
 * [Zathura](https://pwmt.org/projects/zathura/), PDF Viewer
+* [VSCode](https://code.visualstudio.com), a non-vim Editor
+  * [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop), Latex Plugin with Hot Reload
+  * [Vim Emulator](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim), kinda like VIM but not the same
 
 # Homebrew
 
