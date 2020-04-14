@@ -5,14 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 # cd on steroids
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 
+if (( $+commands[setxkbmap] )) ; then
+    echo "\e[32mLoad US Keyboard Layout \e[0m"
+    setxkbmap us
+fi
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/patrickhaller/.oh-my-zsh
-source ~/.bash_aliases
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -38,7 +42,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
 )
-source $ZSH/oh-my-zsh.sh
+
+if [[ -f $ZSH/oh-my-zsh.sh ]]; then
+    echo '\e[32mLoad ohmyzsh \e[0m'
+    source $ZSH/oh-my-zsh.sh
+else
+    echo "\e[31mohmyzsh not found \e[0m"
+fi
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
@@ -72,7 +82,10 @@ export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
 
 # Aliases
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+    echo "\e[32mLoad bash aliases \e[0m"
+    source ~/.bash_aliases
+else
+    echo "\e[31mbash aliases not found \e[0m"
 fi
 
 # ENV VARS
