@@ -19,6 +19,20 @@ This will clone all dotfiles and create symlinks to their according place, power
 
 ### Shell Configuration
 
+### Terminal
+
+*iTerm2* for Mac.
+
+
+[Alacritty](https://github.com/alacritty/alacritty) for Ubuntu
+
+Install:
+
+```bash
+add-apt-repository ppa:mmstick76/alacritty
+apt install alacritty
+```
+
 ### Powerlevel10k
 
 [Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh) is a zsh theme, that is easily set up.
