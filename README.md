@@ -14,6 +14,16 @@ cd ~/.dotfiles
 ./install
 ```
 
+## Powerlevel10k
+
+[Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh) is a zsh theme, that is easily set up.
+
+Run:
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+source .dotfiles/zshrc # Or your .zshrc config location
+```
+
 This will clone all dotfiles and create symlinks to their according place, powered by
 [dotbot](https://github.com/anishathalye/dotbot)
 
