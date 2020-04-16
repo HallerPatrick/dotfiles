@@ -22,6 +22,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
+
 " =============================================================================
 " # Editor settings
 " ============================================================================
@@ -191,8 +192,9 @@ Plug 'mhinz/vim-startify'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-snippets'
-Plug 'honza/vim-snippets'
+" Use CoCInstall instead
+" Plug 'neoclide/coc-snippets'
+" Plug 'honza/vim-snippets'
 
 " Autocompletion
 " Plug 'Shougo/deoplete.nvim'
@@ -246,7 +248,7 @@ call plug#end()
 " colorscheme xcodedark
 colorscheme gruvbox
 
-let g:python3_host_prog = expand('~/.envs/py37_nvim/bin/python3')
+let g:python3_host_prog = expand('/usr/local/bin/python3.5')
 
 let g:deoplete#enable_at_startup = 1
 
@@ -316,7 +318,7 @@ inoremap <silent><expr> <c-.> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `omplete_info` if your vim support it, like:
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

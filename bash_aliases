@@ -5,6 +5,9 @@
 # VIM Habits
 alias :q="exit"
 
+# Keyboard layout for ubuntu
+alias klayout='setxkbmap'
+
 ## File system
 
 # make less more friendly for non-text input files, see lesspipe(1)
