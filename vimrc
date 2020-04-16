@@ -186,7 +186,7 @@ Plug 'mhinz/vim-startify'
 
 " Unused for now
 
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 " Plug 'kaicataldo/material.vim'
 
 
