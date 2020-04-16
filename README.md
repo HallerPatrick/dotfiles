@@ -14,7 +14,12 @@ cd ~/.dotfiles
 ./install
 ```
 
-## Powerlevel10k
+This will clone all dotfiles and create symlinks to their according place, powered by
+[dotbot](https://github.com/anishathalye/dotbot)
+
+### Shell Configuration
+
+### Powerlevel10k
 
 [Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh) is a zsh theme, that is easily set up.
 
@@ -24,8 +29,19 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/the
 source .dotfiles/zshrc # Or your .zshrc config location
 ```
 
-This will clone all dotfiles and create symlinks to their according place, powered by
-[dotbot](https://github.com/anishathalye/dotbot)
+### Shell Autocompletion
+
+Includes autocompletion from [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+zshrc config already includes:
+
+```bash
+plugins=(zsh-autosuggestions)
+```
 
 # Things I Use
 
