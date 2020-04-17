@@ -17,6 +17,46 @@ cd ~/.dotfiles
 This will clone all dotfiles and create symlinks to their according place, powered by
 [dotbot](https://github.com/anishathalye/dotbot)
 
+### Shell Configuration
+
+### Terminal
+
+*iTerm2* for Mac.
+
+
+[Alacritty](https://github.com/alacritty/alacritty) for Ubuntu
+
+Install:
+
+```bash
+add-apt-repository ppa:mmstick76/alacritty
+apt install alacritty
+```
+
+### Powerlevel10k
+
+[Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh) is a zsh theme, that is easily set up.
+
+Run:
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+source .dotfiles/zshrc # Or your .zshrc config location
+```
+
+### Shell Autocompletion
+
+Includes autocompletion from [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+zshrc config already includes:
+
+```bash
+plugins=(zsh-autosuggestions)
+```
+
 # Things I Use
 
 A curated list of all possible apps and features I use:
