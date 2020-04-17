@@ -88,7 +88,7 @@ A curated list of all possible apps and features I use:
  Install all brew packages
 
 ```bash
-bash brew.sh
+bash scripts/brew.sh
 ```
 
 # Screenshots
