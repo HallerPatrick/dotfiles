@@ -16,3 +16,5 @@
     ~/.config/nvim/init.vim: config/nvim/init
     ~/.config/i3/config: config/i3/config
     ~/.config/i3status/config: config/i3status/config
+    ~/.config/zathura/zathurarc: config/zathura/zathurarc
+    ~/.oh-my-zsh/: oh-my-zsh
