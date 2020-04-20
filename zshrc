@@ -41,6 +41,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
+  cargo
+  web-search
 )
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
@@ -112,15 +114,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
-# Python
-export PATH="$PATH://Users/patrickhaller/Library/Python/3.7/bin"
-
-# Gem
-export PATH="$PATH://Users/patrickhaller/.gem/ruby/2.6.0/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# OH LAWD
-export PATH="$PATH://Users/patrickhaller/.emacs.d/bin"
 
 export ENABLE_FLUTTER_DESKTOP=true
 export PATH="/usr/local/opt/llvm/bin:$PATH"
