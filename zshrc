@@ -166,6 +166,6 @@ bindkey '^Z' fancy-ctrl-z
 
 # eval "$(starship init zsh)"
 
-# autoload -U promptinit; promptinit
+autoload -U compinit && compinit -u
 # prompt spaceship
 zle_highlight=(default:bold)

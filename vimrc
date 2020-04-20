@@ -398,6 +398,7 @@ let g:lightline = {
       \ },
       \ }
 
+set statusline^=%{coc#status()}
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
