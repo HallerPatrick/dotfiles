@@ -230,6 +230,7 @@ Plug 'terryma/vim-expand-region'
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -295,6 +296,8 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+let g:vimtex_view_method = 'zathura'
+
 " =============================================================================
 " # CoC settings
 " ============================================================================
@@ -334,6 +337,7 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+let g:vimtex_view_method = 'zathura'
 
 " Ale Extras
 "
@@ -436,3 +440,5 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+
