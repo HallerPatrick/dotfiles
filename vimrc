@@ -114,6 +114,8 @@ nnoremap <leader>v :vsplit <cr>
 noremap <silent> <leader><Left> :vertical resize -3<CR>
 noremap <silent> <leader><Right> :vertical resize +3<CR>
 
+noremap <leader>tt :vnew term://zsh<CR>
+
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
 
