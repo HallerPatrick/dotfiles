@@ -73,6 +73,8 @@ then
     export GITHUB_TOKEN=$(cat $HOME/.github_token)
 fi
 export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
+export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
+
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
