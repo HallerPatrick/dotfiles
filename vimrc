@@ -83,9 +83,6 @@ noremap <leader>s :Rg<cr>
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" Vsplit shortcut
-nnoremap <leader>v :vsplit <cr>
-
 " Quick-save
 nmap <leader>w :w<CR>
 
@@ -108,7 +105,16 @@ map <leader>f :Files<cr>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 nnoremap <leader>n :bnext<CR>
-nnoremap <leader>b :bprev<CR>
+nnoremap <leader>b :bd<CR>
+
+" Vsplit shortcut
+nnoremap <leader>v :vsplit <cr>
+
+" Vaster vertical resizing
+noremap <silent> <leader><Left> :vertical resize -3<CR>
+noremap <silent> <leader><Right> :vertical resize +3<CR>
+
+noremap <leader>tt :vnew term://zsh<CR>
 
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
@@ -135,10 +141,11 @@ cnoremap %s/ %sm/
 " No arrow keys --- force yourself to use the home row
 " nnoremap <up> <nop>
 " nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+
 
 " Fast begin/end of line movement
 map H _
@@ -230,6 +237,7 @@ Plug 'terryma/vim-expand-region'
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -295,6 +303,8 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+let g:vimtex_view_method = 'zathura'
+
 " =============================================================================
 " # CoC settings
 " ============================================================================
@@ -334,6 +344,7 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+let g:vimtex_view_method = 'zathura'
 
 " Ale Extras
 "
@@ -436,3 +447,5 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+

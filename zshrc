@@ -44,6 +44,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
+  cargo
+  web-search
 )
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
@@ -74,6 +76,8 @@ then
     export GITHUB_TOKEN=$(cat $HOME/.github_token)
 fi
 export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
+export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
+
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -115,15 +119,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
-# Python
-export PATH="$PATH://Users/patrickhaller/Library/Python/3.7/bin"
-
-# Gem
-export PATH="$PATH://Users/patrickhaller/.gem/ruby/2.6.0/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# OH LAWD
-export PATH="$PATH://Users/patrickhaller/.emacs.d/bin"
 
 export ENABLE_FLUTTER_DESKTOP=true
 export PATH="/usr/local/opt/llvm/bin:$PATH"
