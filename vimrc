@@ -168,7 +168,12 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-
+" Autoinstall Plug if not existing (only Neovim)
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin()
 
@@ -199,9 +204,6 @@ Plug 'rust-lang/rust.vim'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Use CoCInstall instead
-" Plug 'neoclide/coc-snippets'
-" Plug 'honza/vim-snippets'
 
 " Autocompletion
 " Plug 'Shougo/deoplete.nvim'
@@ -246,6 +248,7 @@ Plug 'honza/vim-snippets'
 Plug 'easymotion/vim-easymotion'
 
 Plug 'liuchengxu/vista.vim'
+
 call plug#end()
 
 
@@ -256,7 +259,10 @@ call plug#end()
 " colorscheme xcodedark
 colorscheme gruvbox
 
-let g:python3_host_prog = expand('/usr/local/bin/python3.5')
+
+if has('mac')
+    let g:python3_host_prog = expand('/usr/local/bin/python3.7')
+endif
 
 let g:deoplete#enable_at_startup = 1
 
