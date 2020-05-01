@@ -33,3 +33,5 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
+
+export PATH="$HOME/.cargo/bin:$PATH"

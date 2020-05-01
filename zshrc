@@ -1,4 +1,3 @@
-export HOME=/home/jenkins
 export PATH=$PATH:$HOME/.local/bin
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -44,7 +43,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
-  cargo
   web-search
 )
 
@@ -111,6 +109,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
 export RUST_BACKTRACE=1
+
+# Python
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 
 # Golang

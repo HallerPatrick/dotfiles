@@ -199,7 +199,7 @@ Plug 'mhinz/vim-startify'
 " Unused for now
 
 Plug 'rust-lang/rust.vim'
-" Plug 'kaicataldo/material.vim'
+Plug 'kaicataldo/material.vim'
 
 
 " Semantic language support
@@ -257,7 +257,7 @@ call plug#end()
 
 " colorscheme material
 " colorscheme xcodedark
-colorscheme gruvbox
+colorscheme material
 
 
 if has('mac')
@@ -309,7 +309,8 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_progname = 'nvr'
 
 " =============================================================================
 " # CoC settings
@@ -349,8 +350,6 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-let g:vimtex_view_method = 'zathura'
 
 " Ale Extras
 "
