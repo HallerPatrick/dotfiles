@@ -72,16 +72,19 @@ A curated list of all possible apps and features I use:
 ### Utilities
 
 * [Alfred](https://www.alfredapp.com/), better Spotlight
-* [Magnet](https://magnet.crowdcafe.com/) Window Manager
-* [BetterTouchTool](https://folivora.ai/) Customization for MacOS (mainly used for Mac TouchBar)
+* [Magnet](https://magnet.crowdcafe.com/), Window Manager
+* [BetterTouchTool](https://folivora.ai/), Customization for MacOS (mainly used for Mac TouchBar)
 * [aerc](https://aerc-mail.org/), Command Line Email Client
 * [neovide](https://github.com/Kethku/neovide), Neovim Client used on Windows Systems
 * [LiteIcon](https://freemacsoft.net/liteicon/), Custome System Icons
   * [Terminal Icon](https://github.com/dhanishgajjar/terminal-icons)
+* [SlowQuitApps](https://github.com/dteoh/SlowQuitApps), Quit Apps Slooowly
+* [Thor](https://github.com/gbammc/Thor), Shortcuts manager for your Apps (MacOS)
 * [Zathura](https://pwmt.org/projects/zathura/), PDF Viewer
 * [VSCode](https://code.visualstudio.com), a non-vim Editor
   * [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop), Latex Plugin with Hot Reload
   * [Vim Emulator](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim), kinda like VIM but not the same
+* [vimr](https://github.com/qvacua/vimr) A nice Vim GUI for MacOS
 
 # Homebrew
 

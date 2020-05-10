@@ -96,6 +96,7 @@ fi
 # ENV VARS
 #
 
+export RUSTPYTHONPATH="/Users/patrickhaller/Temp/RustPython/Lib"
 export HOMEBREW_EDITOR='vim'
 
 # Flutter
@@ -175,3 +176,6 @@ bindkey '^Z' fancy-ctrl-z
 autoload -U compinit && compinit -u
 # prompt spaceship
 zle_highlight=(default:bold)
+
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
