@@ -19,9 +19,13 @@ ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 brew install autojump
 brew install bat
 brew install entr
+brew install exa
 brew install fzf
 brew install git
 brew install gotop
 brew install htop
+brew install lazygit
+brew install neofetch
 brew install neovim
+brew install node
 brew install ripgrep
