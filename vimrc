@@ -199,8 +199,8 @@ Plug 'mhinz/vim-startify'
 " Unused for now
 
 Plug 'rust-lang/rust.vim'
-Plug 'kaicataldo/material.vim'
-
+" Plug 'kaicataldo/material.vim'
+Plug 'arcticicestudio/nord-vim'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -257,7 +257,8 @@ call plug#end()
 
 " colorscheme material
 " colorscheme xcodedark
-colorscheme material
+" colorscheme material
+colorscheme nord
 
 
 if has('mac')
