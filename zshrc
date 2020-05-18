@@ -178,4 +178,4 @@ autoload -U compinit && compinit -u
 zle_highlight=(default:bold)
 
 
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"

@@ -37,6 +37,7 @@ alias ll='\ls -alF'
 alias llh='\ls -alh'
 alias la='ls $LS_OPTIONS -A'
 alias l='ls $LS_OPTIONS -alFtr'
+alias cls="clear && exa -la"
 
 # Recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
