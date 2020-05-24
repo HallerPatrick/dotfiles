@@ -17,4 +17,6 @@
     ~/.config/i3/config: config/i3/config
     ~/.config/i3status/config: config/i3status/config
     ~/.config/zathura/zathurarc: config/zathura/zathurarc
+    ~/.config/yabai/yabairc: config/yabai/yabairc
+    ~/.config/skhd/skhdrc: config/skhd/skhdrc
     ~/.oh-my-zsh/: oh-my-zsh
