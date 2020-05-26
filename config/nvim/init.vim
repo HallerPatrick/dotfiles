@@ -14,8 +14,6 @@
 
 set nocompatible
 
-
-
 filetype off
 
 if (has('termguicolors'))
@@ -177,6 +175,7 @@ endif
 
 call plug#begin()
 
+" Linter Engine
 Plug 'dense-analysis/ale'
 
 "Visual
@@ -190,18 +189,16 @@ Plug 'junegunn/goyo.vim'
 
 
 " Utilities
-
 Plug 'airblade/vim-rooter'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
 
 
-" Unused for now
-
 Plug 'rust-lang/rust.vim'
+
 " Plug 'kaicataldo/material.vim'
-" Plug 'arcticicestudio/nord-vim'
-Plug 'Rigellute/rigel'
+Plug 'arcticicestudio/nord-vim'
+" Plug 'Rigellute/rigel'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -245,11 +242,6 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Easy motion
-Plug 'easymotion/vim-easymotion'
-
-Plug 'liuchengxu/vista.vim'
-
 call plug#end()
 
 
@@ -259,8 +251,8 @@ call plug#end()
 " colorscheme material
 " colorscheme xcodedark
 " colorscheme material
-" colorscheme nord
-colorscheme rigel
+colorscheme nord
+" colorscheme rigel
 
 let g:rigel_lightline = 1
 
@@ -274,9 +266,6 @@ endif
 
 let g:deoplete#enable_at_startup = 1
 
-" Completion with tab
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
@@ -285,7 +274,7 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -330,7 +319,6 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
