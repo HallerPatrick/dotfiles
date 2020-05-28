@@ -12,8 +12,7 @@
     ~/.gitconfig: gitconfig
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
-    ~/.vimrc: vimrc
-    ~/.config/nvim/init.vim: config/nvim/init
+    ~/.config/nvim/init.vim: config/nvim/init.vim
     ~/.config/i3/config: config/i3/config
     ~/.config/i3status/config: config/i3status/config
     ~/.config/zathura/zathurarc: config/zathura/zathurarc

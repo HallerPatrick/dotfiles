@@ -68,6 +68,8 @@ alias python27="/usr/local/Cellar/python@2/2.7.16/bin/python"
 # Lazygit
 alias lgit='lazygit'
 
+alias vimr="open -a vimr.app"
+
 alias config='/usr/bin/git --git-dir=/Users/patrickhaller/.cfg/ --work-tree=/Users/patrickhaller'
 
 # Change dir to git root.
