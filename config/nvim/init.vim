@@ -14,8 +14,6 @@
 
 set nocompatible
 
-
-
 filetype off
 
 if (has('termguicolors'))
@@ -155,6 +153,9 @@ map L $
 nnoremap j gj
 nnoremap k gk
 
+vnoremap J :m '>+1<CR>gv=gv'
+vnoremap K :m '<-2<CR>gv=gv'
+
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
@@ -177,6 +178,7 @@ endif
 
 call plug#begin()
 
+" Linter Engine
 Plug 'dense-analysis/ale'
 
 "Visual
@@ -190,17 +192,16 @@ Plug 'junegunn/goyo.vim'
 
 
 " Utilities
-
 Plug 'airblade/vim-rooter'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
 
 
-" Unused for now
-
 Plug 'rust-lang/rust.vim'
+
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
+" Plug 'Rigellute/rigel'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -244,11 +245,6 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Easy motion
-Plug 'easymotion/vim-easymotion'
-
-Plug 'liuchengxu/vista.vim'
-
 call plug#end()
 
 
@@ -259,6 +255,12 @@ call plug#end()
 " colorscheme xcodedark
 " colorscheme material
 colorscheme nord
+" colorscheme rigel
+
+let g:rigel_lightline = 1
+
+let g:lightline = { 'colorscheme': 'rigel' }
+
 
 
 if has('mac')
@@ -266,9 +268,6 @@ if has('mac')
 endif
 
 let g:deoplete#enable_at_startup = 1
-
-" Completion with tab
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -278,7 +277,7 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -323,7 +322,6 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -398,60 +396,5 @@ set undofile
 
 " Allow folding by syntax
 set foldmethod=manual
-
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
-      \ },
-      \ 'component_function': {
-      \   'method': 'NearestMethodOrFunction'
-      \ },
-      \ }
-
-set statusline^=%{coc#status()}
-" How each level is indented and what to prepend.
-" This could make the display more compact or more spacious.
-" e.g., more compact: ["▸ ", ""]
-" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'ctags'
-
-" Set the executive for some filetypes explicitly. Use the explicit executive
-" instead of the default one for these filetypes when using `:Vista` without
-" specifying the executive.
-let g:vista_executive_for = {
-  \ 'cpp': 'vim_lsp',
-  \ 'php': 'vim_lsp',
-  \ }
-
-" Declare the command including the executable and options used to generate ctags output
-" for some certain filetypes.The file path will be appened to your custom command.
-" For example:
-let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
-
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
-let g:vista_fzf_preview = ['right:50%']
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
 
 
