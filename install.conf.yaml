@@ -13,6 +13,7 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim/init.vim: config/nvim/init.vim
+    ~/.config/nvim/ulti_snippets/tex.snippets: scripts/ulti_snippets/tex.snippets
     ~/.config/i3/config: config/i3/config
     ~/.config/i3status/config: config/i3status/config
     ~/.config/zathura/zathurarc: config/zathura/zathurarc
