@@ -21,6 +21,7 @@ if (has('termguicolors'))
 endif
 
 
+let g:NVIM_PYTHON_LOG_FILE="~/nvim_python_log.log"
 " =============================================================================
 " # Editor settings
 " ============================================================================
@@ -190,14 +191,15 @@ Plug 'camspiers/lens.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 
-
 " Utilities
 Plug 'airblade/vim-rooter'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
-
+Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'rust-lang/rust.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -245,6 +247,8 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug '~/Projects/nvim-python-coverage'
+
 call plug#end()
 
 
@@ -261,7 +265,7 @@ let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
 
-
+lua require'colorizer'.setup()
 
 if has('mac')
     let g:python3_host_prog = expand('/usr/local/bin/python3.7')
@@ -275,6 +279,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "ulti_snippets"]
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
