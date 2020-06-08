@@ -26,6 +26,8 @@ font pango:monospace 8
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+exec --no-startup-id feh --bg-fill ~/Downloads/asakusa.png
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -263,13 +265,4 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 client.background       $bg-color
-
-exec --no-startup-d feh --bg-fill ~/Downloads/asakusa.png
-
-# colour of border, background, text, indicator, and child_border
-# client.focused              #DD2A2A #2f343f #d8dee8 #bf616a #bf616a
-# client.focused_inactive     #DD2A2A #2f343f #d8dee8 #2f343f #2f343f
-# client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-# client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-# client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 

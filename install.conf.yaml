@@ -20,4 +20,5 @@
     ~/.config/zathura/zathurarc: config/zathura/zathurarc
     ~/.config/yabai/yabairc: config/yabai/yabairc
     ~/.config/skhd/skhdrc: config/skhd/skhdrc
+    ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
     ~/.oh-my-zsh/: oh-my-zsh
