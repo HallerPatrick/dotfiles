@@ -1,73 +1,85 @@
+# i3status configuration file for i3bar
+# Asakusa theme by @vickylaixy
+# see "man i3status" for documentation
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
 general {
-        output_format = "i3bar"
-        colors = false
-        markup = pango
+        colors = true
+        color_good =     '#22ddcc'
+        color_degraded = '#dd9933'
+        color_bad =      '#aa5566'
         interval = 5
-        color_good = '#2f343f'
-		color_degraded = '#ebcb8b'
-		color_bad = '#ba5e57'
 }
 
+order += "disk /"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery 0"
+order += "cpu_temperature 0"
 order += "load"
-order += "disk /home"
 order += "volume master"
 order += "tztime local"
 
-/* order += "ethernet enp1s0" */
-/* order += "wireless wlp2s0" */
-/* order += "cpu_temperature 0" */
-/* order += "disk /" */
-/* order += "battery 1" */
+disk "/" {
+        format = " %avail/%total"
+}
 
-load {
-        format = "<span background='#f59335'>  %5min Load </span>"
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+	format = "%title: "
+	format_down = "%title: "
+}
+
+run_watch VPN {
+        pidfile = "/sys/class/net/tun0"
+	format = "%title: "
+	format_down = "%title: "
+}
+
+wireless _first_ {
+        format_up = " (%quality at %essid) %ip"
+        format_down = " down"
+}
+
+ethernet _first_ {
+        # if you use %speed, i3status requires root privileges
+        format_up = "E: %ip (%speed)"
+        format_down = ""
+}
+
+battery 0 {
+        format = "%status %remaining (%consumption)"
+	status_chr = ""
+	status_bat = ""
+	status_full = ""
+	hide_seconds = "true"
+	integer_battery_capacity = "true"
+	low_threshold = "20"
+	threshold_type = "time"
 }
 
 cpu_temperature 0 {
-        format = "<span background='#bf616a'>  %degrees °C </span>"
-        path = "/sys/class/thermal/thermal_zone0/temp"
+        format = " %degrees°C"
 }
 
-disk "/" {
-        format = "<span background='#fec7cd'>  %free Free </span>"
-}
-
-disk "/home" {
-        format = "<span background='#a1d569'>  %free Free </span>"
-}
-
-ethernet enp1s0 {
-        format_up = "<span background='#88c0d0'>  %ip </span>"
-        format_down = "<span background='#88c0d0'>  Disconnected </span>"
-}
-
-wireless wlp2s0 {
-        format_up = "<span background='#b48ead'>  %essid </span>"
-        format_down = "<span background='#b48ead'>  Disconnected </span>"
+load {
+        format = " %1min"
 }
 
 volume master {
-        format = "<span background='#ebcb8b'>  %volume </span>"
-        format_muted = "<span background='#ebcb8b'>  Muted </span>"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
-}
-
-battery 1 {
-	last_full_capacity = true
-        format = "<span background='#a3be8c'>  %status %percentage </span>"
-        format_down = "No Battery"
-        status_chr = "Charging"
-        status_bat = "Battery"
-        status_unk = "Unknown"
-        status_full = "Charged"
-        path = "/sys/class/power_supply/BAT%d/uevent"
-        low_threshold = 10
+	format = "VOL: %volume"
+	format_muted = ""
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
 }
 
 tztime local {
-		format = "<span background='#81a1c1'> %time </span>"
-		format_time = " %a %-d %b %H:%M"
+        format = "  %a %b %d  %H:%M:%S"
 }
-

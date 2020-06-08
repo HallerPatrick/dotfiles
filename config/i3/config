@@ -32,6 +32,7 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -180,18 +181,44 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    colors {
-        background #2f343f
-        statusline #2f343f
-        separator #4b5262
+# bar {
+#     colors {
+#         background #2f343f
+#         statusline #2f343f
+#         separator #4b5262
 
-        focused_workspace #2f343f #bf616a #d8dee8
-        active_workspace #2f343f #bf616a #d8dee8
-        inactive_workspace #2f343f #bf616a #d8dee8
-        urgent_workspace1  #2f343f #ebcb8b #2f343f
-    }
-    status_command i3status
+#         focused_workspace #2f343f #bf616a #d8dee8
+#         active_workspace #2f343f #bf616a #d8dee8
+#         inactive_workspace #2f343f #bf616a #d8dee8
+#         urgent_workspace1  #2f343f #ebcb8b #2f343f
+#     }
+#     status_command i3status
+
+
+# }
+bar {
+        # start using custom config file (full path)
+        status_command       i3status
+        tray_padding         3
+        font pango:Roboto    9
+
+        colors {
+            # whole color settings
+            background   $black
+            statusline   $white
+            separator    $grey
+
+            # type             border      backgr.     font
+            focused_workspace  $grey       $white      $black
+            active_workspace   $grey       $white      $black
+            inactive_workspace $grey       $black      $white
+            urgent_workspace   $valencia   $valencia   $black
+        }
+        # i3bar position
+        position top
+
+        # height of the bar in pixels
+        # height 25
 }
 
 # window rules, you can find the window class using xprop
@@ -206,10 +233,43 @@ for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucon
 for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
+
+
+# ASAKUSA THEME
+
+# set color variables
+# optional theme colorscheme
+set $grey                #334455
+set $magenta             #ddbbcc
+set $blue                #557788
+set $cyan                #22ddcc
+set $black               #334455
+set $white               #aacccc
+set $yellow              #dd9933
+set $red                 #aa5566
+set $green               #779988
+
+# theme colors
+set $bg-color 	         #334455
+set $inactive-bg-color   #334455
+set $text-color          #aacccc
+set $inactive-text-color #557788
+set $urgent-bg-color     #ee3355
+
+# set window colors
+# class                 border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $white               $bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
+client.background       $bg-color
+
+exec --no-startup-d feh --bg-fill ~/Downloads/asakusa.png
+
 # colour of border, background, text, indicator, and child_border
-client.focused              #DD2A2A #2f343f #d8dee8 #bf616a #bf616a
-client.focused_inactive     #DD2A2A #2f343f #d8dee8 #2f343f #2f343f
-client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.focused              #DD2A2A #2f343f #d8dee8 #bf616a #bf616a
+# client.focused_inactive     #DD2A2A #2f343f #d8dee8 #2f343f #2f343f
+# client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+# client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 
