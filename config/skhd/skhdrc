@@ -109,8 +109,15 @@ shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 # cmd + alt - 1 : yabai -m space --focus 1
 
 # send window to desktop and follow focus
-# shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
-# shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
+shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+
+ctrl + h : yabai -m window --focus west
+ctrl + j : yabai -m window --focus sout
+ctrl + k : yabai -m window --focus north
+ctrl + l : yabai -m window --focus east
+
+# focus window in direction of focused window (options: north, east, south, west)
 
 # focus monitor
 # ctrl + alt - z  : yabai -m display --focus prev
