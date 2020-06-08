@@ -102,7 +102,7 @@ But "requires" Font Awesome:
 
 *Debian*
 ```bash
-sudo apt-get install -y fonts-font-aweseom
+sudo apt-get install -y fonts-font-awesome
 ```
 
 
