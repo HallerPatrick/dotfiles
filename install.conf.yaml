@@ -22,4 +22,5 @@
     ~/.config/skhd/skhdrc: config/skhd/skhdrc
     ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
     ~/.config/rofi/config.rasi: config/rofi/config.rasi
+    ~/.config/asakusa.png: assets/asakusa.png
     ~/.oh-my-zsh/: oh-my-zsh
