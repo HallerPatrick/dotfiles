@@ -20,7 +20,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-
+let g:clipboard="xclip"
 let g:NVIM_PYTHON_LOG_FILE="~/nvim_python_log.log"
 " =============================================================================
 " # Editor settings
@@ -272,9 +272,7 @@ if jit ~= nil then
 end
 EOF
 
-if has('mac')
-    let g:python3_host_prog = expand('/usr/local/bin/python3.7')
-endif
+let g:python3_host_prog = expand('/usr/bin/python3')
 
 let g:deoplete#enable_at_startup = 1
 
