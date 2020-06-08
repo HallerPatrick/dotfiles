@@ -203,7 +203,7 @@ Plug 'mxw/vim-jsx'
 
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
-" Plug 'Rigellute/rigel'
+Plug 'Rigellute/rigel'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -265,7 +265,12 @@ let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
 
-lua require'colorizer'.setup()
+" If luajit not existing
+lua << EOF
+if jit ~= nil then
+    require'colorizer'.setup()
+end
+EOF
 
 if has('mac')
     let g:python3_host_prog = expand('/usr/local/bin/python3.7')
