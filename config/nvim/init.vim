@@ -231,6 +231,7 @@ Plug 'junegunn/fzf.vim'
 " Commenting
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 
 " automatic closing of quotes, parenthesis, brackets, etc.
