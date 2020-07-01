@@ -181,4 +181,7 @@ if [ -x "$(command -v pfetch)" ]; then
     pfetch
 fi
 
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+# source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+

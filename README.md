@@ -94,6 +94,18 @@ A curated list of all possible apps and features I use:
 bash scripts/brew.sh
 ```
 
+## i3
+
+Using a basic i3/i3status config.
+
+But "requires" Font Awesome:
+
+*Debian*
+```bash
+sudo apt-get install -y fonts-font-awesome
+```
+
+
 # Screenshots
 
 ## iTerm2 / Neovim

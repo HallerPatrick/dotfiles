@@ -20,7 +20,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-
+let g:clipboard="xclip"
 let g:NVIM_PYTHON_LOG_FILE="~/nvim_python_log.log"
 " =============================================================================
 " # Editor settings
@@ -203,7 +203,7 @@ Plug 'mxw/vim-jsx'
 
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
-" Plug 'Rigellute/rigel'
+Plug 'Rigellute/rigel'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -231,6 +231,7 @@ Plug 'junegunn/fzf.vim'
 " Commenting
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 
 " automatic closing of quotes, parenthesis, brackets, etc.
@@ -265,11 +266,14 @@ let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
 
-lua require'colorizer'.setup()
+" If luajit not existing
+lua << EOF
+if jit ~= nil then
+    require'colorizer'.setup()
+end
+EOF
 
-if has('mac')
-    let g:python3_host_prog = expand('/usr/local/bin/python3.7')
-endif
+let g:python3_host_prog = expand('/usr/bin/python3')
 
 let g:deoplete#enable_at_startup = 1
 
