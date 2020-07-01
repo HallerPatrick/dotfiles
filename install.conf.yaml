@@ -13,6 +13,7 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim/init.vim: config/nvim/init.vim
+    ~/.ideavimrc: config/nvim/init.vim
     ~/.config/nvim/ulti_snippets/tex.snippets: scripts/ulti_snippets/tex.snippets
     ~/.config/nvim/ulti_snippets/plaintex.snippets: scripts/ulti_snippets/plaintex.snippets
     ~/.config/i3/config: config/i3/config
@@ -21,3 +22,5 @@
     ~/.config/yabai/yabairc: config/yabai/yabairc
     ~/.config/skhd/skhdrc: config/skhd/skhdrc
     ~/.oh-my-zsh/: oh-my-zsh
+    ~/.config/purification/prompt_purification_setup: scripts/purification/prompt_purification_setup
+
