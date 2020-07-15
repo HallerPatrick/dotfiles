@@ -25,5 +25,6 @@
     ~/.config/rofi/config.rasi: config/rofi/config.rasi
     ~/.config/asakusa.png: assets/asakusa.png
     ~/.oh-my-zsh/: oh-my-zsh
+    ~/.pylintrc: pylintrc
     ~/.config/purification/prompt_purification_setup: scripts/purification/prompt_purification_setup
 
