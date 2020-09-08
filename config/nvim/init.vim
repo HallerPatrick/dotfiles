@@ -202,7 +202,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 " Plug 'kaicataldo/material.vim'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
+Plug 'skbolton/embark'
 Plug 'Rigellute/rigel'
 
 " Semantic language support
@@ -223,6 +224,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
+
+Plug 'metakirby5/codi.vim'
 
 " Fuzzy Search
 Plug '/usr/local/opt/fzf'
@@ -259,12 +262,18 @@ call plug#end()
 " colorscheme material
 " colorscheme xcodedark
 " colorscheme material
-colorscheme nord
-" colorscheme rigel
+" colorscheme nord
+colorscheme embark
 
 let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
+
+let g:codi#interpreters = {
+    \ 'python': {
+        \ 'bin': '/usr/local/bin/python3.8'
+        \ }
+    \ }
 
 " If luajit not existing
 lua << EOF
@@ -273,7 +282,7 @@ if jit ~= nil then
 end
 EOF
 
-let g:python3_host_prog = expand('/usr/bin/python3')
+let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 let g:deoplete#enable_at_startup = 1
 
