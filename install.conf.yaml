@@ -16,6 +16,7 @@
     ~/.ideavimrc: config/nvim/init.vim
     ~/.config/nvim/ulti_snippets/tex.snippets: scripts/ulti_snippets/tex.snippets
     ~/.config/nvim/ulti_snippets/plaintex.snippets: scripts/ulti_snippets/plaintex.snippets
+    ~/.config/nvim/ulti_snippets/python.snippets: scripts/ulti_snippets/python.snippets
     ~/.config/i3/config: config/i3/config
     ~/.config/i3status/config: config/i3status/config
     ~/.config/zathura/zathurarc: config/zathura/zathurarc
@@ -24,6 +25,8 @@
     ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
     ~/.config/rofi/config.rasi: config/rofi/config.rasi
     ~/.config/asakusa.png: assets/asakusa.png
+    ~/.config/flake8: config/flake8/config
     ~/.oh-my-zsh/: oh-my-zsh
+    ~/.pylintrc: pylintrc
     ~/.config/purification/prompt_purification_setup: scripts/purification/prompt_purification_setup
 

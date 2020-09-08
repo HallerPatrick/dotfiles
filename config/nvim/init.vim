@@ -39,7 +39,8 @@ set relativenumber " Relative line numbers
 set number " Also show current absolute line
 set shiftwidth=4
 set expandtab
-set cc=100
+
+set cc=99
 
 " Use clipboard all the time
 set clipboard+=unnamedplus
@@ -200,9 +201,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'fisadev/vim-isort'
 
 " Plug 'kaicataldo/material.vim'
-" Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'skbolton/embark'
 Plug 'Rigellute/rigel'
 
@@ -215,20 +217,20 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 " Markdown
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
 
 " If you don't have nodejs and yarn
 " use pre build
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " If you have nodejs and yarn
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 
 Plug 'metakirby5/codi.vim'
 
 " Fuzzy Search
-Plug '/usr/local/opt/fzf'
+Plug '~/.fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Commenting
@@ -245,8 +247,8 @@ Plug 'terryma/vim-expand-region'
 
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'lervag/vimtex'
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" Plug 'lervag/vimtex'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -264,6 +266,7 @@ call plug#end()
 " colorscheme material
 " colorscheme nord
 colorscheme embark
+" colorscheme rigel
 
 let g:rigel_lightline = 1
 
