@@ -132,6 +132,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 
+
 extract () {
     if [ -f $1 ] ; then
       case $1 in

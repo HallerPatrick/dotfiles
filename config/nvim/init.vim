@@ -191,6 +191,7 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
+Plug 'unblevable/quick-scope'
 
 " Utilities
 Plug 'airblade/vim-rooter'
@@ -217,14 +218,14 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 " Markdown
-" Plug 'gabrielelana/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 
 " If you don't have nodejs and yarn
 " use pre build
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " If you have nodejs and yarn
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 
 Plug 'metakirby5/codi.vim'
@@ -284,6 +285,12 @@ if jit ~= nil then
     require'colorizer'.setup()
 end
 EOF
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Trigger a highlight only when pressing f and F.
+let g:qs_highlight_on_keys = ['f', 'F']
 
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
