@@ -197,11 +197,13 @@ Plug 'airblade/vim-rooter'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'chrisbra/unicode.vim'
 
 Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
+Plug 'liuchengxu/vista.vim'
 
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -210,6 +212,9 @@ Plug 'Rigellute/rigel'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Autocompletion
 " Plug 'Shougo/deoplete.nvim'
@@ -262,13 +267,16 @@ call plug#end()
 " colorscheme material
 " colorscheme xcodedark
 " colorscheme material
-" colorscheme nord
-colorscheme embark
+colorscheme nord
+" colorscheme embark
 " colorscheme rigel
 
 let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
+
+
+let g:mkdp_browser = 'firefox'
 
 " If luajit not existing
 lua << EOF
@@ -411,4 +419,5 @@ set undofile
 " Allow folding by syntax
 set foldmethod=manual
 
-
+" Intellij products
+set ideajoin

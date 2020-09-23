@@ -44,6 +44,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
   web-search
+  poetry
 )
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
@@ -114,6 +115,7 @@ export RUST_BACKTRACE=1
 # Python
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Golang
 export GOPATH=~/gospace
@@ -171,7 +173,10 @@ bindkey '^Z' fancy-ctrl-z
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# eval "$(starship init zsh)"
+fpath+=~/.zfunc
+
+
+
 
 autoload -U compinit && compinit -u
 # prompt spaceship
