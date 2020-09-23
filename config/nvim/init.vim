@@ -389,7 +389,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Ale Extras
 "
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
+\   'python': ['mypy', 'flake8', 'pylint'],
 \   'javascript': ['eslint'],
 \   'vue': ['eslint']
 \}
@@ -433,5 +433,3 @@ set undofile
 " Allow folding by syntax
 set foldmethod=manual
 
-" Intellij products
-set ideajoin
