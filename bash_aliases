@@ -52,6 +52,7 @@ alias fix-dir-perms="find . -type f -print0 | xargs -0 chmod 0644"
 # Getting colored results when using a pipe from grep to less.
 alias grep='grep --color=auto'
 alias less='less -R'
+alias pdfgrep='pdfgrep -nH'
 
 # Jump back n directories at a time
 alias ..='cd ..'
