@@ -210,6 +210,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'skbolton/embark'
 Plug 'Rigellute/rigel'
+Plug 'bluz71/vim-nightfly-guicolors'
 
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -273,7 +274,8 @@ call plug#end()
 " colorscheme material
 " colorscheme xcodedark
 " colorscheme material
-colorscheme nord
+" colorscheme nord
+colorscheme nightfly
 " colorscheme embark
 " colorscheme rigel
 
