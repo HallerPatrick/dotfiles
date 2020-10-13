@@ -261,6 +261,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'HerringtonDarkholme/yats.vim'
 
 
 call plug#end()
@@ -397,6 +398,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \    'javascript': ['eslint'],
   \    'typescript': ['prettier', 'tslint'],
+  \    'typescriptreact': ['prettier'],
   \    'vue': ['eslint'],
   \    'scss': ['prettier'],
   \    'html': ['prettier'],

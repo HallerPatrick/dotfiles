@@ -12,8 +12,12 @@ fi
 
 
 if (( $+commands[setxkbmap] )) ; then
-    echo "\e[32mLoad US Keyboard Layout \e[0m"
-    setxkbmap us
+
+    # Only apply to linux systems
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo "\e[32mLoad US Keyboard Layout \e[0m"
+        setxkbmap us
+    fi
 fi
 
 
@@ -44,7 +48,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
   web-search
-  poetry
 )
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
