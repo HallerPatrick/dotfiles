@@ -14,14 +14,15 @@
 
 set nocompatible
 
+set visualbell
+set noerrorbells
+
 filetype off
 
 if (has('termguicolors'))
   set termguicolors
 endif
 
-let g:clipboard="xclip"
-let g:NVIM_PYTHON_LOG_FILE="~/nvim_python_log.log"
 " =============================================================================
 " # Editor settings
 " ============================================================================
@@ -171,6 +172,16 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
 " Autoinstall Plug if not existing (only Neovim)
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -182,6 +193,18 @@ call plug#begin()
 
 " Linter Engine
 Plug 'dense-analysis/ale'
+
+" Neovim lsp Plugins
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/lsp_extensions.nvim'
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+
+Plug 'ryanolsonx/vim-lsp-python'
+Plug 'davidhalter/jedi-vim'
 
 "Visual
 Plug 'itchyny/lightline.vim'
@@ -205,6 +228,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
 Plug 'liuchengxu/vista.vim'
+Plug 'vim-test/vim-test'
 
 " Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -212,16 +236,8 @@ Plug 'skbolton/embark'
 Plug 'Rigellute/rigel'
 Plug 'bluz71/vim-nightfly-guicolors'
 
-" Semantic language support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-" Autocompletion
-" Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 
 " Markdown
 Plug 'gabrielelana/vim-markdown'
@@ -237,15 +253,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'metakirby5/codi.vim'
 
 " Fuzzy Search
-Plug '~/.fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() }}
+Plug 'junegunn/fzf'
 
 " Commenting
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
-
 
 
 " automatic closing of quotes, parenthesis, brackets, etc.
@@ -279,30 +294,21 @@ colorscheme nightfly
 " colorscheme embark
 " colorscheme rigel
 
+let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
 
-let g:codi#interpreters = {
-    \ 'python': {
-        \ 'bin': '/usr/local/bin/python3.8'
-        \ }
-    \ }
+" LSP CONFIGS
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
 
-" If luajit not existing
-lua << EOF
-if jit ~= nil then
-    require'colorizer'.setup()
-end
-EOF
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F']
-
-let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 let g:deoplete#enable_at_startup = 1
 
@@ -323,7 +329,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-let test#python#runner = 'nose'
+let test#python#runner = 'pytest'
 
 if executable('rg')
 	set grepprg=rg\ --no-heading\ --vimgrep
@@ -351,48 +357,10 @@ set signcolumn=yes
 " let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_progname = 'nvr'
 
-" =============================================================================
-" # CoC settings
-" ============================================================================
-"
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-.> to trigger completion.
-inoremap <silent><expr> <c-.> coc#refresh()
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `omplete_info` if your vim support it, like:
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Ale Extras
 "
 let g:ale_linters = {
-\   'python': ['mypy', 'flake8', 'pylint'],
+\   'python': ['pylint'],
 \   'javascript': ['eslint'],
 \   'vue': ['eslint']
 \}
@@ -408,6 +376,9 @@ let g:ale_fixers = {
   \    'python': ['black']
 \}
 let g:ale_fix_on_save = 1
+
+" THIS SHOULD ALWAYS BE SET NEW ON EVERY MACHINE
+let g:python3_host_prog = '/Users/patrickhaller/.pyenv/versions/neovim3/bin/python'
 
 " GoTo Definition ShortCut
 nnoremap <up> <nop>
