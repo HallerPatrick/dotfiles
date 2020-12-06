@@ -105,6 +105,25 @@ But "requires" Font Awesome:
 sudo apt-get install -y fonts-font-awesome
 ```
 
+# Setup Vim for Python Development
+
+Use (nvim nighlty)[https://github.com/neovim/neovim/releases/tag/nightly]
+
+## Setup venv for python provider
+
+Use something like pyenv and follow these (Instructions)[https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim].
+
+Also install in the same venv python-language-server neovim and pyls.
+Also set:
+
+```vim
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+```
+
+To make correct linting work, install pylint in project venv.
+Before opening vim for working on projects activate project venv.
+
+Use `:checkhealth` for debugging problems
 
 # Screenshots
 
