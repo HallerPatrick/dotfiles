@@ -172,6 +172,9 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+" LSP CONFIGS
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -205,6 +208,8 @@ Plug 'prabirshrestha/vim-lsp'
 
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'pechorin/any-jump.vim'
 
 "Visual
 Plug 'itchyny/lightline.vim'
@@ -222,7 +227,9 @@ Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'chrisbra/unicode.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 
+" Language stuff
 Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -298,10 +305,12 @@ let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
+let g:deoplete#enable_at_startup = 1
 
 " LSP CONFIGS
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
 
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
