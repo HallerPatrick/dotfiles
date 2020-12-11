@@ -122,14 +122,19 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Golang
 export GOPATH=~/gospace
+export GOROOT=/usr/local/go
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export ENABLE_FLUTTER_DESKTOP=true
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+export PATH="/Users/patrickhaller/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # export LDFLAGS="-L/usr/local/opt/readline/lib"
 # export CPPFLAGS="-I/usr/local/opt/readline/include"

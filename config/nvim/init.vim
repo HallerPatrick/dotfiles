@@ -66,6 +66,8 @@ set lazyredraw
 set foldmethod=manual
 set nofoldenable    " disable folding
 
+set completeopt-=preview
+
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -172,19 +174,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-" LSP CONFIGS
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
 " Autoinstall Plug if not existing (only Neovim)
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -196,19 +185,7 @@ call plug#begin()
 
 " Linter Engine
 Plug 'dense-analysis/ale'
-
-" Neovim lsp Plugins
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'tjdevries/nlua.nvim'
-Plug 'tjdevries/lsp_extensions.nvim'
-
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'pechorin/any-jump.vim'
 
 "Visual
@@ -305,13 +282,6 @@ let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
 let g:lightline = { 'colorscheme': 'rigel' }
-let g:deoplete#enable_at_startup = 1
-
-" LSP CONFIGS
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
-
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -319,7 +289,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F']
 
-let g:deoplete#enable_at_startup = 1
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)

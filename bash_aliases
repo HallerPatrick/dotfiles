@@ -61,9 +61,11 @@ alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
 
+# mac/Iterm specific
 
-# Python
-alias python27="/usr/local/Cellar/python@2/2.7.16/bin/python"
+alias nt='open . -a iterm'
+alias nst='open . -a iterm'
+
 
 ## Git
 
