@@ -119,6 +119,8 @@ noremap <silent> <leader><Right> :vertical resize +3<CR>
 
 noremap <leader>tt :vnew term://zsh<CR>
 
+nmap <leader>b :TagbarToggle<CR>
+
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
 
@@ -197,6 +199,7 @@ Plug 'camspiers/lens.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'unblevable/quick-scope'
+Plug 'preservim/tagbar'
 
 " Utilities
 Plug 'airblade/vim-rooter'
@@ -215,10 +218,11 @@ Plug 'liuchengxu/vista.vim'
 Plug 'vim-test/vim-test'
 
 " Plug 'kaicataldo/material.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'skbolton/embark'
-Plug 'Rigellute/rigel'
-Plug 'bluz71/vim-nightfly-guicolors'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'skbolton/embark'
+" Plug 'Rigellute/rigel'
+" Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'pineapplegiant/spaceduck'
 
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -274,14 +278,14 @@ call plug#end()
 " colorscheme xcodedark
 " colorscheme material
 " colorscheme nord
-colorscheme nightfly
+colorscheme spaceduck
 " colorscheme embark
 " colorscheme rigel
 
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
-let g:lightline = { 'colorscheme': 'rigel' }
+let g:lightline = { 'colorscheme': 'spaceduck' }
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -357,6 +361,42 @@ let g:ale_fix_on_save = 1
 
 " THIS SHOULD ALWAYS BE SET NEW ON EVERY MACHINE
 let g:python3_host_prog = '/Users/patrickhaller/.pyenv/versions/neovim3/bin/python'
+
+let g:rust_use_custom_ctags_defs = 1
+
+let g:tagbar_type_rust = {
+  \ 'ctagsbin' : '/usr/local/bin/ctags',
+  \ 'ctagstype' : 'rust',
+  \ 'kinds' : [
+      \ 'n:modules',
+      \ 's:structures:1',
+      \ 'i:interfaces',
+      \ 'c:implementations',
+      \ 'f:functions:1',
+      \ 'g:enumerations:1',
+      \ 't:type aliases:1:0',
+      \ 'v:constants:1:0',
+      \ 'M:macros:1',
+      \ 'm:fields:1:0',
+      \ 'e:enum variants:1:0',
+      \ 'P:methods:1',
+  \ ],
+  \ 'sro': '::',
+  \ 'kind2scope' : {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+      \ 'f': 'function',
+      \ 'g': 'enum',
+      \ 't': 'typedef',
+      \ 'v': 'variable',
+      \ 'M': 'macro',
+      \ 'm': 'field',
+      \ 'e': 'enumerator',
+      \ 'P': 'method',
+  \ },
+\ }
 
 " GoTo Definition ShortCut
 nnoremap <up> <nop>
