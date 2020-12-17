@@ -132,6 +132,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export ENABLE_FLUTTER_DESKTOP=true
 
+export PATH="/Users/patrickhaller/.dotnet/:$PATH"
+
 export PATH="/Users/patrickhaller/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

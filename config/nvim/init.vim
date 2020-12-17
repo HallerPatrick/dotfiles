@@ -64,7 +64,7 @@ set lazyredraw
 set foldmethod=manual
 set nofoldenable    " disable folding
 
-set completeopt-=preview
+" set completeopt-=preview
 
 " Permanent Undo
 set undodir=~/.vimdid
@@ -183,8 +183,15 @@ call plug#begin()
 
 " Linter Engine
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'pechorin/any-jump.vim'
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+" LSP
+"
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'tweekmonster/startuptime.vim'
+Plug 'davidhalter/jedi-vim'
+
 
 "Visual
 Plug 'itchyny/lightline.vim'
@@ -199,18 +206,18 @@ Plug 'preservim/tagbar'
 
 " Utilities
 Plug 'airblade/vim-rooter'
-Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'chrisbra/unicode.vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'pechorin/any-jump.vim'
+Plug '9mm/vim-closer'
 
 " Language stuff
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
-Plug 'liuchengxu/vista.vim'
 Plug 'vim-test/vim-test'
 
 " Colortheme
@@ -245,6 +252,29 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
+
+" LSP STUFF
+let g:completion_confirm_key = "\<C-y>"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+
+command! Format execute 'lua vim.lsp.buf.formatting()'
+
+lua <<EOF
+    require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
+    require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
+EOF
+
+set omnifunc=lsp#omnifunc
+
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 colorscheme spaceduck
 
@@ -316,6 +346,7 @@ let g:ale_fixers = {
   \    'python': ['black']
 \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_autoimport = 1
 
 " THIS SHOULD ALWAYS BE SET NEW ON EVERY MACHINE
 let g:python3_host_prog = '/Users/patrickhaller/.pyenv/versions/neovim3/bin/python'
