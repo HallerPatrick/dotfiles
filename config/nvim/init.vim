@@ -17,7 +17,7 @@ set nocompatible
 set visualbell
 set noerrorbells
 
-filetype off
+filetype plugin indent on
 
 if (has('termguicolors'))
   set termguicolors
@@ -27,7 +27,6 @@ endif
 " # Editor settings
 " ============================================================================
 
-filetype plugin indent on
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
@@ -40,7 +39,6 @@ set relativenumber " Relative line numbers
 set number " Also show current absolute line
 set shiftwidth=4
 set expandtab
-
 set cc=99
 
 " Use clipboard all the time
@@ -67,6 +65,13 @@ set foldmethod=manual
 set nofoldenable    " disable folding
 
 set completeopt-=preview
+
+" Permanent Undo
+set undodir=~/.vimdid
+set undofile
+
+" Allow folding by syntax
+set foldmethod=manual
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -143,15 +148,6 @@ nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-" No arrow keys --- force yourself to use the home row
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-
-
 " Fast begin/end of line movement
 map H _
 map L $
@@ -217,18 +213,11 @@ Plug 'fisadev/vim-isort'
 Plug 'liuchengxu/vista.vim'
 Plug 'vim-test/vim-test'
 
-" Plug 'kaicataldo/material.vim'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'skbolton/embark'
-" Plug 'Rigellute/rigel'
-" Plug 'bluz71/vim-nightfly-guicolors'
+" Colortheme
 Plug 'pineapplegiant/spaceduck'
 
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-" Markdown
-Plug 'gabrielelana/vim-markdown'
 
 " If you don't have nodejs and yarn
 " use pre build
@@ -236,8 +225,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-
 Plug 'metakirby5/codi.vim'
 
 " Fuzzy Search
@@ -254,33 +241,12 @@ Plug 'tpope/vim-fugitive'
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-" Better visual selection
-Plug 'terryma/vim-expand-region'
-
-
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" Plug 'lervag/vimtex'
-
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'HerringtonDarkholme/yats.vim'
-
-
 call plug#end()
 
-
-" Maybe
-" set rtp+=/usr/local/opt/fzf
-
-" colorscheme material
-" colorscheme xcodedark
-" colorscheme material
-" colorscheme nord
 colorscheme spaceduck
-" colorscheme embark
-" colorscheme rigel
 
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
@@ -292,14 +258,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F']
-
-
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_frontmatter = 1
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "ulti_snippets"]
 
@@ -398,14 +356,7 @@ let g:tagbar_type_rust = {
   \ },
 \ }
 
-" GoTo Definition ShortCut
-nnoremap <up> <nop>
-
 let g:rustfmt_autosave = 1
-
-" Open pdf with preview
-let g:livepreview_previewer = 'open -a Preview'
-let g:livepreview_engine = 'pdflatex'
 
 " FORMATTERS for Web
 au FileType javascript setlocal formatprg=prettier shiftwidth=2 softtabstop=2 expandtab
@@ -417,12 +368,4 @@ au FileType css setlocal formatprg=prettier\ --parser\ css
 
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-
-" Permanent Undo
-
-set undodir=~/.vimdid
-set undofile
-
-" Allow folding by syntax
-set foldmethod=manual
 
