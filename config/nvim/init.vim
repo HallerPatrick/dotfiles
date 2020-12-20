@@ -183,14 +183,14 @@ call plug#begin()
 
 " Linter Engine
 Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " LSP
 "
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'tweekmonster/startuptime.vim'
-Plug 'davidhalter/jedi-vim'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'tweekmonster/startuptime.vim'
+" Plug 'davidhalter/jedi-vim'
 
 
 "Visual
@@ -211,7 +211,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'chrisbra/unicode.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'pechorin/any-jump.vim'
-Plug '9mm/vim-closer'
 
 " Language stuff
 " Plug 'rust-lang/rust.vim'
@@ -254,20 +253,20 @@ Plug 'honza/vim-snippets'
 call plug#end()
 
 " LSP STUFF
-let g:completion_confirm_key = "\<C-y>"
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_confirm_key = "\<C-y>"
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" let g:completion_enable_snippet = 'UltiSnips'
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 
-command! Format execute 'lua vim.lsp.buf.formatting()'
+" command! Format execute 'lua vim.lsp.buf.formatting()'
 
-lua <<EOF
-    require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
-    require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
-EOF
+" lua <<EOF
+"     require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
+"     require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
+" EOF
 
-set omnifunc=lsp#omnifunc
+" set omnifunc=lsp#omnifunc
 
 
 " Set completeopt to have a better completion experience
@@ -332,7 +331,8 @@ let g:vimtex_compiler_progname = 'nvr'
 let g:ale_linters = {
 \   'python': ['pylint'],
 \   'javascript': ['eslint'],
-\   'vue': ['eslint']
+\   'vue': ['eslint'],
+\   'rust': []
 \}
 
 let g:ale_fixers = {
