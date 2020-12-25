@@ -1,3 +1,4 @@
+
 export PATH=$PATH:$HOME/.local/bin
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -28,7 +29,6 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"

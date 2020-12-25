@@ -40,7 +40,7 @@ set number " Also show current absolute line
 set shiftwidth=4
 set expandtab
 set cc=99
-
+" set list listchars=tab:>\ ,trail:-,eol:↵
 " Use clipboard all the time
 set clipboard+=unnamedplus
 
@@ -184,6 +184,8 @@ call plug#begin()
 " Linter Engine
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'nvim-treesitter/nvim-treesitter'
+", {'do': ':TSUpdate'}
 
 " LSP
 "
@@ -218,7 +220,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
 Plug 'vim-test/vim-test'
-
+Plug 'bfredl/nvim-ipy'
 " Colortheme
 Plug 'pineapplegiant/spaceduck'
 
@@ -251,6 +253,16 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
+
+" Tree Sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+}
+EOF
 
 " LSP STUFF
 " let g:completion_confirm_key = "\<C-y>"
@@ -343,7 +355,8 @@ let g:ale_fixers = {
   \    'scss': ['prettier'],
   \    'html': ['prettier'],
   \    'reason': ['refmt'],
-  \    'python': ['black']
+  \    'python': ['black'],
+  \    'rust': ['rustfmt']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 1
