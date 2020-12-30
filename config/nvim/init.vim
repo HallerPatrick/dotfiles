@@ -39,7 +39,7 @@ set relativenumber " Relative line numbers
 set number " Also show current absolute line
 set shiftwidth=4
 set expandtab
-set cc=99
+" set cc=99
 " set list listchars=tab:>\ ,trail:-,eol:↵
 " Use clipboard all the time
 set clipboard+=unnamedplus
@@ -124,6 +124,9 @@ noremap <silent> <leader><Right> :vertical resize +3<CR>
 
 noremap <leader>tt :vnew term://zsh<CR>
 
+noremap <leader>tf :TestFile<CR>
+noremap <leader>tn :TestNearest<CR>
+
 nmap <leader>b :TagbarToggle<CR>
 
 " nvim terminal shortcut
@@ -183,9 +186,11 @@ call plug#begin()
 
 " Linter Engine
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter'
 ", {'do': ':TSUpdate'}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 " LSP
 "
@@ -214,6 +219,7 @@ Plug 'chrisbra/unicode.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'pechorin/any-jump.vim'
 
+
 " Language stuff
 " Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
@@ -221,9 +227,10 @@ Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
 Plug 'vim-test/vim-test'
 Plug 'bfredl/nvim-ipy'
+
 " Colortheme
 Plug 'pineapplegiant/spaceduck'
-
+Plug 'relastle/bluewery.vim'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
@@ -287,12 +294,13 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-colorscheme spaceduck
+colorscheme bluewery
 
+let g:deoplete#enable_at_startup = 1
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
-let g:lightline = { 'colorscheme': 'spaceduck' }
+let g:lightline = { 'colorscheme': 'bluewery' }
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
