@@ -14,6 +14,7 @@
 
 set nocompatible
 
+" No sounds
 set visualbell
 set noerrorbells
 
@@ -30,7 +31,7 @@ endif
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
-set scrolloff=2
+set scrolloff=8
 set noshowmode
 set hidden
 set nowrap
@@ -74,7 +75,7 @@ set undofile
 set foldmethod=manual
 
 " Delete trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e
 
 " ======================================================
 " ==== Leader Mapping ==================================
@@ -91,19 +92,11 @@ noremap <leader>s :Rg<cr>
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" Quick-save
+" Quick-save (shave of those ms!)
 nmap <leader>w :w<CR>
 
 " Show buffers
 nmap <leader>, :Buffers<CR>
-
-" Copy & Paste to system Clipboard with <Space>p and <Space>y
-map <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
 
 " set nohlsearch
 map <leader>h :noh<cr>
@@ -128,6 +121,9 @@ noremap <leader>tf :TestFile<CR>
 noremap <leader>tn :TestNearest<CR>
 
 nmap <leader>b :TagbarToggle<CR>
+
+nnoremap <leader>td :TodoList<CR>
+nnoremap <leader>ud :UndotreeToggle<CR>
 
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
@@ -183,6 +179,9 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" Local
+Plug 'HallerPatrick/nvim_todo.vim'
+Plug 'mbbill/undotree'
 
 " Linter Engine
 Plug 'dense-analysis/ale'
@@ -201,7 +200,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 
 "Visual
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ap/vim-buftabline'
 Plug 'morhetz/gruvbox'
 Plug 'camspiers/animate.vim'
@@ -231,8 +232,6 @@ Plug 'bfredl/nvim-ipy'
 " Colortheme
 Plug 'pineapplegiant/spaceduck'
 Plug 'relastle/bluewery.vim'
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " If you don't have nodejs and yarn
 " use pre build
@@ -271,23 +270,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" LSP STUFF
-" let g:completion_confirm_key = "\<C-y>"
-" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-" let g:completion_enable_snippet = 'UltiSnips'
-
-" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-
-" command! Format execute 'lua vim.lsp.buf.formatting()'
-
-" lua <<EOF
-"     require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
-"     require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
-" EOF
-
-" set omnifunc=lsp#omnifunc
-
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
@@ -300,7 +282,6 @@ let g:deoplete#enable_at_startup = 1
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
-let g:lightline = { 'colorscheme': 'bluewery' }
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -352,7 +333,6 @@ let g:ale_linters = {
 \   'python': ['pylint'],
 \   'javascript': ['eslint'],
 \   'vue': ['eslint'],
-\   'rust': []
 \}
 
 let g:ale_fixers = {
