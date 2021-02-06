@@ -185,10 +185,12 @@ Plug 'mbbill/undotree'
 
 " Linter Engine
 Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter'
 ", {'do': ':TSUpdate'}
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zxqfl/tabnine-vim'
+Plug 'kosayoda/nvim-lightbulb'
 
 
 " LSP
@@ -203,6 +205,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-buftabline'
 Plug 'morhetz/gruvbox'
 Plug 'camspiers/animate.vim'
@@ -240,6 +243,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'metakirby5/codi.vim'
+Plug 'lervag/vimtex'
+Plug 'rhysd/vim-grammarous'
+
 
 " Fuzzy Search
 Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() }}
@@ -400,4 +406,6 @@ au FileType css setlocal formatprg=prettier\ --parser\ css
 
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
+
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 

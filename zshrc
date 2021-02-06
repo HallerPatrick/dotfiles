@@ -1,4 +1,4 @@
-
+  
 export PATH=$PATH:$HOME/.local/bin
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -87,8 +87,6 @@ export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
 # For a full list of active aliases, run `alias`.
 #
 
-#eval "$(pyenv init -)"
-
 # Aliases
 if [ -f ~/.bash_aliases ]; then
     echo "\e[32mLoad bash aliases \e[0m"
@@ -135,12 +133,13 @@ export ENABLE_FLUTTER_DESKTOP=true
 export PATH="/Users/patrickhaller/.dotnet/:$PATH"
 
 export PATH="/Users/patrickhaller/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# export LDFLAGS="-L/usr/local/opt/readline/lib"
-# export CPPFLAGS="-I/usr/local/opt/readline/include"
-export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix sqlite)/lib -L$(brew --prefix bzip2)/lib"
 
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 
@@ -197,7 +196,6 @@ if [ -x "$(command -v pfetch)" ]; then
     pfetch
 fi
 
-
-# source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# eval "$(starship init zsh)"
 
 

@@ -5,3 +5,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/Users/patrickhaller/.local/bin"
 
 export PATH="/usr/local/Cellar/ruby/2.7.1_2/bin:$PATH"
+
+# Setting PATH for Python 3.6
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
