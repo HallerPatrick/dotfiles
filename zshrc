@@ -8,43 +8,43 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# cd on steroids
+## cd on steroids
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 
-if (( $+commands[setxkbmap] )) ; then
+#if (( $+commands[setxkbmap] )) ; then
 
-    # Only apply to linux systems
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo "\e[32mLoad US Keyboard Layout \e[0m"
-        setxkbmap us
-    fi
-fi
+#    # Only apply to linux systems
+#    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+#        echo "\e[32mLoad US Keyboard Layout \e[0m"
+#        setxkbmap us
+#    fi
+#fi
 
 
-# Path to your oh-my-zsh installation.
+## # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+## Set name of the theme to load. Optionally, if you set this to "random"
+## it'll load a random theme each time that oh-my-zsh is loaded.
+## See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Uncomment the following line to enable command auto-correction.
+## Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+## Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
+## Uncomment the following line if you want to disable marking untracked files
+## under VCS as dirty. This makes repository status check for large repositories
+## much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+## Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+## Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+## Example format: plugins=(rails git textmate ruby lighthouse)
+## Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
   web-search
@@ -57,37 +57,37 @@ else
     echo "\e[31mohmyzsh not found \e[0m"
 fi
 
-[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+#[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-# User configuration
-export MANPATH="/usr/local/man:$MANPATH"
+## User configuration
+#export MANPATH="/usr/local/man:$MANPATH"
 
-# ssh
+## ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# You may need to manually set your language environment
+## You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
+## Preferred editor for local and remote sessions
 export EDITOR='nvim'
 
-# Git token for hub
+## Git token for hub
 
-if [[ -f $HOME/.github_token ]]
-then
-    export GITHUB_TOKEN=$(cat $HOME/.github_token)
-fi
-export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
-export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
+#if [[ -f $HOME/.github_token ]]
+#then
+#    export GITHUB_TOKEN=$(cat $HOME/.github_token)
+#fi
+#export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
+#export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
 
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+## Set personal aliases, overriding those provided by oh-my-zsh libs,
+## plugins, and themes. Aliases can be placed here, though oh-my-zsh
+## users are encouraged to define aliases within the ZSH_CUSTOM folder.
+## For a full list of active aliases, run `alias`.
+##
 
-# Aliases
+## Aliases
 if [ -f ~/.bash_aliases ]; then
     echo "\e[32mLoad bash aliases \e[0m"
     source ~/.bash_aliases
@@ -95,107 +95,101 @@ else
     echo "\e[31mbash aliases not found \e[0m"
 fi
 
-# ENV VARS
-#
+## ENV VARS
+##
 
-export RUSTPYTHONPATH="/Users/patrickhaller/Temp/RustPython/Lib"
-export HOMEBREW_EDITOR='vim'
+#export RUSTPYTHONPATH="/Users/patrickhaller/Temp/RustPython/Lib"
+#export HOMEBREW_EDITOR='vim'
 
-# Flutter
-export PATH="$HOME/development/flutter/bin:$PATH"
+## Flutter
+#export PATH="$HOME/development/flutter/bin:$PATH"
 
-# Latex Tools
-export PATH="/Library/TeX/texbin/:$PATH"
+## Latex Tools
+#export PATH="/Library/TeX/texbin/:$PATH"
 
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
+## Rust
+#export PATH="$HOME/.cargo/bin:$PATH"
+#export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
-export RUST_BACKTRACE=1
+#export RUST_BACKTRACE=1
 
-# Python
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+## Python
+#export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+#export PATH="$HOME/.poetry/bin:$PATH"
 
-# Golang
-export GOPATH=~/gospace
-export GOROOT=/usr/local/go
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+## Golang
+#export GOPATH=~/gospace
+#export GOROOT=/usr/local/go
+#export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+#test -d "${GOPATH}" || mkdir "${GOPATH}"
+#test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export PATH="$HOME/.cargo/bin:$PATH"
 
-export ENABLE_FLUTTER_DESKTOP=true
+#export ENABLE_FLUTTER_DESKTOP=true
 
-export PATH="/Users/patrickhaller/.dotnet/:$PATH"
+#export PATH="/Users/patrickhaller/.dotnet/:$PATH"
 
-export PATH="/Users/patrickhaller/.pyenv/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+#export PATH="/Users/patrickhaller/.pyenv/bin:$PATH"
+#export PATH="/usr/local/bin:$PATH"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
-export CPPFLAGS="-I/usr/local/opt/zlib/include"
-export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix sqlite)/lib -L$(brew --prefix bzip2)/lib"
+#export CPPFLAGS="-I/usr/local/opt/zlib/include"
+#export LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix sqlite)/lib -L$(brew --prefix bzip2)/lib"
 
-cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
-
-
-extract () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
-         esac
-     else
-         echo "'$1' is not a valid file"
-     fi
-}
-
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
+#cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#extract () {
+#    if [ -f $1 ] ; then
+#      case $1 in
+#        *.tar.bz2)   tar xjf $1     ;;
+#        *.tar.gz)    tar xzf $1     ;;
+#        *.bz2)       bunzip2 $1     ;;
+#        *.rar)       unrar e $1     ;;
+#        *.gz)        gunzip $1      ;;
+#        *.tar)       tar xf $1      ;;
+#        *.tbz2)      tar xjf $1     ;;
+#        *.tgz)       tar xzf $1     ;;
+#        *.zip)       unzip $1       ;;
+#        *.Z)         uncompress $1  ;;
+#        *.7z)        7z x $1        ;;
+#        *)     echo "'$1' cannot be extracted via extract()" ;;
+#         esac
+#     else
+#         echo "'$1' is not a valid file"
+#     fi
+#}
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#fancy-ctrl-z () {
+#  if [[ $#BUFFER -eq 0 ]]; then
+#    BUFFER="fg"
+#    zle accept-line
+#  else
+#    zle push-input
+#    zle clear-screen
+#  fi
+#}
+#zle -N fancy-ctrl-z
+#bindkey '^Z' fancy-ctrl-z
+
+
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-fpath+=~/.zfunc
+#fpath+=~/.zfunc
 
+#autoload -U compinit && compinit -u
 
+# if [ -x "$(command -v pfetch)" ]; then
+#     pfetch
+# fi
 
-
-autoload -U compinit && compinit -u
-# prompt spaceship
-zle_highlight=(default:bold)
-
-if [ -x "$(command -v pfetch)" ]; then
-    pfetch
-fi
-
-# eval "$(starship init zsh)"
 
 

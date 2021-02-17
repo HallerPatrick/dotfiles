@@ -1,0 +1,35 @@
+= Datawarehousing and Process Mining =
+
+== Defintion DWH ==
+
+A DWH is a subject-oriented, integrated, non-volatile, and time-variant collection of data in support
+of management decisions.
+
+=== OLTP ===
+=Online Transaction Processing
+-> Transaction oriented applications
+
+Many users, short transactions, simple queries.
+
+E.g.
+
+```sql
+SELECT something FROM stock WHERE id=".."
+UPDATE stock SET something=something
+INSERT INTO shop_cart VALUES (....)
+```
+
+== Aggregatiosnfunktionen ==
+
+*Definition*
+Aggregationfunctions are function, which are used to summarise certain properties of data.
+
+They are dividable into 3 types:
+
+* Distributive Functions -> SUM, COUNT, MAX
+* Algebraic Functions -> AVG, Standard Deviation
+* Holistic Functions -> Not the difiniton of the other two
+
+== Source ==
+
+Wikipedia: https://de.wikipedia.org/wiki/Aggregatfunktion

@@ -29,4 +29,5 @@
     ~/.oh-my-zsh/: oh-my-zsh
     ~/.pylintrc: pylintrc
     ~/.config/purification/prompt_purification_setup: scripts/purification/prompt_purification_setup
+    ~/vimwiki: vimwiki
 

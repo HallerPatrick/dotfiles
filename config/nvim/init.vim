@@ -128,6 +128,10 @@ nnoremap <leader>ud :UndotreeToggle<CR>
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
 
+" Disable Ex Mode entering
+map q: <Nop>
+nnoremap Q <nop>
+
 " ======================================================
 " ==== Remapping
 " ======================================================
@@ -187,19 +191,6 @@ Plug 'mbbill/undotree'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter'
-", {'do': ':TSUpdate'}
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zxqfl/tabnine-vim'
-Plug 'kosayoda/nvim-lightbulb'
-
-
-" LSP
-"
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'tweekmonster/startuptime.vim'
-" Plug 'davidhalter/jedi-vim'
-
 
 "Visual
 " Plug 'itchyny/lightline.vim'
@@ -222,6 +213,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'chrisbra/unicode.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'pechorin/any-jump.vim'
+Plug 'vimwiki/vimwiki'
 
 
 " Language stuff
@@ -407,5 +399,27 @@ au FileType css setlocal formatprg=prettier\ --parser\ css
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 
-autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+
+" TODO: Finish this
+" 1. Split window
+" 2. copy visual selection and paste into new buffer in split
+" 3. set spellcheck
+" 4. run GrammorousCheck
+" function s:checkGrammar()
+" lua << EOF
+" local function visual_selection_range()
+"   local _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
+"   local _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
+"   if csrow < cerow or (csrow == cerow and cscol <= cecol) then
+"     return csrow - 1, cscol - 1, cerow - 1, cecol
+"   else
+"     return cerow - 1, cecol - 1, csrow - 1, cscol
+"   end
+" end
+
+" print(visual_selection_range())
+" EOF
+" endfunction
+" call s:checkGrammar()
+
 
