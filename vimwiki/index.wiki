@@ -1,3 +1,15 @@
 = My knowledge base =
     * [[Todo]] -- things to be done _yesterday_!
-    * 
+    * [[Uni Stuff]]
+
+= Temp = 
+
+== Holgers Build Plan ==
+
+* Builds für eine neue Version werde manuel getriggered
+* Jedes build im Jenkins wird getagged
+* Wenn Version noch nichts existiert, wird ein Tag mit Version erstellt
+* Wenn eine gleiche Version schon existiert, dann wird eine Build Nummer mit hochgezogen
+* Build Nummer wird bei der Versionsnummer als Realse Candidate verwendet
+    * BLD-1.2.3-001 -> tl_utils.rc1
+* Keine Buildnummer bedeuter ein Release
