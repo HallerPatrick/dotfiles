@@ -1,0 +1,32 @@
+= Fuzzy Miner =
+
+Fuzzy Miner does not use BPMN notation or petri, but
+a dependency graph representation. Does not contain
+gateways operators, but shows the dependencies between
+different activities.
+
+-> Creates a view on process model based on significance
+and correlation
+
+Means to cope with complexity
+    - Aggregation and Clustering
+    - Abstraction: remove low level information
+    - Emphasis: significant information
+
+
+*Idea*:
+    - Highly significant behavior is preserved
+    - Less significant, but highly correlated is clustered
+    - Less significant and less correlated behavior is abstracted
+
+Significance metrics:
+    - Frequency of task
+    - Count of predecessors and sucessors
+
+== Fuzzy Miner Technique ==
+
+Based on alpha algorithm.
+
+Based on significance and correlation metrics transrom graph by:
+    - Edge filtering
+    - Aggregation and abstraction

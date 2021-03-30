@@ -1,0 +1,34 @@
+= Process Mining - Evaluation =
+
+== Underfitting/Overfitting ==
+
+If a process model is to general, it is said
+to be underfitting. It is insufficiently precise.
+It allows for execution of activities which 
+are not represented in the event logs. (Implicit sequences?)
+
+
+= Evaluation Dimension =
+
+- Fitness          - Quantifies the extent to which the discovered
+                     model can accurately reproduce the cases recorded in the log
+                     
+                   - Measure: Is normalized over number of consumed and produced tokens
+            
+- Precision        - Quantifies the fraction of behavior allowed in the model
+                     which is not seen in the event logs
+                   - Measure is normalized over the number of transitions of model
+                       -  Determine number of enabled transitions during replay of trace
+
+- Simplicity       - Complexity of process model
+                   - Measure: In general number of model elements
+                   - Various structural measures:
+                       - Diameter
+                       - Density
+                       - Coefficient of Connectivity
+                       - Node Degress
+                       - Cyclicity
+                       - Depth
+
+- Generalizibility - Extend to which the model will be able to reproduce future behavior
+                     of the model

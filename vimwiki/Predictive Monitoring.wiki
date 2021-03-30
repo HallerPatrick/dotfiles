@@ -1,0 +1,30 @@
+= Predictive Monitoring =
+
+*Predictive monitoring detects cases with certain behavioral characteristics early.*
+
+Answer questions on running cases of proceses:
+    * Anticipate abnormal behaviour
+    * project future resource requirements
+    * predict compliance violations
+    * implement counter measures
+
+== Times of Prediction == 
+
+*Time-based*: When will something happen and how long?
+*Outcome-based*: What will be the result?
+*Activity-based*: Will the case show certain behaviour in terms of activity execution
+
+
+== Model-based Prediction ==
+
+Prediction is based on process model
+
+== Feature-based Prediction ==
+
+Prediction query is based on learned features.
+
+
+== Predictive Monitoring == 
+
+*Idea*: Take logs as a starting ppoint to derive features to answer prediction queries
+on the future of cases.

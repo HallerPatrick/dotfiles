@@ -1,6 +1,9 @@
   
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/Temp/flutter/bin
 
+
+export DARTSDK=$HOME/Temp/flutter/bin
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -193,3 +196,5 @@ fi
 
 
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bit bit

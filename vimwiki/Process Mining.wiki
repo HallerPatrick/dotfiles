@@ -1,0 +1,45 @@
+= Process Mining =
+
+Process Instance
+Activity
+Case
+
+
+== Table of Content ==
+
+=== Logs ===
+    * [[Logs - Defintion]]
+    * [[Logs - Abstraction]]
+    * Logs - Transaction Log
+    * [[Logs - Case ID extraction]]
+    
+=== Process Mining Algorithms ===
+    * [[Deterministic (Alpha)]]
+    * [[Heurisitic]]
+    * [[Fuzzy Miner]]
+    * [[Induktiv]]
+    * (Evolutionary Algorithms)
+    
+=== [[Process Mingin - Evaluation]] ===
+
+=== [[Conformance]] ===
+    * Replay Based
+    * Relation Based
+    * [[Alignment Based]]
+  
+=== Simulation ==
+   
+=== [[Enhancements]] ===
+    * [[Discover Simulation Models]]
+    * [[Time Prediction]] 
+    * [[Predictive Monitoring]]  
+
+
+== Questions ==
+
+1. What includes Process Mining?
+2. Tell me 3 different techniques for mining process models
+3. What are silent transition?
+4. What are deadlocks?
+5. What is fitness? And context
+6. What is queue mining and what type of process mining technique is this?

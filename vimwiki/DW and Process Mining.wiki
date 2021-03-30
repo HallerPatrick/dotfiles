@@ -33,3 +33,11 @@ They are dividable into 3 types:
 == Source ==
 
 Wikipedia: https://de.wikipedia.org/wiki/Aggregatfunktion
+
+== Klasssification ==
+
+=== Decision Tree ===
+
+Erstellt basierend auf Information Gain
+
+Source: https://en.wikipedia.org/wiki/Information_gain_in_decision_trees

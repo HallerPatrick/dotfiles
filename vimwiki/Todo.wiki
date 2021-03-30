@@ -1,5 +1,11 @@
 = TASKS = 
 
 TODO: 
-- [ ]  Do *something*
-- [ ] 
+- [ ] Cube, Aggregationsgitter
+- [ ] A priori algorithm
+
+- [ ] Physische Optimierung, SQL
+- [ ] Star Schema etc
+
+- [x] Dendogramme
+- [x] Clustering

@@ -1,0 +1,27 @@
+= Heurisitic =
+
+Heurisitic algorithm are based on deterministic algorithm,
+but incorporate frequencies of events and traces for
+reconstructing a process model.
+
+Challenges problem about noise in event logs, which are a problem
+in alpha technique. Leads to wrong construction of process model.
+
+Real world process are highly complex and discovery
+can lead to complex models.
+
+-> Reduction of model through frequency measurements.
+
+
+== Heurisitic Miner == 
+
+Exploits frequency to estimate flow probabilities.
+
+
+Approach:
+
+1. Construction of frequency table
+2. Induction of dependency graph
+3. Construction of net system from frequency table and dependency graph
+
+

@@ -188,9 +188,12 @@ Plug 'HallerPatrick/nvim_todo.vim'
 Plug 'mbbill/undotree'
 
 " Linter Engine
-Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Plug 'dense-analysis/ale'
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'nvim-lua/completion-nvim'
 
 "Visual
 " Plug 'itchyny/lightline.vim'
@@ -223,6 +226,9 @@ Plug 'mxw/vim-jsx'
 Plug 'fisadev/vim-isort'
 Plug 'vim-test/vim-test'
 Plug 'bfredl/nvim-ipy'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
 
 " Colortheme
 Plug 'pineapplegiant/spaceduck'
@@ -248,6 +254,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 
 
 " automatic closing of quotes, parenthesis, brackets, etc.
@@ -267,6 +274,14 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+lua << EOF
+require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.dartls.setup{on_attach=require'completion'.on_attach}
+EOF
+
+let g:lsc_auto_map = v:true
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

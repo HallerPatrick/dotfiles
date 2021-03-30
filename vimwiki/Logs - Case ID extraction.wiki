@@ -1,0 +1,5 @@
+= Logs - Case ID extraction = 
+
+*Problem* : 
+
+Unlabelled sequences of events in log.m 

@@ -1,0 +1,21 @@
+= Logs =
+
+Logs contain information to answer questions
+    - *When* are process instances executed?
+    - *How* many instances have been executed?
+    - Are there recurring patterns?
+    - Is it possible to construct process models based on log data?
+    - Frequent execution of activities
+    - Unexecuted execution sequences
+
+-> Logs are evidence to answer these questions
+
+Specific model that imposes assumptions on event logs, that:
+
+    - There is a total order of events
+    - Every event can be related to activity and process instance
+    - Each even relates to instance of single process
+
+But, actual logs contains events of various processes and requires pre-processing
+
+

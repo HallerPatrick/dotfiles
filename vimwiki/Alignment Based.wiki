@@ -1,0 +1,78 @@
+= Conformance Checking - Alignment-based Techniques =
+
+== Idea ==
+
+Assessing conformance based on alignment of activities and events.
+    * Consider set of activites of the model as set of symbols
+    * each execution sequence of model is a sequence of symbols
+    * each trace of the event log is also a sequence of symbols
+
+
+== Approach ==
+
+1. Definition of alignments
+2. Construction of alignments
+3. Conformance measures
+
+
+Apply costs to moves:
+* 1 value for move in log
+* 1 value for move in model
+* 0 value for equal move
+* INF for different move
+
+== Problem of finding optimal allignments ==
+
+Seach space is product of statespace of model and trace
+
+Find shortest path in in weighted directed graph. -> Dijkstra or A*
+
+== Conformance Analysis ==
+
+Alignments enable quantification of conformance of event logs w.r.t. a process model.
+
+Issues that are avoided with Alignments:
+    * Silent transitions do not need to be treated
+    * Duplicated transitions in the model can be integrated
+      directly
+      
+Alignments form basis not only for conformance analysis, but full range of analysis techniques.
+
+== Local Feedback in Trace/Model ==
+
+For relational conformance instread of considering elements of behavioral
+relations as entities for feedback, the violation pair is used
+-> Frequent occurence of such a pair hints at hotspots
+
+
+== Global Feedback in Trace/Model ==
+
+== More efficient alignment construction ==
+
+* Define more advanced heuristic to guide the search
+* Prune searchspace
+* Introduce second order priorisation for candidate states
+ in the exploration
+* Reuse results in the computation
+* Caching
+
+Techniques:
+    * Parikh Vector
+    * Incidence Matrix
+    * Marking Equation
+
+== Assessing alignmentd-based measures ==
+
+=== Fitness Measures ===
+
+=== Assess Precision ===
+
+* Based on traces of the log, characterise states in the model
+with "escaping edges"
+* Those transitions represent behavior that immediately follows behavior of the
+log but is not contained in the log
+
+
+== Multiple Trace Aligment ==
+
+TODO: PHA

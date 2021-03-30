@@ -1,0 +1,35 @@
+= Conformance Checking =
+
+Assumes that process model represented desires process.
+Given event log is compared with the ideal model to 
+identify conformance or deviant behavior. 
+
+The process instances in the log as cases are replayed
+as simulations in the model. Cases that can be replayed
+are labeled as conform and others as deviant.
+
+== Replay Based ==
+
+Replay and look for local feedback in model, like:
+    - Transition fires although it isn not enabled
+    - Tokens remain in the net and are not consumed
+
+Local diagnostics can be performed that highlight the nodes in the mode
+where deviations took place. Identify hotspots of non-conformance,
+highlight and seperate from noise.
+
+Global feedback (conformance) bases on aggregated fitness measure. Quantify
+overall conformance of the model and the event log.
+
+-> Condenses (non)conformance into single value. Hard to interpret in terms of absolute value
+
+Keep in mind that deviation is not necessary negative and therefore has to be eliminated.
+Major deviation can just show that the model does not reflect the real world circumstances.
+
+== Relational Techniques == 
+
+Approach question of conformance based on binary behavioral relations
+
+* Fine-granular representation of behavior and thus feedback on non-conformance
+* Model enables aggregation of feedback in straight forward manner
+

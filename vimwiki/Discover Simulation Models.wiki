@@ -1,0 +1,25 @@
+= Discovery Simulation Models =
+
+== Perfomance Analysis ==
+
+*Measures*:
+    * Time
+        * Processing time
+        * Wait time
+        * Cycle time
+    * Cost
+        * Per instance cost
+        * Distinguis between value adding and non-value adding activites
+    * Quality
+        * Product quality: Defect rate
+        * Delivery quality
+        * Customer satisfaction
+
+== Process Simulation ==
+
+1. Model the process 
+2. Definde simulation scenario 
+3. Run Simulation
+4. Analyze output 
+5. Repeat for alternative scenarios
+

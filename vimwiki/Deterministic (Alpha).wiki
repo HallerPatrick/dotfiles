@@ -1,0 +1,22 @@
+= Deterministice Process Mining Algorithm =
+
+Mainly alpha-Algorithm
+
+It takes an event log as input and calculates the
+ordering relations of the events contained in the log.
+
+== Alpha Algorithm ==
+
+* Detects concurrent execution of activities
+* Relatively easy
+* Not robust against noise
+
+Create workflow log fro case ids:
+    W = {ABCD, ACBD, EF}
+    
+Direct successor: a > b,  if b follows a in at least one trace
+Causality:        a -> b, if a > b and not b > a
+Concurrency:      a || b, a > b and b > a
+Exclusiveness:    a # b,  a > b and not b > a
+
+

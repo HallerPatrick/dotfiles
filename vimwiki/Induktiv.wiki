@@ -1,0 +1,5 @@
+= Inductive Mining =
+
+Discovery approach to construct a process tree for given log.
+
+

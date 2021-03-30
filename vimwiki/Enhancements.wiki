@@ -1,0 +1,8 @@
+= Enhancements =
+
+Enhancements extend process model with observed information. Result can be 
+an enriched version or completely new one.
+Can be based on additional information of log events.
+
+
+
