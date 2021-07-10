@@ -125,6 +125,9 @@ nmap <leader>b :TagbarToggle<CR>
 nnoremap <leader>td :TodoList<CR>
 nnoremap <leader>ud :UndotreeToggle<CR>
 
+nnoremap <leader>h :JABSOpen<CR>
+
+
 " nvim terminal shortcut
 tnoremap <Esc> <C-\><C-n>
 
@@ -189,8 +192,8 @@ Plug 'mbbill/undotree'
 
 " Linter Engine
 " Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' AttributeError: 'LanguageModel' object has no attribute 'copy'}
+" Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'nvim-lua/completion-nvim'
@@ -210,6 +213,11 @@ Plug 'unblevable/quick-scope'
 Plug 'preservim/tagbar'
 
 " Utilities
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+
 Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -229,12 +237,15 @@ Plug 'bfredl/nvim-ipy'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
-
 Plug 'LukeGoodsell/nextflow-vim'
+Plug 'jmcantrell/vim-virtualenv'
 
 " Colortheme
 Plug 'pineapplegiant/spaceduck'
 Plug 'relastle/bluewery.vim'
+Plug '1612492/github.vim'
+Plug 'https://github.com/wojciechkepka/bogster'
+Plug 'folke/lsp-colors.nvim'
 
 " If you don't have nodejs and yarn
 " use pre build
@@ -245,6 +256,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'metakirby5/codi.vim'
 Plug 'lervag/vimtex'
 Plug 'rhysd/vim-grammarous'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/vim-easy-align'
 
 
 " Fuzzy Search
@@ -257,29 +271,53 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
+Plug 'airblade/vim-gitgutter'
 
 
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Vim Script
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
+
+Plug 'SirVer/ultisnips'
+" " Plug 'honza/vim-snippets'
+" Plug 'norcalli/snippets.nvim'
+
+Plug 'folke/which-key.nvim'
+Plug 'matbme/JABS.nvim'
 call plug#end()
 
+lua << EOF
+require("which-key").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
+}
+EOF
 " Tree Sitter
+"
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-  },
+-- require'nvim-treesitter.configs'.setup {
+--   ensure_installed = "maintained",
+--   highlight = {
+--     enable = true,
+--   },
+-- }
+
+require("trouble").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
 }
 EOF
 
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -305,10 +343,10 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_set_keymap("v", "<space>fo", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -324,11 +362,12 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
+
 end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver", "dartls" }
+local servers = { "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "clangd" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
 end
@@ -342,9 +381,9 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-colorscheme bluewery
+colorscheme bogster
 
-let g:deoplete#enable_at_startup = 1
+let g:completion_enable_snippet = 'UltiSnips'
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
 
@@ -357,15 +396,6 @@ let g:qs_highlight_on_keys = ['f', 'F']
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "ulti_snippets"]
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-let test#python#runner = 'pytest'
 
 if executable('rg')
 	set grepprg=rg\ --no-heading\ --vimgrep
@@ -393,101 +423,11 @@ set signcolumn=yes
 " let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_progname = 'nvr'
 
-" Ale Extras
-"
-let g:ale_linters = {
-\   'python': ['pylint'],
-\   'javascript': ['eslint'],
-\   'vue': ['eslint'],
-\}
-
-let g:ale_fixers = {
-  \    'javascript': ['eslint'],
-  \    'typescript': ['prettier', 'tslint'],
-  \    'typescriptreact': ['prettier'],
-  \    'vue': ['eslint'],
-  \    'scss': ['prettier'],
-  \    'html': ['prettier'],
-  \    'reason': ['refmt'],
-  \    'python': ['black'],
-  \    'rust': ['rustfmt']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_completion_autoimport = 1
-
 " THIS SHOULD ALWAYS BE SET NEW ON EVERY MACHINE
 let g:python3_host_prog = '/Users/patrickhaller/.pyenv/versions/neovim3/bin/python'
 
-let g:rust_use_custom_ctags_defs = 1
-
-let g:tagbar_type_rust = {
-  \ 'ctagsbin' : '/usr/local/bin/ctags',
-  \ 'ctagstype' : 'rust',
-  \ 'kinds' : [
-      \ 'n:modules',
-      \ 's:structures:1',
-      \ 'i:interfaces',
-      \ 'c:implementations',
-      \ 'f:functions:1',
-      \ 'g:enumerations:1',
-      \ 't:type aliases:1:0',
-      \ 'v:constants:1:0',
-      \ 'M:macros:1',
-      \ 'm:fields:1:0',
-      \ 'e:enum variants:1:0',
-      \ 'P:methods:1',
-  \ ],
-  \ 'sro': '::',
-  \ 'kind2scope' : {
-      \ 'n': 'module',
-      \ 's': 'struct',
-      \ 'i': 'interface',
-      \ 'c': 'implementation',
-      \ 'f': 'function',
-      \ 'g': 'enum',
-      \ 't': 'typedef',
-      \ 'v': 'variable',
-      \ 'M': 'macro',
-      \ 'm': 'field',
-      \ 'e': 'enumerator',
-      \ 'P': 'method',
-  \ },
-\ }
-
 let g:rustfmt_autosave = 1
-
-" FORMATTERS for Web
-au FileType javascript setlocal formatprg=prettier shiftwidth=2 softtabstop=2 expandtab
-au FileType javascript.jsx setlocal formatprg=prettier
-au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
-au FileType scss setlocal formatprg=prettier\ --parser\ css
-au FileType css setlocal formatprg=prettier\ --parser\ css
 
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-
-
-" TODO: Finish this
-" 1. Split window
-" 2. copy visual selection and paste into new buffer in split
-" 3. set spellcheck
-" 4. run GrammorousCheck
-" function s:checkGrammar()
-" lua << EOF
-" local function visual_selection_range()
-"   local _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
-"   local _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
-"   if csrow < cerow or (csrow == cerow and cscol <= cecol) then
-"     return csrow - 1, cscol - 1, cerow - 1, cecol
-"   else
-"     return cerow - 1, cecol - 1, csrow - 1, cscol
-"   end
-" end
-
-" print(visual_selection_range())
-" EOF
-" endfunction
-" call s:checkGrammar()
-
 
