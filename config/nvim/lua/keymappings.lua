@@ -16,7 +16,7 @@ utils.map('n', '<leader>e', ':e <C-R>=expand("%:p:h") . "/" <CR>')
 utils.map('n', '<leader>w', ':w<cr>')
 
 -- set nohlsearch
-utils.map('n', '<leader>h', ':noh')
+utils.map('n', '<leader>h', ':noh<cr>')
 
 utils.map('n', '<leader>f', ':Files')
 utils.map('n', '<leader><leader>', '<c-^>')

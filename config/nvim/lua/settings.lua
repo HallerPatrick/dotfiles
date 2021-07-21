@@ -38,7 +38,7 @@ utils.opt('o', 'lazyredraw', true)
 utils.opt('o', 'completeopt', 'menuone,noinsert,noselect')
 
 utils.opt('o', 'tabstop', 4)
-utils.opt('o', 'nobackup', true)
+-- utils.opt('o', 'nobackup', true)
 utils.opt('o', 'cmdheight', 2)
 utils.opt('o', 'updatetime', 300)
 utils.opt('o', 'signcolumn', 'yes')

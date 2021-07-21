@@ -83,6 +83,7 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 
+  require'completion'.on_attach()
 end
 
 local configs = require('lspconfig/configs')
@@ -115,9 +116,15 @@ local servers = { "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "cla
 
 for _, lsp in ipairs(servers) do
     if lsp == "pyright" then
-        require'py_lsp'.setup()
-    else  
-        nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
+        -- nvim_lsp[lsp].setup {
+        --   on_attach = on_attach,
+        --   before_init = function(_, config)
+        --     config.settings.python.pythonPath = require'py_lsp'.get_python_path(config.root_dir)
+        --   end
+        -- }
+        require'py_lsp'.setup { }
+    else
+        nvim_lsp[lsp].setup { on_attach = on_attach }
     end
 end
 

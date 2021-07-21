@@ -1,17 +1,20 @@
 
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
 
   use 'wbthomason/packer.nvim'
 
   use 'HallerPatrick/nvim_todo.vim'
 
-  use '~/Projects/py_lsp.nvim'
+  use '/Users/patrickhaller/Projects/py_lsp.nvim'
   use 'mbbill/undotree'
   
   -- Linter Engine
-  -- use 'nvim-treesitter/nvim-treesitter'
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
   use 'nvim-lua/completion-nvim'
@@ -64,7 +67,11 @@ return require('packer').startup(function()
   use 'folke/lsp-colors.nvim'
   use 'rakr/vim-one'
 
-  -- use 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.nvim_exec("mkdp#util#install()") end
+  } --, { 'do': { -> mkdp#util#install() } }
+
   -- use 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
   use 'metakirby5/codi.vim'
   use 'lervag/vimtex'
@@ -76,7 +83,13 @@ return require('packer').startup(function()
   
   -- Fuzzy Search
   -- use 'junegunn/fzf.vim', { 'do': { -> fzf#install() }}
-  use 'junegunn/fzf'
+  -- use 'junegunn/fzf'
+  use { 'ibhagwan/fzf-lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional for icons
+      'vijaymarupudi/nvim-fzf' 
+    }
+  }
   
   -- Commenting
   use 'tpope/vim-commentary'
