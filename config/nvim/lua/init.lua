@@ -1,6 +1,4 @@
-
-
-require('settings')
-require('keymappings')
-require('plugins')
-require('lsp')
+require("settings")
+require("keymappings")
+require("plugins")
+require("lsp")
