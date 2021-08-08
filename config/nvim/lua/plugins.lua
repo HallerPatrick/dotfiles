@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("kabouzeid/nvim-lspinstall")
 	use("nvim-lua/completion-nvim")
+    use("ray-x/lsp_signature.nvim")
 	use("bfredl/nvim-luadev")
 	use("abecodes/tabout.nvim")
 

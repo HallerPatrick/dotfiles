@@ -99,9 +99,15 @@ end
 local servers = { "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "clangd" }
 
 for _, lsp in ipairs(servers) do
-	if lsp == "pyright" then
+	if lsp == "pyright" or lsp == "pylsp" then
 		require("py_lsp").setup({
 			host_python = "/Users/patrickhaller/opt/anaconda3/bin/python",
+            on_attach = function()
+              require("completion").on_attach()
+              require("lsp_signature").on_attach()
+            end,
+            language_server = lsp,
+            source_strategies = { "poetry", "default", "system" }
 		})
 	else
 		nvim_lsp[lsp].setup({ on_attach = on_attach })
