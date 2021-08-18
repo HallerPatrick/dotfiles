@@ -55,3 +55,4 @@ autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 
+

@@ -46,5 +46,4 @@ utils.opt("o", "tabstop", 4)
 utils.opt("o", "cmdheight", 2)
 utils.opt("o", "updatetime", 300)
 utils.opt("o", "signcolumn", "yes")
-
 -- utils.opt('o', 'nofoldenable', true)

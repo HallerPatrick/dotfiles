@@ -220,7 +220,7 @@ alias weather-bamberg="curl http://wttr.in/bamberg"
 # Fast config
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias vimc="nvim ~/.config/nvim/init.vim"
+alias vimc="nvim ~/.config/nvim"
 
 alias composer="php /usr/local/bin/composer.phar"
 alias relaunch="sudo launchctl reboot userspace"

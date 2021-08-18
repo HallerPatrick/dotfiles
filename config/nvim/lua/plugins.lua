@@ -6,6 +6,10 @@ require("statusline")
 require("which-key").setup({})
 require("trouble").setup({})
 require("tabout").setup({})
+require('rust-tools').setup({})
+
+require("hotpot")
+require("fenneled_init")
 
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
@@ -22,10 +26,15 @@ return require("packer").startup(function(use)
 	})
 	use("neovim/nvim-lspconfig")
 	use("kabouzeid/nvim-lspinstall")
-	use("nvim-lua/completion-nvim")
+    use('simrat39/rust-tools.nvim')
+
+
+	-- use("nvim-lua/completion-nvim")
+    use("hrsh7th/nvim-compe")
     use("ray-x/lsp_signature.nvim")
 	use("bfredl/nvim-luadev")
 	use("abecodes/tabout.nvim")
+
 
 	use("famiu/feline.nvim")
 
@@ -56,6 +65,7 @@ return require("packer").startup(function(use)
 	use("AndrewRadev/splitjoin.vim")
 	use("pechorin/any-jump.vim")
 	use("vimwiki/vimwiki")
+    use("jbyuki/venn.nvim")
 
 	-- Language stuff
 	use("pangloss/vim-javascript")
@@ -89,6 +99,7 @@ return require("packer").startup(function(use)
 	use("godlygeek/tabular")
 	use("plasticboy/vim-markdown")
 	use("junegunn/vim-easy-align")
+    use("cohama/lexima.vim")
 
 	-- Commenting
 	use("tpope/vim-commentary")
@@ -106,9 +117,15 @@ return require("packer").startup(function(use)
 	use("folke/trouble.nvim")
 
 	use("SirVer/ultisnips")
-	-- use 'honza/vim-snippets'
+	use('honza/vim-snippets')
 	-- use 'norcalli/snippets.nvim'
 
 	use("folke/which-key.nvim")
 	use("matbme/JABS.nvim")
+    use {
+        'rktjmp/hotpot.nvim',
+        -- packer says this is "code to run after this plugin is loaded."
+        -- but it seems to run before plugin/hotpot.vim (perhaps just barely)
+        config = function() require("hotpot") end
+    }
 end)

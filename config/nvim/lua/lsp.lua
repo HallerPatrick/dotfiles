@@ -14,7 +14,7 @@ else
 end
 
 require("lspconfig").sumneko_lua.setup({
-	on_attach = require("completion").on_attach,
+	-- on_attach = require("completion").on_attach,
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
@@ -91,20 +91,34 @@ local on_attach = function(client, bufnr)
 		)
 	end
 
-	require("completion").on_attach()
+	-- require"completion".on_attach(client)
 end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "clangd" }
 
+-- nvim_lsp.rust_analyzer.setup {on_attach=require'compe'.om_attach }
+
+require'compe'.setup({
+    enabled = true,
+    autocomplete = true,
+    nvim_lsp = true,
+    source = {
+      path = true,
+      buffer = true,
+      nvim_lsp = true,
+    },
+  })
+
 for _, lsp in ipairs(servers) do
 	if lsp == "pyright" or lsp == "pylsp" then
 		require("py_lsp").setup({
 			host_python = "/Users/patrickhaller/opt/anaconda3/bin/python",
-            on_attach = function()
-              require("completion").on_attach()
+            on_attach = function(client, buf_nr)
+              on_attach(client, buf_nr)
               require("lsp_signature").on_attach()
+              -- require("completion").on_attach()
             end,
             language_server = lsp,
             source_strategies = { "poetry", "default", "system" }
