@@ -3,7 +3,7 @@ local utils = require("utils")
 local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
-cmd("colorscheme one")
+cmd("colorscheme vim-material")
 
 --utils.opt('o', 'visualbell', true)
 --utils.opt('o', 'noerrorbells', true)

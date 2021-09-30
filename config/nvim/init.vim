@@ -54,5 +54,5 @@ let g:rustfmt_autosave = 1
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-
+autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 

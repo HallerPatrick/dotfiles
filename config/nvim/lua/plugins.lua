@@ -6,37 +6,49 @@ require("statusline")
 require("which-key").setup({})
 require("trouble").setup({})
 require("tabout").setup({})
-require('rust-tools').setup({})
 
-require("hotpot")
-require("fenneled_init")
 
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	use("HallerPatrick/nvim_todo.vim")
 
-	use("/Users/patrickhaller/Projects/py_lsp.nvim")
+    use("/Users/patrickhaller/Temp/py_lsp.nvim")
+    use("nvim-lua/lsp_extensions.nvim")
+
+    use 'famiu/feline.nvim'
+
 	use("mbbill/undotree")
 
-	-- Linter Engine
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
+
 	use("neovim/nvim-lspconfig")
 	use("kabouzeid/nvim-lspinstall")
-    use('simrat39/rust-tools.nvim')
+    use( {
+      'simrat39/rust-tools.nvim',
+      config = function()
+        require('rust-tools').setup({})
+      end
+    })
+
+    use 'mfussenegger/nvim-lint'
 
 
-	-- use("nvim-lua/completion-nvim")
+	use("nvim-lua/completion-nvim")
     use("hrsh7th/nvim-compe")
     use("ray-x/lsp_signature.nvim")
 	use("bfredl/nvim-luadev")
-	use("abecodes/tabout.nvim")
+    use("abecodes/tabout.nvim")
 
-
-	use("famiu/feline.nvim")
+    use({
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require('indent_blankline').setup({})
+      end
+    })
 
 	use("nathanaelkane/vim-indent-guides")
 	use("ap/vim-buftabline")
@@ -48,6 +60,14 @@ return require("packer").startup(function(use)
 	use("unblevable/quick-scope")
 	use("preservim/tagbar")
 	use("ap/vim-css-color")
+
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {}
+      end
+    }
 
 	use("google/vim-maktaba")
 	use("google/vim-coverage")
@@ -78,6 +98,7 @@ return require("packer").startup(function(use)
 	use("LukeGoodsell/nextflow-vim")
 
 	-- Colortheme
+    use("hzchirs/vim-material")
 	use("pineapplegiant/spaceduck")
 	use("relastle/bluewery.vim")
 	use("1612492/github.vim")
@@ -122,10 +143,4 @@ return require("packer").startup(function(use)
 
 	use("folke/which-key.nvim")
 	use("matbme/JABS.nvim")
-    use {
-        'rktjmp/hotpot.nvim',
-        -- packer says this is "code to run after this plugin is loaded."
-        -- but it seems to run before plugin/hotpot.vim (perhaps just barely)
-        config = function() require("hotpot") end
-    }
 end)

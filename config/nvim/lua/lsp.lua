@@ -3,6 +3,7 @@ USER = vim.fn.expand("$USER")
 local sumneko_root_path = ""
 local sumneko_binary = ""
 
+
 if vim.fn.has("mac") == 1 then
 	sumneko_root_path = "/Users/" .. USER .. "/.config/nvim/lua-language-server"
 	sumneko_binary = "/Users/" .. USER .. "/.config/nvim/lua-language-server/bin/macOS/lua-language-server"
@@ -38,6 +39,10 @@ require("lspconfig").sumneko_lua.setup({
 
 local nvim_lsp = require("lspconfig")
 
+require("lint").linters_by_ft = {
+  python = {"pylint", "flake8"}
+}
+
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -55,7 +60,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
 	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	buf_set_keymap("n", "<space>sh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
 	buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
 	buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
@@ -68,7 +73,7 @@ local on_attach = function(client, bufnr)
 
 	-- Set some keybinds conditional on server capabilities
 	if client.resolved_capabilities.document_formatting then
-		buf_set_keymap("n", "<space>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+		buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	end
 	if client.resolved_capabilities.document_range_formatting then
 		buf_set_keymap("v", "<space>fo", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
@@ -99,7 +104,7 @@ end
 local servers = { "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "clangd" }
 
 -- nvim_lsp.rust_analyzer.setup {on_attach=require'compe'.om_attach }
-
+ 
 require'compe'.setup({
     enabled = true,
     autocomplete = true,
@@ -111,8 +116,14 @@ require'compe'.setup({
     },
   })
 
+require'lspinstall'.setup()
+
+-- local configs = require"lspconfig/configs"
+
+-- print(vim.inspect(configs))
+
 for _, lsp in ipairs(servers) do
-	if lsp == "pyright" or lsp == "pylsp" then
+	if lsp == "pyright" then
 		require("py_lsp").setup({
 			host_python = "/Users/patrickhaller/opt/anaconda3/bin/python",
             on_attach = function(client, buf_nr)
@@ -121,7 +132,7 @@ for _, lsp in ipairs(servers) do
               -- require("completion").on_attach()
             end,
             language_server = lsp,
-            source_strategies = { "poetry", "default", "system" }
+            -- source_strategies = { "poetry", "default", "system" }
 		})
 	else
 		nvim_lsp[lsp].setup({ on_attach = on_attach })

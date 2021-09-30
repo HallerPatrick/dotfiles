@@ -93,7 +93,7 @@ end
 local function lsp_provider(component)
 	local clients = {}
 	local icon = component.icon or " "
-
+    
 	for _, client in pairs(vim.lsp.buf_get_clients()) do
 		if client.name == "pyright" then
 			if client.config.settings.python["pythonPath"] ~= nil then
@@ -104,7 +104,7 @@ local function lsp_provider(component)
 			clients[#clients + 1] = icon .. client.name
 		end
 	end
-
+    
 	return table.concat(clients, " ")
 end
 
@@ -241,62 +241,68 @@ local comps = {
 	},
 }
 
-local properties = {
-	force_inactive = {
-		filetypes = {
-			"NvimTree",
-			"dbui",
-			"packer",
-			"startify",
-			"fugitive",
-			"fugitiveblame",
-		},
-		buftypes = { "terminal" },
-		bufnames = {},
-	},
-}
+-- local properties = {
+-- 	force_inactive = {
+-- 		filetypes = {
+-- 			"NvimTree",
+-- 			"dbui",
+-- 			"packer",
+-- 			"startify",
+-- 			"fugitive",
+-- 			"fugitiveblame",
+-- 		},
+-- 		buftypes = { "terminal" },
+-- 		bufnames = {},
+-- 	},
+-- }
 
 local components = {
-	left = {
-		active = {
-			comps.vi_mode.left,
-			comps.file.info,
-			comps.lsp.name,
-			comps.diagnos.err,
-			comps.diagnos.warn,
-			comps.diagnos.hint,
-			comps.diagnos.info,
-		},
-		inactive = {
-			comps.vi_mode.left,
-			comps.file.info,
-		},
-	},
-	mid = {
-		active = {},
-		inactive = {},
-	},
-	right = {
-		active = {
-			comps.git.add,
-			comps.git.change,
-			comps.git.remove,
-			comps.file.os,
-			comps.git.branch,
-			comps.line_percentage,
-			comps.scroll_bar,
-			comps.vi_mode.right,
-		},
-		inactive = {},
-	},
+  active = {},
+  inactive = {}
 }
+
+local active_left = {
+  comps.vi_mode.left,
+  comps.file.info,
+  comps.lsp.name,
+      comps.diagnos.err,
+      comps.diagnos.warn,
+      comps.diagnos.hint,
+      comps.diagnos.info,
+}
+
+local active_right = {
+      comps.git.add,
+      comps.git.change,
+      comps.git.remove,
+      comps.file.os,
+      comps.git.branch,
+      comps.line_percentage,
+      comps.scroll_bar,
+      comps.vi_mode.right,
+
+}
+
+local inactive_left = {
+	comps.vi_mode.left,
+	comps.file.info,
+}
+
+
+table.insert(components.active, active_left)
+table.insert(components.active, {})
+table.insert(components.active, active_right)
+
+table.insert(components.inactive, inactive_left)
+table.insert(components.inactive, {})
+table.insert(components.inactive, {})
 
 -- LuaFormatter on
 
 require("feline").setup({
-	default_bg = colors.bg,
-	default_fg = colors.fg,
+	-- default_bg = colors.bg,
+	-- default_fg = colors.fg,
 	components = components,
-	properties = properties,
+	-- properties = properties,
 	vi_mode_colors = vi_mode_colors,
 })
