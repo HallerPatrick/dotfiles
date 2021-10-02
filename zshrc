@@ -1,6 +1,7 @@
   
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/Temp/flutter/bin
+export PATH=$PATH:/usr/local/opt/llvm/bin
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=~/.venvs
@@ -71,16 +72,6 @@ export LANG=en_US.UTF-8
 
 ## Preferred editor for local and remote sessions
 export EDITOR='nvim'
-
-## Git token for hub
-
-#if [[ -f $HOME/.github_token ]]
-#then
-#    export GITHUB_TOKEN=$(cat $HOME/.github_token)
-#fi
-#export GITLAB_API_ENDPOINT="https://gitlab.com/api/v3"
-#export CODECOV_TOKE="af5b5141-3baf-474e-aaf8-8592e916b921"
-
 
 ## Set personal aliases, overriding those provided by oh-my-zsh libs,
 ## plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -209,3 +200,4 @@ unset __conda_setup
 
 
 alias luamake=/Users/patrickhaller/.config/nvim/lua-language-server/3rd/luamake/luamake
+export PATH=${PATH}:/Users/patrickhaller/edirect

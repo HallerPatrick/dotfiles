@@ -4,6 +4,7 @@ local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
 cmd("colorscheme vim-material")
+cmd("autocmd BufWrite *.lua call LuaFormat()")
 
 --utils.opt('o', 'visualbell', true)
 --utils.opt('o', 'noerrorbells', true)

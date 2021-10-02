@@ -13,7 +13,7 @@ return require("packer").startup(function(use)
 
 	use("HallerPatrick/nvim_todo.vim")
 
-    use("/Users/patrickhaller/Temp/py_lsp.nvim")
+    use("/Users/patrickhaller/Projects/py_lsp.nvim")
     use("nvim-lua/lsp_extensions.nvim")
 
     use 'famiu/feline.nvim'
@@ -38,10 +38,12 @@ return require("packer").startup(function(use)
 
 
 	use("nvim-lua/completion-nvim")
-    use("hrsh7th/nvim-compe")
+    use("hrsh7th/nvim-cmp")
+    use('hrsh7th/cmp-nvim-lsp')
     use("ray-x/lsp_signature.nvim")
 	use("bfredl/nvim-luadev")
     use("abecodes/tabout.nvim")
+    use("andrejlevkovitch/vim-lua-format")
 
     use({
       "lukas-reineke/indent-blankline.nvim",

@@ -2,110 +2,111 @@ local lsp = require("feline.providers.lsp")
 local vi_mode_utils = require("feline.providers.vi_mode")
 
 local colors = {
-	bg = "#282c34",
-	fg = "#abb2bf",
-	yellow = "#e0af68",
-	cyan = "#56b6c2",
-	darkblue = "#081633",
-	green = "#98c379",
-	orange = "#d19a66",
-	violet = "#a9a1e1",
-	magenta = "#c678dd",
-	blue = "#61afef",
-	red = "#e86671",
+    bg = "#282c34",
+    fg = "#abb2bf",
+    yellow = "#e0af68",
+    cyan = "#56b6c2",
+    darkblue = "#081633",
+    green = "#98c379",
+    orange = "#d19a66",
+    violet = "#a9a1e1",
+    magenta = "#c678dd",
+    blue = "#61afef",
+    red = "#e86671"
 }
 
 local vi_mode_colors = {
-	NORMAL = colors.green,
-	INSERT = colors.red,
-	VISUAL = colors.magenta,
-	OP = colors.green,
-	BLOCK = colors.blue,
-	REPLACE = colors.violet,
-	["V-REPLACE"] = colors.violet,
-	ENTER = colors.cyan,
-	MORE = colors.cyan,
-	SELECT = colors.orange,
-	COMMAND = colors.green,
-	SHELL = colors.green,
-	TERM = colors.green,
-	NONE = colors.yellow,
+    NORMAL = colors.green,
+    INSERT = colors.red,
+    VISUAL = colors.magenta,
+    OP = colors.green,
+    BLOCK = colors.blue,
+    REPLACE = colors.violet,
+    ["V-REPLACE"] = colors.violet,
+    ENTER = colors.cyan,
+    MORE = colors.cyan,
+    SELECT = colors.orange,
+    COMMAND = colors.green,
+    SHELL = colors.green,
+    TERM = colors.green,
+    NONE = colors.yellow
 }
 
 local icons = {
-	linux = " ",
-	macos = " ",
-	windows = " ",
+    linux = " ",
+    macos = " ",
+    windows = " ",
 
-	errs = " ",
-	warns = " ",
-	infos = " ",
-	hints = " ",
+    errs = " ",
+    warns = " ",
+    infos = " ",
+    hints = " ",
 
-	lsp = " ",
-	git = "",
+    lsp = " ",
+    git = ""
 }
 
 local function file_osinfo()
-	local os = vim.bo.fileformat:upper()
-	local icon
-	if os == "UNIX" then
-		icon = icons.linux
-	elseif os == "MAC" then
-		icon = icons.macos
-	else
-		icon = icons.windows
-	end
-	return icon .. os
+    local os = vim.bo.fileformat:upper()
+    local icon
+    if os == "UNIX" then
+        icon = icons.linux
+    elseif os == "MAC" then
+        icon = icons.macos
+    else
+        icon = icons.windows
+    end
+    return icon .. os
 end
 
 local function lsp_diagnostics_info()
-	return {
-		errs = lsp.get_diagnostics_count("Error"),
-		warns = lsp.get_diagnostics_count("Warning"),
-		infos = lsp.get_diagnostics_count("Information"),
-		hints = lsp.get_diagnostics_count("Hint"),
-	}
+    return {
+        errs = lsp.get_diagnostics_count("Error"),
+        warns = lsp.get_diagnostics_count("Warning"),
+        infos = lsp.get_diagnostics_count("Information"),
+        hints = lsp.get_diagnostics_count("Hint")
+    }
 end
 
 local function diag_enable(f, s)
-	return function()
-		local diag = f()[s]
-		return diag and diag ~= 0
-	end
+    return function()
+        local diag = f()[s]
+        return diag and diag ~= 0
+    end
 end
 
 local function diag_of(f, s)
-	local icon = icons[s]
-	return function()
-		local diag = f()[s]
-		return icon .. diag
-	end
+    local icon = icons[s]
+    return function()
+        local diag = f()[s]
+        return icon .. diag
+    end
 end
 
 local function vimode_hl()
-	return {
-		name = vi_mode_utils.get_mode_highlight_name(),
-		fg = vi_mode_utils.get_mode_color(),
-	}
+    return {
+        name = vi_mode_utils.get_mode_highlight_name(),
+        fg = vi_mode_utils.get_mode_color()
+    }
 end
 
 local function lsp_provider(component)
-	local clients = {}
-	local icon = component.icon or " "
-    
-	for _, client in pairs(vim.lsp.buf_get_clients()) do
-		if client.name == "pyright" then
-			if client.config.settings.python["pythonPath"] ~= nil then
-				local venv_name = client.config.settings.python.venv_name
-				clients[#clients + 1] = icon .. client.name .. "(" .. venv_name .. ")"
-			end
-		else
-			clients[#clients + 1] = icon .. client.name
-		end
-	end
-    
-	return table.concat(clients, " ")
+    local clients = {}
+    local icon = component.icon or " "
+
+    for _, client in pairs(vim.lsp.buf_get_clients()) do
+        if client.name == "pyright" then
+            if client.config.settings.python["pythonPath"] ~= nil then
+                local venv_name = client.config.settings.python.venv_name
+                clients[#clients + 1] =
+                    icon .. client.name .. "(" .. venv_name .. ")"
+            end
+        else
+            clients[#clients + 1] = icon .. client.name
+        end
+    end
+
+    return table.concat(clients, " ")
 end
 
 -- LuaFormatter off
@@ -241,21 +242,6 @@ local comps = {
 	},
 }
 
--- local properties = {
--- 	force_inactive = {
--- 		filetypes = {
--- 			"NvimTree",
--- 			"dbui",
--- 			"packer",
--- 			"startify",
--- 			"fugitive",
--- 			"fugitiveblame",
--- 		},
--- 		buftypes = { "terminal" },
--- 		bufnames = {},
--- 	},
--- }
-
 local components = {
   active = {},
   inactive = {}
@@ -265,21 +251,21 @@ local active_left = {
   comps.vi_mode.left,
   comps.file.info,
   comps.lsp.name,
-      comps.diagnos.err,
-      comps.diagnos.warn,
-      comps.diagnos.hint,
-      comps.diagnos.info,
+  comps.diagnos.err,
+  comps.diagnos.warn,
+  comps.diagnos.hint,
+  comps.diagnos.info,
 }
 
 local active_right = {
-      comps.git.add,
-      comps.git.change,
-      comps.git.remove,
-      comps.file.os,
-      comps.git.branch,
-      comps.line_percentage,
-      comps.scroll_bar,
-      comps.vi_mode.right,
+  comps.git.add,
+  comps.git.change,
+  comps.git.remove,
+  comps.file.os,
+  comps.git.branch,
+  comps.line_percentage,
+  comps.scroll_bar,
+  comps.vi_mode.right,
 
 }
 
@@ -300,9 +286,6 @@ table.insert(components.inactive, {})
 -- LuaFormatter on
 
 require("feline").setup({
-	-- default_bg = colors.bg,
-	-- default_fg = colors.fg,
-	components = components,
-	-- properties = properties,
-	vi_mode_colors = vi_mode_colors,
+    components = components,
+    vi_mode_colors = vi_mode_colors
 })
