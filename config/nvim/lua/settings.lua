@@ -4,10 +4,10 @@ local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
 cmd("colorscheme vim-material")
-cmd("autocmd BufWrite *.lua call LuaFormat()")
 
---utils.opt('o', 'visualbell', true)
---utils.opt('o', 'noerrorbells', true)
+
+-- utils.opt('o', 'visualbell', true)
+-- utils.opt('o', 'noerrorbells', true)
 utils.opt("o", "background", "dark")
 
 utils.opt("o", "termguicolors", true)
@@ -28,11 +28,8 @@ utils.opt("o", "mouse", "a")
 
 utils.opt("o", "wildmenu", true)
 utils.opt("o", "wildmode", "list:longest")
-utils.opt(
-	"o",
-	"wildignore",
-	".hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor"
-)
+utils.opt("o", "wildignore",
+          ".hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor")
 
 utils.opt("o", "incsearch", true)
 utils.opt("o", "ignorecase", true)
@@ -48,3 +45,19 @@ utils.opt("o", "cmdheight", 2)
 utils.opt("o", "updatetime", 300)
 utils.opt("o", "signcolumn", "yes")
 -- utils.opt('o', 'nofoldenable', true)
+
+
+-- Autoformat on save
+cmd("autocmd! BufWritePre * | Neoformat")
+
+vim.g["neoformat_enabled_python"] = {"black"}
+
+-- Enable alignment
+vim.g["neoformat_basic_format_align"] = 1
+
+-- Enable tab to spaces conversion
+vim.g["neoformat_basic_format_retab"] = 1
+
+-- Enable trimmming of trailing whitespace
+vim.g["neoformat_basic_format_trim"] = 1
+

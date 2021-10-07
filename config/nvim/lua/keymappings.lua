@@ -5,10 +5,6 @@ vim.g.mapleader = " "
 -- Fast closing
 utils.map("n", "<leader>q", ":q<cr>")
 
--- Fast infile search
-utils.map("n", "<leader>f", ":Telescope find_files<cr>")
-utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
-
 -- Open new file adjacent to current file
 utils.map("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
 
@@ -46,7 +42,31 @@ utils.map("n", "k", "gk")
 
 utils.map("n", "J", "")
 
-vim.api.nvim_set_keymap("i", "<Tab>",   "v:lua.tab_complete()",   {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>",   "v:lua.tab_complete()",   {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
+    expr = true
+})
+
+-- Telescope mappings
+
+--
+-- Fast infile search
+utils.map("n", "<leader>f", ":Telescope find_files<cr>")
+utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
+utils.map("n", "<leader>tb", ":Telescope buffers<cr>")
+utils.map("n", "<leader>tq", ":Telescope quickfix<cr>")
+
+-- Picker
+utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
+utils.map("n", "<leader>tr", ":Telescope lsp_references<cr>")
+utils.map("n", "<leader>ts", ":Telescope lsp_document_symbols<cr>")
+utils.map("n", "<leader>td", ":Telescope lsp_document_diagnostics<cr>")
+

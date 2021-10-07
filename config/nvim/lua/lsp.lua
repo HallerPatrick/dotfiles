@@ -111,7 +111,7 @@ local on_attach = function(client, bufnr)
     ]], false)
     end
 
-    require"completion".on_attach(client)
+    require("completion").on_attach(client)
     require("lsp_signature").on_attach()
 end
 
@@ -131,11 +131,6 @@ for _, lsp in ipairs(servers) do
             language_server = lsp
             -- source_strategies = { "poetry", "default", "system" }
         })
-
-        -- nvim_lsp[lsp].setup({ on_attach = on_attach })
-        -- nvim_lsp[lsp].setup({
-        --     on_attach = on_attach
-        -- })
     else
         nvim_lsp[lsp].setup({
             on_attach = on_attach
