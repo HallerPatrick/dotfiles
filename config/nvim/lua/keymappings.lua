@@ -36,6 +36,8 @@ utils.map("n", "Q", "<Nop>")
 
 utils.map("n", "H", "_")
 utils.map("n", "L", "$")
+utils.map("v", "H", "_")
+utils.map("v", "L", "$")
 
 utils.map("n", "j", "gj")
 utils.map("n", "k", "gk")

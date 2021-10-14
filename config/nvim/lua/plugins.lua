@@ -2,59 +2,13 @@ vim.cmd([[packadd packer.nvim]])
 
 -- Init plugins
 require("statusline")
+require("tabline")
+require("refactor")
+require("saga")
+
 require("which-key").setup({})
 require("trouble").setup({})
 require("tabout").setup({})
-
-local get_hex = require('cokeline/utils').get_hex
-
-require('cokeline').setup({
-    -- default_hl = {
-    --     focused = {
-    --         fg = get_hex('Normal', 'fg'),
-    --         bg = get_hex('ColorColumn', 'bg')
-    --     },
-    --     unfocused = {
-    --         fg = get_hex('Comment', 'fg'),
-    --         bg = get_hex('ColorColumn', 'bg')
-    --     }
-    -- },
-
-    components = {
-        {
-            text = '｜',
-            hl = {
-                fg = function(buffer)
-                    return
-                        buffer.is_modified and vim.g.terminal_color_3 -- yellow
-                        or vim.g.terminal_color_2 -- green
-                end
-            }
-        }, {
-            text = function(buffer) return buffer.devicon.icon .. ' ' end,
-            hl = {
-                fg = function(buffer) return buffer.devicon.color end
-            }
-        }, {
-            text = function(buffer) return buffer.index .. ': ' end
-        }, {
-            text = function(buffer) return buffer.unique_prefix end,
-            hl = {
-                fg = get_hex('Comment', 'fg'),
-                style = 'italic'
-            }
-        }, {
-            text = function(buffer) return buffer.filename .. ' ' end,
-            hl = {
-                style = function(buffer)
-                    return buffer.is_focused and 'bold' or nil
-                end
-            }
-        }, {
-            text = ' '
-        }
-    }
-})
 
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
@@ -63,7 +17,11 @@ return require("packer").startup(function(use)
 
     use("/Users/patrickhaller/Projects/py_lsp.nvim")
     use("nvim-lua/lsp_extensions.nvim")
-
+    use {'glepnir/lspsaga.nvim'}
+    use {
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
     use 'famiu/feline.nvim'
 
     use("mbbill/undotree")
@@ -82,8 +40,12 @@ return require("packer").startup(function(use)
 
     use 'mfussenegger/nvim-lint'
 
-    use("nvim-lua/completion-nvim")
+    -- use("nvim-lua/completion-nvim")
+    use("hrsh7th/nvim-cmp")
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-buffer')
     use("ray-x/lsp_signature.nvim")
+
     use("bfredl/nvim-luadev")
     use("abecodes/tabout.nvim")
     use("sbdchd/neoformat")
@@ -95,7 +57,15 @@ return require("packer").startup(function(use)
         config = function() require('indent_blankline').setup({}) end
     })
 
-    use("/Users/patrickhaller/Projects/cokeline.nvim")
+    use {
+        "ThePrimeagen/refactoring.nvim",
+        requires = {
+            {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}
+        }
+    }
+
+    -- use("/Users/patrickhaller/Projects/cokeline.nvim")
+    use("noib3/cokeline.nvim")
 
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")

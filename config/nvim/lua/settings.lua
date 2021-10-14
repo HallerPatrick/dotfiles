@@ -5,7 +5,6 @@ local cmd = vim.cmd
 cmd("filetype plugin indent on")
 cmd("colorscheme vim-material")
 
-
 -- utils.opt('o', 'visualbell', true)
 -- utils.opt('o', 'noerrorbells', true)
 utils.opt("o", "background", "dark")
@@ -46,18 +45,17 @@ utils.opt("o", "updatetime", 300)
 utils.opt("o", "signcolumn", "yes")
 -- utils.opt('o', 'nofoldenable', true)
 
-
 -- Autoformat on save
 cmd("autocmd! BufWritePre * | Neoformat")
 
 vim.g["neoformat_enabled_python"] = {"black"}
 
--- Enable alignment
-vim.g["neoformat_basic_format_align"] = 1
+-- -- Enable alignment
+-- vim.g["neoformat_basic_format_align"] = 1
 
--- Enable tab to spaces conversion
-vim.g["neoformat_basic_format_retab"] = 1
+-- -- Enable tab to spaces conversion
+-- vim.g["neoformat_basic_format_retab"] = 1
 
--- Enable trimmming of trailing whitespace
-vim.g["neoformat_basic_format_trim"] = 1
+-- -- Enable trimmming of trailing whitespace
+-- vim.g["neoformat_basic_format_trim"] = 1
 

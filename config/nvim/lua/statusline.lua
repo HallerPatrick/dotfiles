@@ -1,5 +1,8 @@
 local lsp = require("feline.providers.lsp")
+
 local vi_mode_utils = require("feline.providers.vi_mode")
+
+require("nvim-gps").setup()
 
 local colors = {
     bg = "#282c34",
@@ -240,6 +243,14 @@ local comps = {
 			},
 		},
 	},
+    gps = {
+      	provider = function()
+		  return require("nvim-gps").get_location()
+	    end,
+	enabled = function()
+		return require("nvim-gps").is_available()
+      end
+    }
 }
 
 local components = {
@@ -258,6 +269,7 @@ local active_left = {
 }
 
 local active_right = {
+  comps.gps,
   comps.git.add,
   comps.git.change,
   comps.git.remove,
