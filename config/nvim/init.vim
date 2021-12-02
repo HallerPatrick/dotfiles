@@ -15,7 +15,6 @@ lua require("init")
 
 let g:lsc_auto_map = v:true
 
-
 let g:completion_enable_snippet = 'UltiSnips'
 let test#pyton#runner = 'pytest'
 let g:rigel_lightline = 1
@@ -56,3 +55,8 @@ autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 
+nnoremap H _
+nnoremap L $
+
+" vnoreamp H _
+" vnoremap L $

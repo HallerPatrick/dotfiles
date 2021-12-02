@@ -41,84 +41,52 @@ require("lspconfig").sumneko_lua.setup({
     }
 })
 
+--- Rust
+local rust_opts = {
+    tools = { -- rust-tools options
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = ""
+        }
+    },
+
+    runnables = {
+        use_telescope = true
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                }
+
+            }
+        }
+    }
+}
+
+require("rust-tools").setup(rust_opts)
+
 local nvim_lsp = require("lspconfig")
 
 require("lint").linters_by_ft = {
     python = {"pylint", "flake8"}
 }
-
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    -- Mappings.
-    local opts = {
-        noremap = true,
-        silent = true
-    }
-    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<space>sh",
-                   "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<space>wa",
-                   "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wr",
-                   "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wl",
-                   "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-                   opts)
-    buf_set_keymap("n", "<space>D",
-                   "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",
-                   opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-                   opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-                   opts)
-
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>lf",
-                       "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    end
-    if client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("v", "<space>fo",
-                       "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    end
-
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
-    end
-
-    require("lsp_signature").on_attach()
-end
-
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = {
-    "pyright", "rust_analyzer", "tsserver", "dartls", "ccls", "clangd"
-}
+local servers = {"pyright", "tsserver", "dartls", "ccls", "clangd"}
 
 require'lspinstall'.setup()
 
@@ -126,40 +94,34 @@ local cmp = require 'cmp'
 
 cmp.setup({
     snippet = {
+        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- For `vsnip` user.
-            vim.fn["vsnip#anonymous"](args.body)
-
-            -- For `luasnip` user.
-            -- require('luasnip').lsp_expand(args.body)
-
-            -- For `ultisnips` user.
-            -- vim.fn["UltiSnips#Anon"](args.body)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
         end
-    },
-    mapping = {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({
-            select = true
-        })
     },
     sources = {
         {
             name = 'nvim_lsp'
-        }, -- For vsnip user.
-        {
-            name = 'vsnip'
-        }, -- For luasnip user.
-        -- { name = 'luasnip' },
-        -- For ultisnips user.
-        -- { name = 'ultisnips' },
-        {
-            name = 'buffer'
+        }, {
+            name = 'buffer',
+            keyword_length = 2
+        }, {
+            name = 'path'
         }
+    },
+    experimental = {
+        ghost_text = true
+    },
+    mapping = {
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+        ['<CR>'] = cmp.mapping.confirm({
+            select = true
+        })
     }
+
 })
 
 -- Setup lspconfig.
@@ -168,7 +130,7 @@ for _, lsp in ipairs(servers) do
     if lsp == "pyright" then
         require("py_lsp").setup({
             host_python = "/Users/patrickhaller/opt/anaconda3/bin/python",
-            on_attach = on_attach,
+            -- on_attach = on_attach,
             language_server = lsp,
             capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
                                                                            .protocol
@@ -176,11 +138,11 @@ for _, lsp in ipairs(servers) do
             -- source_strategies = { "poetry", "default", "system" }
         })
     else
-        nvim_lsp[lsp].setup({
-            on_attach = on_attach,
-            capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-                                                                           .protocol
-                                                                           .make_client_capabilities())
-        })
+        local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
+                                                                             .protocol
+                                                                             .make_client_capabilities())
+        nvim_lsp[lsp].setup {
+            capabilities = capabilities
+        }
     end
 end

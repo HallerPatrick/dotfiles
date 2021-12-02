@@ -21,6 +21,9 @@ utils.map("n", "<leader>b", ":bd<cr>")
 
 utils.map("n", "<leader>v", ":vsplit<cr>")
 
+utils.map("n", "<leader>l", "<c-w>l")
+utils.map("n", "<leader>h", "<c-w>h")
+
 -- Plugin related leader maps
 utils.map("n", "<leader>tf", ":TestFile<cr>")
 utils.map("n", "<leader>tn", ":TestNearest<cr>")
@@ -70,5 +73,11 @@ utils.map("n", "<leader>tq", ":Telescope quickfix<cr>")
 utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
 utils.map("n", "<leader>tr", ":Telescope lsp_references<cr>")
 utils.map("n", "<leader>ts", ":Telescope lsp_document_symbols<cr>")
+utils.map("n", "<leader>ca", ":Telescope lsp_code_actions<cr>")
 utils.map("n", "<leader>td", ":Telescope lsp_document_diagnostics<cr>")
+
+-- FloatTerm
+utils.map("n", "<leader>r", ":FloatermNew<cr>")
+utils.map("n", "<leader>rn", ":FloatermNext<cr>")
+utils.map("n", "<leader>rt", ":FloatermNext<cr>")
 

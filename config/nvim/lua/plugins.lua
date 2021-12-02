@@ -11,6 +11,7 @@ require("trouble").setup({})
 require("tabout").setup({})
 
 return require("packer").startup(function(use)
+    use("https://git.sr.ht/~romainl/vim-bruin")
     use("wbthomason/packer.nvim")
 
     use("HallerPatrick/nvim_todo.vim")
@@ -33,22 +34,37 @@ return require("packer").startup(function(use)
 
     use("neovim/nvim-lspconfig")
     use("kabouzeid/nvim-lspinstall")
-    use({
-        'simrat39/rust-tools.nvim',
-        config = function() require('rust-tools').setup({}) end
-    })
+    use('simrat39/rust-tools.nvim')
 
-    use 'mfussenegger/nvim-lint'
+    -- use('github/copilot.vim')
 
-    -- use("nvim-lua/completion-nvim")
+    use('mfussenegger/nvim-lint')
+
     use("hrsh7th/nvim-cmp")
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
+
     use("ray-x/lsp_signature.nvim")
 
     use("bfredl/nvim-luadev")
     use("abecodes/tabout.nvim")
     use("sbdchd/neoformat")
+
+    use {
+        'chipsenkbeil/distant.nvim',
+        config = function()
+            require('distant').setup {
+                -- Applies Chip's personal settings to every machine you connect to
+                --
+                -- 1. Ensures that distant servers terminate with no connections
+                -- 2. Provides navigation bindings for remote directories
+                -- 3. Provides keybinding to jump into a remote file's parent directory
+                ['*'] = require('distant.settings').chip_default()
+            }
+        end
+    }
+    use("voldikss/vim-floaterm")
 
     -- use("andrejlevkovitch/vim-lua-format")
 
@@ -66,6 +82,7 @@ return require("packer").startup(function(use)
 
     -- use("/Users/patrickhaller/Projects/cokeline.nvim")
     use("noib3/cokeline.nvim")
+    use("kevinhwang91/nvim-hlslens")
 
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")
@@ -101,16 +118,18 @@ return require("packer").startup(function(use)
     use("jbyuki/venn.nvim")
 
     -- Language stuff
-    use("pangloss/vim-javascript")
-    use("mxw/vim-jsx")
+    -- use("pangloss/vim-javascript")
+    -- use("mxw/vim-jsx")
     use("vim-test/vim-test")
-    use("bfredl/nvim-ipy")
-    use("dart-lang/dart-vim-plugin")
-    use("natebosch/vim-lsc")
-    use("natebosch/vim-lsc-dart")
+    -- use("bfredl/nvim-ipy")
+    -- use("dart-lang/dart-vim-plugin")
+    -- use("natebosch/vim-lsc")
+    -- use("natebosch/vim-lsc-dart")
 
     -- Colortheme
     use("hzchirs/vim-material")
+    use("morhetz/gruvbox")
+
     -- use("pineapplegiant/spaceduck")
     -- use("relastle/bluewery.vim")
     -- use("1612492/github.vim")
@@ -127,7 +146,6 @@ return require("packer").startup(function(use)
     -- use 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     use("metakirby5/codi.vim")
     use("lervag/vimtex")
-    use("rhysd/vim-grammarous")
     use("godlygeek/tabular")
     use("plasticboy/vim-markdown")
     use("junegunn/vim-easy-align")
@@ -148,8 +166,10 @@ return require("packer").startup(function(use)
     use("kyazdani42/nvim-web-devicons")
     use("folke/trouble.nvim")
 
-    use("SirVer/ultisnips")
-    use('honza/vim-snippets')
+    -- use("SirVer/ultisnips")
+    -- use('honza/vim-snippets')
+    use('hrsh7th/vim-vsnip')
+    use('hrsh7th/vim-vsnip-integ')
     -- use 'norcalli/snippets.nvim'
 
     use("folke/which-key.nvim")

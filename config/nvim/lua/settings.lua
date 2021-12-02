@@ -3,11 +3,14 @@ local utils = require("utils")
 local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
-cmd("colorscheme vim-material")
+cmd("colorscheme gruvbox")
 
 -- utils.opt('o', 'visualbell', true)
 -- utils.opt('o', 'noerrorbells', true)
-utils.opt("o", "background", "dark")
+-- utils.opt("o", "background", "dark")
+
+-- utils.opt("o", "nobackup", true)
+-- utils.opt("o", "nowritebackup", true)
 
 utils.opt("o", "termguicolors", true)
 utils.opt("o", "autoindent", true)
