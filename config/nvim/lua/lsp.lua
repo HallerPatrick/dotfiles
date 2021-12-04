@@ -88,8 +88,6 @@ require("lint").linters_by_ft = {
 -- and map buffer local keybindings when the language server attaches
 local servers = {"pyright", "tsserver", "dartls", "ccls", "clangd"}
 
-require'lspinstall'.setup()
-
 local cmp = require 'cmp'
 
 cmp.setup({

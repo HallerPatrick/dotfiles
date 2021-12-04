@@ -9,6 +9,7 @@ require("saga")
 require("which-key").setup({})
 require("trouble").setup({})
 require("tabout").setup({})
+require("Comment").setup({})
 
 return require("packer").startup(function(use)
     use("https://git.sr.ht/~romainl/vim-bruin")
@@ -33,7 +34,8 @@ return require("packer").startup(function(use)
     })
 
     use("neovim/nvim-lspconfig")
-    use("kabouzeid/nvim-lspinstall")
+    use("williamboman/nvim-lsp-installer")
+
     use('simrat39/rust-tools.nvim')
 
     -- use('github/copilot.vim')
@@ -52,6 +54,14 @@ return require("packer").startup(function(use)
     use("sbdchd/neoformat")
 
     use {
+        "folke/zen-mode.nvim",
+        config = function() require("zen-mode").setup {} end
+    }
+    use {
+        "folke/twilight.nvim",
+        config = function() require("twilight").setup {} end
+    }
+    use {
         'chipsenkbeil/distant.nvim',
         config = function()
             require('distant').setup {
@@ -65,6 +75,7 @@ return require("packer").startup(function(use)
         end
     }
     use("voldikss/vim-floaterm")
+    use('puremourning/vimspector')
 
     -- use("andrejlevkovitch/vim-lua-format")
 
@@ -152,7 +163,11 @@ return require("packer").startup(function(use)
     use("cohama/lexima.vim")
 
     -- Commenting
-    use("tpope/vim-commentary")
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup() end
+    }
+    -- use("tpope/vim-commentary")
     use("tpope/vim-surround")
     use("tpope/vim-abolish")
     use("tpope/vim-fugitive")
