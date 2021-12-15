@@ -91,9 +91,8 @@ return require("packer").startup(function(use)
         }
     }
 
-    -- use("/Users/patrickhaller/Projects/cokeline.nvim")
-    use("noib3/cokeline.nvim")
     use("kevinhwang91/nvim-hlslens")
+    use("akinsho/bufferline.nvim")
 
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")
@@ -119,7 +118,7 @@ return require("packer").startup(function(use)
         requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
     })
     use("airblade/vim-rooter")
-    use("mhinz/vim-startify")
+    use('glepnir/dashboard-nvim')
     use("dstein64/vim-startuptime")
     use("norcalli/nvim-colorizer.lua")
     use("chrisbra/unicode.vim")
@@ -140,12 +139,15 @@ return require("packer").startup(function(use)
     -- Colortheme
     use("hzchirs/vim-material")
     use("morhetz/gruvbox")
-
     -- use("pineapplegiant/spaceduck")
     -- use("relastle/bluewery.vim")
     -- use("1612492/github.vim")
     -- use("https://github.com/wojciechkepka/bogster")
     -- use("rakr/vim-one")
+
+    -- Language related stuff
+    use("baabelfish/nvim-nim")
+    use('ziglang/zig.vim')
     --
     use("folke/lsp-colors.nvim")
 

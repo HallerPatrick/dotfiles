@@ -1,7 +1,5 @@
 local lsp = require("feline.providers.lsp")
 
-local vi_mode_utils = require("feline.providers.vi_mode")
-
 require("nvim-gps").setup()
 
 local colors = {
@@ -259,7 +257,6 @@ local components = {
 }
 
 local active_left = {
-  comps.vi_mode.left,
   comps.file.info,
   comps.lsp.name,
   comps.diagnos.err,
@@ -277,12 +274,10 @@ local active_right = {
   comps.git.branch,
   comps.line_percentage,
   comps.scroll_bar,
-  comps.vi_mode.right,
 
 }
 
 local inactive_left = {
-	comps.vi_mode.left,
 	comps.file.info,
 }
 
@@ -298,6 +293,6 @@ table.insert(components.inactive, {})
 -- LuaFormatter on
 
 require("feline").setup({
-    components = components,
-    vi_mode_colors = vi_mode_colors
+    components = components
+    -- vi_mode_colors = vi_mode_colors
 })

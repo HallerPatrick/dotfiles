@@ -86,7 +86,10 @@ require("lint").linters_by_ft = {
 }
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = {"pyright", "tsserver", "dartls", "ccls", "clangd"}
+local servers = {
+    "pyright", "dartls", "ccls", "clangd", "nimls", "jdtls", "hls", "phpactor",
+    "tsserver"
+}
 
 local cmp = require 'cmp'
 
@@ -123,6 +126,14 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
+--
+-- Ensure that all language server paths are injected, from lsp-installer
+local lsp_installer = require("Nvim-lsp-installer")
+
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    server:setup(opts)
+end)
 
 for _, lsp in ipairs(servers) do
     if lsp == "pyright" then
@@ -135,6 +146,16 @@ for _, lsp in ipairs(servers) do
                                                                            .make_client_capabilities())
             -- source_strategies = { "poetry", "default", "system" }
         })
+        -- Nvim-lsp-installer bin locations
+        -- elseif lsp == "phpactor" then
+        --     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
+        --                                                                          .protocol
+        --                                                                          .make_client_capabilities())
+        --     nvim_lsp[lsp].setup {
+        --         capabilities = capabilities,
+        --         cmd = { "" }
+        --     }
+        --
     else
         local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
                                                                              .protocol

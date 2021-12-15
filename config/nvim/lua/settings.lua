@@ -61,4 +61,14 @@ vim.g["neoformat_enabled_python"] = {"black"}
 
 -- -- Enable trimmming of trailing whitespace
 -- vim.g["neoformat_basic_format_trim"] = 1
-
+vim.g.dashboard_default_executive = 'telescope'
+vim.g.indentLine_fileTypeExclude = 'dashboard'
+vim.g.dashboard_custom_header = {
+    "", "", "", "",
+    "   ▄████▄        ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒",
+    "  ███▄█▀        ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒",
+    " ▐████  █  █    ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+    "  █████▄        ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+    "    ████▀       ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒",
+    "", "", "", ""
+}
