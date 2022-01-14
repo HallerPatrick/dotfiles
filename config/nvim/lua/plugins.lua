@@ -1,18 +1,15 @@
+local utils = require("utils")
+
 vim.cmd([[packadd packer.nvim]])
 
 -- Init plugins
-require("statusline")
-require("tabline")
-require("refactor")
-require("saga")
+utils.require_plugins({"statusline", "tabline", "refactor", "saga"})
 
-require("which-key").setup({})
-require("trouble").setup({})
-require("tabout").setup({})
-require("Comment").setup({})
+utils.setup_plugins({"which-key", "trouble", "tabout", "Comment", "toggleterm"})
+
+vim.notify = require("notify")
 
 return require("packer").startup(function(use)
-    use("https://git.sr.ht/~romainl/vim-bruin")
     use("wbthomason/packer.nvim")
 
     use("HallerPatrick/nvim_todo.vim")
@@ -33,21 +30,23 @@ return require("packer").startup(function(use)
         run = ":TSUpdate"
     })
 
+    -- Lsp related
     use("neovim/nvim-lspconfig")
     use("williamboman/nvim-lsp-installer")
-
-    use('simrat39/rust-tools.nvim')
-
-    -- use('github/copilot.vim')
-
-    use('mfussenegger/nvim-lint')
-
+    use("onsails/lspkind-nvim")
     use("hrsh7th/nvim-cmp")
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
-
     use("ray-x/lsp_signature.nvim")
+    use('stevearc/dressing.nvim')
+
+    use('simrat39/rust-tools.nvim')
+    use('chemzqm/vim-jsx-improve')
+
+    -- use('github/copilot.vim')
+
+    use('mfussenegger/nvim-lint')
 
     use("bfredl/nvim-luadev")
     use("abecodes/tabout.nvim")
@@ -76,6 +75,7 @@ return require("packer").startup(function(use)
     }
     use("voldikss/vim-floaterm")
     use('puremourning/vimspector')
+    use {"akinsho/toggleterm.nvim"}
 
     -- use("andrejlevkovitch/vim-lua-format")
 
@@ -126,6 +126,7 @@ return require("packer").startup(function(use)
     use("pechorin/any-jump.vim")
     use("vimwiki/vimwiki")
     use("jbyuki/venn.nvim")
+    use("rcarriga/nvim-notify")
 
     -- Language stuff
     -- use("pangloss/vim-javascript")

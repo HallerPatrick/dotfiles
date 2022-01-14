@@ -31,6 +31,8 @@ utils.map("n", "<leader>b", ":TagbarToggle<cr>")
 utils.map("n", "<leader>td", ":TodoList<cr>")
 utils.map("n", "<leader>ho", ":JABSOpen<cr>")
 
+utils.map("n", "<leader>tt", ":ToggleTerm<cr>")
+
 utils.map("t", "<Esc>", "<C-\\><C-n>")
 
 -- Disable Ex Mode entering

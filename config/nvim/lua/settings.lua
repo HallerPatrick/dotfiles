@@ -52,6 +52,7 @@ utils.opt("o", "signcolumn", "yes")
 cmd("autocmd! BufWritePre * | Neoformat")
 
 vim.g["neoformat_enabled_python"] = {"black"}
+vim.g["neoformat_enabled_javascript"] = {"prettier"}
 
 -- -- Enable alignment
 -- vim.g["neoformat_basic_format_align"] = 1
