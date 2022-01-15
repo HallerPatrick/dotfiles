@@ -38,6 +38,8 @@ return require("packer").startup(function(use)
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
+    use("lukas-reineke/cmp-rg")
+
     use("ray-x/lsp_signature.nvim")
     use('stevearc/dressing.nvim')
 
@@ -149,6 +151,7 @@ return require("packer").startup(function(use)
     -- Language related stuff
     use("baabelfish/nvim-nim")
     use('ziglang/zig.vim')
+    use("dag/vim-fish")
     --
     use("folke/lsp-colors.nvim")
 

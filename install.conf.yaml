@@ -1,4 +1,4 @@
-- clean: ['~']
+- clean: ["~"]
 
 - defaults:
     link:
@@ -12,6 +12,7 @@
     ~/.gitconfig: gitconfig
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
+    ~/.config/fish: config/fish
     ~/.config/nvim/init.vim: config/nvim/init.vim
     ~/.config/nvim/lua: config/nvim/lua
     ~/.ideavimrc: config/nvim/init.vim
@@ -31,4 +32,3 @@
     ~/.pylintrc: pylintrc
     ~/.config/purification/prompt_purification_setup: scripts/purification/prompt_purification_setup
     ~/vimwiki: vimwiki
-
