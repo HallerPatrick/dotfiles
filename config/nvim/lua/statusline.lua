@@ -3,17 +3,33 @@ local lsp = require("feline.providers.lsp")
 require("nvim-gps").setup()
 
 local colors = {
-    bg = "#282c34",
-    fg = "#abb2bf",
-    yellow = "#e0af68",
-    cyan = "#56b6c2",
-    darkblue = "#081633",
-    green = "#98c379",
-    orange = "#d19a66",
-    violet = "#a9a1e1",
-    magenta = "#c678dd",
-    blue = "#61afef",
-    red = "#e86671"
+    bg = "#282828",
+    bg1 = "#3c3836", -- cursor color
+    bg2 = "#32302f",
+    bg4 = "#45403d",
+    bg5 = "#5a524c",
+    fg = "#d4be98",
+    fg1 = "#ddc7a1",
+    red = "#ea6962",
+    orange = "#e78a4e",
+    yellow = "#d8a657",
+    green = "#a9b665",
+    aqua = "#89b482",
+    blue = "#7daea3",
+    purple = "#d3869b",
+    bg_red = "#ea6962",
+    bg_green = "#a9b665",
+    bg_yellow = "#d8a657",
+    grey0 = "#7c6f64",
+    grey1 = "#928374",
+    grey2 = "#a89984",
+    white = "#f2e5bc",
+    black = "#1d2021",
+    none = "NONE",
+    cyan = "#7daea3",
+    pink = "#d3869b",
+    link = "#89b482",
+    cursor = "#ddc7a1"
 }
 
 local vi_mode_colors = {
@@ -48,14 +64,17 @@ local icons = {
 }
 
 local function file_osinfo()
-    local os = vim.bo.fileformat:upper()
+    local os
     local icon
-    if os == "UNIX" then
-        icon = icons.linux
-    elseif os == "MAC" then
+    if vim.fn.has("mac") == 1 then
         icon = icons.macos
+        os = "Mac"
+    elseif vim.fn.has("unix") == 1 then
+        icon = icons.linux
+        os = "Unix"
     else
         icon = icons.windows
+        os = "Windows"
     end
     return icon .. os
 end
@@ -63,7 +82,6 @@ end
 local function lsp_diagnostics_info()
     return {
         errs = lsp.get_diagnostics_count("Error"),
-        warns = lsp.get_diagnostics_count("Warning"),
         infos = lsp.get_diagnostics_count("Information"),
         hints = lsp.get_diagnostics_count("Hint")
     }
@@ -99,11 +117,10 @@ local function lsp_provider(component)
         if client.name == "pyright" then
             if client.config.settings.python["pythonPath"] ~= nil then
                 local venv_name = client.config.settings.python.venv_name
-                clients[#clients + 1] =
-                    icon .. client.name .. "(" .. venv_name .. ")"
+                clients[#clients + 1] = client.name .. "[" .. venv_name .. "]"
             end
         else
-            clients[#clients + 1] = icon .. client.name
+            clients[#clients + 1] = client.name
         end
     end
 
@@ -168,40 +185,6 @@ local comps = {
 			style = "bold",
 		},
 	},
-	diagnos = {
-		err = {
-			provider = diag_of(lsp_diagnostics_info, "errs"),
-			left_sep = " ",
-			enabled = diag_enable(lsp_diagnostics_info, "errs"),
-			hl = {
-				fg = colors.red,
-			},
-		},
-		warn = {
-			provider = diag_of(lsp_diagnostics_info, "warns"),
-			left_sep = " ",
-			enabled = diag_enable(lsp_diagnostics_info, "warns"),
-			hl = {
-				fg = colors.yellow,
-			},
-		},
-		info = {
-			provider = diag_of(lsp_diagnostics_info, "infos"),
-			left_sep = " ",
-			enabled = diag_enable(lsp_diagnostics_info, "infos"),
-			hl = {
-				fg = colors.blue,
-			},
-		},
-		hint = {
-			provider = diag_of(lsp_diagnostics_info, "hints"),
-			left_sep = " ",
-			enabled = diag_enable(lsp_diagnostics_info, "hints"),
-			hl = {
-				fg = colors.cyan,
-			},
-		},
-	},
 	lsp = {
 		name = {
 			provider = lsp_provider,
@@ -258,11 +241,7 @@ local components = {
 
 local active_left = {
   comps.file.info,
-  comps.lsp.name,
-  comps.diagnos.err,
-  comps.diagnos.warn,
-  comps.diagnos.hint,
-  comps.diagnos.info,
+  comps.lsp.name
 }
 
 local active_right = {

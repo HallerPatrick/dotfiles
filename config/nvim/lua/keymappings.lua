@@ -12,7 +12,7 @@ utils.map("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
 utils.map("n", "<leader>w", ":w<cr>")
 
 -- set nohlsearch
-utils.map("n", "<leader>hh", ":noh<cr>")
+utils.map("n", "<leader>h", ":noh<cr>")
 
 utils.map("n", "<leader><leader>", "<c-^>")
 
@@ -30,8 +30,11 @@ utils.map("n", "<leader>tn", ":TestNearest<cr>")
 utils.map("n", "<leader>b", ":TagbarToggle<cr>")
 utils.map("n", "<leader>td", ":TodoList<cr>")
 utils.map("n", "<leader>ho", ":JABSOpen<cr>")
+utils.map("n", "<leader>j", ":AnyJump<cr>")
 
 utils.map("n", "<leader>tt", ":ToggleTerm<cr>")
+utils.map("v", "<Leader>rr",
+          "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>")
 
 utils.map("t", "<Esc>", "<C-\\><C-n>")
 
@@ -77,9 +80,4 @@ utils.map("n", "<leader>tr", ":Telescope lsp_references<cr>")
 utils.map("n", "<leader>ts", ":Telescope lsp_document_symbols<cr>")
 utils.map("n", "<leader>ca", ":Telescope lsp_code_actions<cr>")
 utils.map("n", "<leader>td", ":Telescope lsp_document_diagnostics<cr>")
-
--- FloatTerm
-utils.map("n", "<leader>r", ":FloatermNew<cr>")
-utils.map("n", "<leader>rn", ":FloatermNext<cr>")
-utils.map("n", "<leader>rt", ":FloatermNext<cr>")
 
