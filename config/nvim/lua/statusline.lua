@@ -79,29 +79,6 @@ local function file_osinfo()
     return icon .. os
 end
 
-local function lsp_diagnostics_info()
-    return {
-        errs = lsp.get_diagnostics_count("Error"),
-        infos = lsp.get_diagnostics_count("Information"),
-        hints = lsp.get_diagnostics_count("Hint")
-    }
-end
-
-local function diag_enable(f, s)
-    return function()
-        local diag = f()[s]
-        return diag and diag ~= 0
-    end
-end
-
-local function diag_of(f, s)
-    local icon = icons[s]
-    return function()
-        local diag = f()[s]
-        return icon .. diag
-    end
-end
-
 local function vimode_hl()
     return {
         name = vi_mode_utils.get_mode_highlight_name(),

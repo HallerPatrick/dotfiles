@@ -29,6 +29,7 @@ alias fishc="vim ~/.config/fish/config.fish"
 alias ls="exa"
 alias lsa="exa -la"
 alias vimc="nvim ~/.config/nvim/lua"
+alias home="cd ~"
 
 
 function fish_user_key_bindings

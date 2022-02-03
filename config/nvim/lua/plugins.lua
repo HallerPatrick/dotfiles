@@ -7,7 +7,15 @@ utils.require_plugins({"statusline", "tabline", "tscope", "refactor"})
 
 utils.setup_plugins({"which-key", "trouble", "tabout", "Comment", "toggleterm"})
 
-vim.notify = require("notify")
+require("notify").setup({
+    background_colour = "#000000"
+})
+
+require('lint').linters_by_ft = {
+    python = {'pylint'},
+    markdown = {'vale'}
+}
+-- vim.notify = require("notify")
 
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
@@ -111,6 +119,12 @@ return require("packer").startup(function(use)
 
     -- Colortheme
     use("morhetz/gruvbox")
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        -- tag = '...',
+        config = function() vim.cmd('colorscheme rose-pine') end
+    })
     -- use("hzchirs/vim-material")
     -- use("pineapplegiant/spaceduck")
     -- use("relastle/bluewery.vim")

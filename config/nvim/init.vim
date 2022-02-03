@@ -15,9 +15,7 @@ lua require("init")
 
 let g:lsc_auto_map = v:true
 
-let g:completion_enable_snippet = 'UltiSnips'
 let test#pyton#runner = 'pytest'
-let g:rigel_lightline = 1
 
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -58,5 +56,5 @@ autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 nnoremap H _
 nnoremap L $
 
-" vnoreamp H _
-" vnoremap L $
+" au BufWritePost <buffer> lua require('lint').try_lint()
+command! -nargs=0 Lint lua require("lint").try_lint()
