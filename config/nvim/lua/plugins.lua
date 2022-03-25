@@ -15,6 +15,10 @@ require('lint').linters_by_ft = {
     python = {'pylint'},
     markdown = {'vale'}
 }
+
+require('pretty-fold.preview').setup {
+    key = 'h' -- choose 'h' or 'l' key
+}
 -- vim.notify = require("notify")
 
 return require("packer").startup(function(use)
@@ -24,6 +28,7 @@ return require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate"
     })
+    use('nvim-treesitter/playground')
 
     -- Lsp related
     use("neovim/nvim-lspconfig")
@@ -37,7 +42,6 @@ return require("packer").startup(function(use)
     use("/Users/patrickhaller/Projects/py_lsp.nvim")
     use("nvim-lua/lsp_extensions.nvim")
     use("ray-x/lsp_signature.nvim")
-    use('stevearc/dressing.nvim')
     use("glepnir/lspsaga.nvim")
     use('simrat39/rust-tools.nvim')
     use("folke/lsp-colors.nvim")
@@ -74,6 +78,14 @@ return require("packer").startup(function(use)
     use("feline-nvim/feline.nvim")
 
     -- Visuals
+    use {
+        'anuvyklack/pretty-fold.nvim',
+        config = function()
+            require('pretty-fold').setup {}
+            require('pretty-fold.preview').setup()
+        end
+    }
+    use("tmhedberg/SimpylFold")
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")
     use("ryanoasis/vim-devicons")
@@ -88,6 +100,10 @@ return require("packer").startup(function(use)
     -- use("khzaw/vim-conceal")
     use("/Users/patrickhaller/Temp/vim-conceal")
     use("rcarriga/nvim-notify")
+    use {
+        'VonHeikemen/searchbox.nvim',
+        requires = {{'MunifTanjim/nui.nvim'}}
+    }
 
     use {
         "folke/todo-comments.nvim",
@@ -109,6 +125,10 @@ return require("packer").startup(function(use)
     use("preservim/tagbar")
     use("folke/which-key.nvim")
     use("matbme/JABS.nvim")
+    use("skywind3000/asyncrun.vim")
+
+    use("mrjones2014/legendary.nvim")
+    use("stevearc/dressing.nvim")
 
     -- Minor quality of life improvments
     use("kevinhwang91/nvim-hlslens")
@@ -118,6 +138,7 @@ return require("packer").startup(function(use)
     use("vim-test/vim-test")
 
     -- Colortheme
+    use("tjdevries/colorbuddy.nvim")
     use("morhetz/gruvbox")
     use({
         'rose-pine/neovim',
@@ -125,6 +146,9 @@ return require("packer").startup(function(use)
         -- tag = '...',
         config = function() vim.cmd('colorscheme rose-pine') end
     })
+    use("mrjones2014/lighthaus.nvim")
+    use("folke/tokyonight.nvim")
+
     -- use("hzchirs/vim-material")
     -- use("pineapplegiant/spaceduck")
     -- use("relastle/bluewery.vim")

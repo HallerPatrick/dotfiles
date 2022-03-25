@@ -1,83 +1,65 @@
-local utils = require("utils")
-
 vim.g.mapleader = " "
 
--- Fast closing
-utils.map("n", "<leader>q", ":q<cr>")
+-- Movement based keymaps
+local movement_keymaps = {
+  { 'H', "_", description = 'Shortcut for moving to begining of line', mode = {"n", "v"} },
+  { 'L', "$", description = 'Shortcut for moving to end of line', mode = {"n", "v"} },
+  { 'j', "gj", description = 'Move always done, even with line break'},
+  { 'k', "gk", description = 'Move always up, even with line break'},
+}
 
--- Open new file adjacent to current file
-utils.map("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
+local leader_keymaps = {
+  { '<leader>q', ":q<cr>", description = 'Open next open buffer'},
+  { '<leader>e', ':e <C-R>=expand("%:p:h") . "/" <cr>', description = 'Display files for opening that are adjacent to current file'},
+  { '<leader>w', ":w<cr>", description = 'Quicksave'},
+  { '<leader>h', ":noh<cr>", description = 'Set nohlsearch'},
 
--- Quick save
-utils.map("n", "<leader>w", ":w<cr>")
+  -- Buffer things
+  { '<leader>n', ":bneext<cr>", description = 'Open next open buffer'},
+  { '<leader>b', ":bd<cr>", description = 'Open previous open buffer'},
+  { '<leader>v', ":vsplit<cr>", description = 'Split current buffer vertically'},
+  { '<leader><leader>', "<c-^>", description = 'Toggle previous buffer'},
 
--- set nohlsearch
-utils.map("n", "<leader>h", ":noh<cr>")
-
-utils.map("n", "<leader><leader>", "<c-^>")
-
-utils.map("n", "<leader>n", ":bnext<cr>")
-utils.map("n", "<leader>b", ":bd<cr>")
-
-utils.map("n", "<leader>v", ":vsplit<cr>")
-
-utils.map("n", "<leader>l", "<c-w>l")
-utils.map("n", "<leader>h", "<c-w>h")
-
--- Plugin related leader maps
-utils.map("n", "<leader>tf", ":TestFile<cr>")
-utils.map("n", "<leader>tn", ":TestNearest<cr>")
-utils.map("n", "<leader>b", ":TagbarToggle<cr>")
-utils.map("n", "<leader>td", ":TodoList<cr>")
-utils.map("n", "<leader>ho", ":JABSOpen<cr>")
-utils.map("n", "<leader>j", ":AnyJump<cr>")
-
-utils.map("n", "<leader>tt", ":ToggleTerm<cr>")
-utils.map("v", "<Leader>rr",
-          "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>")
-
-utils.map("t", "<Esc>", "<C-\\><C-n>")
-
--- Disable Ex Mode entering
-utils.map("n", "q:", "<Nop>")
-utils.map("n", "Q", "<Nop>")
-
-utils.map("n", "H", "_")
-utils.map("n", "L", "$")
-utils.map("v", "H", "_")
-utils.map("v", "L", "$")
-
-utils.map("n", "j", "gj")
-utils.map("n", "k", "gk")
-
-utils.map("n", "J", "")
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
-    expr = true
-})
+  -- Plugin related leader maps
+  { '<leader>tf', ":TestFile<cr>", description = 'Run tests in current file'},
+  { '<leader>tn', ":TestNearest<cr>", description = 'Run nearest tests to cursor'},
+  { '<leader>b', ":TagbarToggle<cr>", description = 'Toggle tagbar of current file'},
+  { '<leader>j', ":AnyJump<cr>", description = 'Jump..anywhere'},
+  { '<leader>rr', "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", description = 'Show refactoring options', mode = {"v"}},
+}
 
 -- Telescope mappings
+local telescope_keymaps = {
+  { '<leader>f', ":Telescope find_files<cr>", description = 'File finder'},
+  { '<leader>s', ":Telescope live_grep<cr>", description = 'In-file search'},
+  { '<leader>bb', ":Telescope buffers<cr>", description = 'Show all open buffers'},
+  { '<leader>tq', ":Telescope quickfix<cr>", description = 'Show quickfix window'},
+  { '<leader>ts', ":Telescope lsp_document_symbols<cr>", description = 'Show document symbols under cursor'},
+  { '<leader>ca', ":Telescope lsp_code_actions<cr>", description = 'Display code actions'},
+}
 
+local misc_keymaps = {
+  { 'q:', "<Nop>", description = 'Disable Ex Mode entering cause of typo'},
+  { 'Q:', "<Nop>", description = 'Disable Ex Mode entering cause of typo'},
+  { '/', ":SearchBoxIncSearch<cr>", description = 'Display little input box for search'},
+  { '<Esc>', "<C-\\><C-n>", description = 'Escape insert mode in terminal mode', mode= {"t"}},
+}
+
+require('legendary').bind_keymaps(movement_keymaps)
+require('legendary').bind_keymaps(leader_keymaps)
+require('legendary').bind_keymaps(telescope_keymaps)
+require('legendary').bind_keymaps(misc_keymaps)
+
+-- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
+--     expr = true
+-- })
+-- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
+--     expr = true
+-- })
+-- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
+--     expr = true
+-- })
+-- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
+--     expr = true
+-- })
 --
--- Fast infile search
-utils.map("n", "<leader>f", ":Telescope find_files<cr>")
-utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
-utils.map("n", "<leader>tb", ":Telescope buffers<cr>")
-utils.map("n", "<leader>tq", ":Telescope quickfix<cr>")
-
--- Picker
-utils.map("n", "<leader>s", ":Telescope live_grep<cr>")
-utils.map("n", "<leader>tr", ":Telescope lsp_references<cr>")
-utils.map("n", "<leader>ts", ":Telescope lsp_document_symbols<cr>")
-utils.map("n", "<leader>ca", ":Telescope lsp_code_actions<cr>")
-utils.map("n", "<leader>td", ":Telescope lsp_document_diagnostics<cr>")
-

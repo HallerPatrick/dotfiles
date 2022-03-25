@@ -53,8 +53,11 @@ autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 
-nnoremap H _
-nnoremap L $
+" highglight yanked group
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+augroup END
 
 " au BufWritePost <buffer> lua require('lint').try_lint()
-command! -nargs=0 Lint lua require("lint").try_lint()
+" command! -nargs=0 Lint lua require("lint").try_lint()
