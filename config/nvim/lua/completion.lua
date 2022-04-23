@@ -15,6 +15,28 @@ function M.setup()
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
 
+    local complete_select_down = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+        elseif M.has_words_before() then
+            cmp.complete()
+        else
+            fallback()
+        end
+    end, {"i", "s"})
+
+    local complete_select_up = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+        else
+            fallback()
+        end
+    end, {"i", "s"})
+
     cmp.setup({
         snippet = {
             expand = function(args)
@@ -41,27 +63,10 @@ function M.setup()
             ['<CR>'] = cmp.mapping.confirm({
                 select = true
             }),
-            ["<Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                elseif M.has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end, {"i", "s"}),
-
-            ["<S-Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end, {"i", "s"})
+            ["<Tab>"] = complete_select_down,
+            ["<S-Tab>"] = complete_select_up,
+            ["<C-n"] = complete_select_down,
+            ["<C-p"] = complete_select_up
         },
         formatting = {
             format = lspkind.cmp_format({

@@ -1,10 +1,10 @@
 local M = {}
 
-USER = vim.fn.expand("$USER")
+local user = vim.fn.expand("$USER")
 
-local sumneko_root_path = "/Users/" .. USER ..
+local sumneko_root_path = "/Users/" .. user ..
                               "/.config/nvim/lua-language-server"
-local sumneko_binary = "/Users/" .. USER ..
+local sumneko_binary = "/Users/" .. user ..
                            "/.config/nvim/lua-language-server/bin/macOS/lua-language-server"
 
 M.lua = {
@@ -24,7 +24,7 @@ M.lua = {
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    [vim.fn.expand("/Users/" .. USER .. "/.config/nvim/lua")] = true
+                    [vim.fn.expand("/Users/" .. user .. "/.config/nvim/lua")] = true
                 }
             }
         }

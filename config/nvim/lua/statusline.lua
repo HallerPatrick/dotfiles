@@ -1,5 +1,3 @@
-local lsp = require("feline.providers.lsp")
-
 require("nvim-gps").setup()
 
 local colors = {
@@ -32,26 +30,10 @@ local colors = {
     cursor = "#ddc7a1"
 }
 
-local vi_mode_colors = {
-    NORMAL = colors.green,
-    INSERT = colors.red,
-    VISUAL = colors.magenta,
-    OP = colors.green,
-    BLOCK = colors.blue,
-    REPLACE = colors.violet,
-    ["V-REPLACE"] = colors.violet,
-    ENTER = colors.cyan,
-    MORE = colors.cyan,
-    SELECT = colors.orange,
-    COMMAND = colors.green,
-    SHELL = colors.green,
-    TERM = colors.green,
-    NONE = colors.yellow
-}
-
+-- TODO: Add symbols?
 local icons = {
     linux = " ",
-    macos = " ",
+    macos = " ",
     windows = " ",
 
     errs = " ",
@@ -59,7 +41,7 @@ local icons = {
     infos = " ",
     hints = " ",
 
-    lsp = " ",
+    lsp = "☱ ",
     git = ""
 }
 
@@ -79,16 +61,8 @@ local function file_osinfo()
     return icon .. os
 end
 
-local function vimode_hl()
-    return {
-        name = vi_mode_utils.get_mode_highlight_name(),
-        fg = vi_mode_utils.get_mode_color()
-    }
-end
-
-local function lsp_provider(component)
+local function lsp_provider(_)
     local clients = {}
-    local icon = component.icon or " "
 
     for _, client in pairs(vim.lsp.buf_get_clients()) do
         if client.name == "pyright" then
@@ -107,18 +81,6 @@ end
 -- LuaFormatter off
 
 local comps = {
-	vi_mode = {
-		left = {
-			provider = "▊",
-			hl = vimode_hl,
-			right_sep = " ",
-		},
-		right = {
-			provider = "▊",
-			hl = vimode_hl,
-			left_sep = " ",
-		},
-	},
 	file = {
 		info = {
 			provider = "file_info",
@@ -202,10 +164,10 @@ local comps = {
 		},
 	},
     gps = {
-      	provider = function()
+      provider = function()
 		  return require("nvim-gps").get_location()
 	    end,
-	enabled = function()
+      enabled = function()
 		return require("nvim-gps").is_available()
       end
     }

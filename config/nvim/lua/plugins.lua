@@ -16,11 +16,10 @@ require('lint').linters_by_ft = {
     markdown = {'vale'}
 }
 
-require('pretty-fold.preview').setup {
-    key = 'h' -- choose 'h' or 'l' key
-}
--- vim.notify = require("notify")
-
+require("nvim_context_vt").setup({
+    prefix = "∟"
+    -- disable_virtual_lines = true
+})
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
@@ -40,6 +39,7 @@ return require("packer").startup(function(use)
     use('hrsh7th/cmp-path')
     use("lukas-reineke/cmp-rg")
     use("/Users/patrickhaller/Projects/py_lsp.nvim")
+    -- use("HallerPatrick/py_lsp.nvim")
     use("nvim-lua/lsp_extensions.nvim")
     use("ray-x/lsp_signature.nvim")
     use("glepnir/lspsaga.nvim")
@@ -78,14 +78,6 @@ return require("packer").startup(function(use)
     use("feline-nvim/feline.nvim")
 
     -- Visuals
-    use {
-        'anuvyklack/pretty-fold.nvim',
-        config = function()
-            require('pretty-fold').setup {}
-            require('pretty-fold.preview').setup()
-        end
-    }
-    use("tmhedberg/SimpylFold")
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")
     use("ryanoasis/vim-devicons")
@@ -110,6 +102,7 @@ return require("packer").startup(function(use)
         requires = "nvim-lua/plenary.nvim",
         config = function() require("todo-comments").setup {} end
     }
+    use("haringsrob/nvim_context_vt")
 
     -- Utilities
     use({
