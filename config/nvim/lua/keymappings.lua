@@ -43,7 +43,7 @@ local leader_keymaps = {
     }, -- Buffer things
     {
         '<leader>n',
-        ":bneext<cr>",
+        ":bnext<cr>",
         description = 'Open next open buffer'
     }, {
         '<leader>b',
@@ -79,6 +79,14 @@ local leader_keymaps = {
         "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
         description = 'Show refactoring options',
         mode = {"v"}
+    }, {
+        '<leader>t',
+        ":JABSOpen<cr>",
+        description = 'Show open buffers'
+    }, {
+        '<leader>rn',
+        ":lua vim.lsp.buf.rename()<CR>",
+        description = 'Rename variable under cursor'
     }
 }
 
@@ -137,16 +145,16 @@ require('legendary').bind_keymaps(leader_keymaps)
 require('legendary').bind_keymaps(telescope_keymaps)
 require('legendary').bind_keymaps(misc_keymaps)
 
--- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
---     expr = true
--- })
--- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
---     expr = true
--- })
--- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
---     expr = true
--- })
--- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
---     expr = true
--- })
---
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
+    expr = true
+})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
+    expr = true
+})
+

@@ -51,3 +51,7 @@ function peco_select_history
         commandline ''
     end
 end
+
+# Created by `pipx` on 2022-02-07 16:05:19
+set PATH $PATH /Users/patrickhaller/.local/bin
+set PATH $PATH /Users/patrickhaller/.cargo/bin

@@ -58,6 +58,23 @@ M.rust = {
     }
 }
 
+M.latex = {
+    cmd = {"texlab"},
+    filetypes = {"tex", "bib"},
+    settings = {
+        texlab = {
+            rootDirectory = nil,
+            --      ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+            build = _G.TeXMagicBuildConfig,
+            --      ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑
+            forwardSearch = {
+                executable = "evince",
+                args = {"%p"}
+            }
+        }
+    }
+}
+
 function M.rust_setup() require("rust-tools").setup(M.rust) end
 
 return M

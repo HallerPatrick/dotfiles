@@ -3,12 +3,12 @@ local utils = require("utils")
 local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
--- cmd("colorscheme tokyonight")
-cmd("colorscheme lighthaus")
+cmd("colorscheme nightfox")
+-- cmd("colorscheme lighthaus")
 
 -- utils.opt('o', 'visualbell', true)
 -- utils.opt('o', 'noerrorbells', true)
--- utils.opt("o", "background", "dark")
+-- utils.opt("o", "background", "light")
 -- utils.opt('o', 'noshowmode', true)
 -- utils.opt('o', 'nowrap', true)
 -- utils.opt('o', 'nojoinspaces', true)
@@ -91,6 +91,10 @@ vim.g.dashboard_custom_header = {
 
 vim.g.asyncrun_open = 6
 
+-- Latex
+vim.g.vimtex_view_method = 'zathura'
+vim.g.livepreview_previewer = 'zathura'
+vim.g.livepreview_engine = 'latexmk -xelatex -f'
 
 
 -- AuGroups
@@ -109,5 +113,10 @@ vim.api.nvim_create_autocmd("FileType",{
   command = [[ setlocal shiftwidth=2 softtabstop=2 expandtab ]]
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
 
 -- autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4

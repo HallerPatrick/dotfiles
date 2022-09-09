@@ -5,21 +5,40 @@ vim.cmd([[packadd packer.nvim]])
 -- Init plugins
 utils.require_plugins({"statusline", "tabline", "tscope", "refactor"})
 
-utils.setup_plugins({"which-key", "trouble", "tabout", "Comment", "toggleterm"})
+utils.setup_plugins({
+    "trouble", "tabout", "Comment", "toggleterm", "neoscroll", "texmagic",
+    "modes", "nvim-biscuits", "treesitter-context", "jabs"
+})
+
+require("which-key").setup({
+    plugins = {
+        presets = {
+            operators = false
+        }
+    }
+})
 
 require("notify").setup({
     background_colour = "#000000"
 })
 
-require('lint').linters_by_ft = {
-    python = {'pylint'},
-    markdown = {'vale'}
-}
-
 require("nvim_context_vt").setup({
     prefix = "∟"
     -- disable_virtual_lines = true
 })
+
+require("luasnip/loaders/from_vscode").lazy_load()
+
+require('nightfox').setup({
+    options = {
+        styles = {
+            comments = "italic",
+            keywords = "bold",
+            types = "italic,bold"
+        }
+    }
+})
+
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
@@ -27,6 +46,7 @@ return require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate"
     })
+    use('nvim-treesitter/nvim-treesitter-context')
     use('nvim-treesitter/playground')
 
     -- Lsp related
@@ -37,6 +57,8 @@ return require("packer").startup(function(use)
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
+    use("hrsh7th/cmp-emoji")
+    use('hrsh7th/cmp-nvim-lua')
     use("lukas-reineke/cmp-rg")
     use("/Users/patrickhaller/Projects/py_lsp.nvim")
     -- use("HallerPatrick/py_lsp.nvim")
@@ -62,6 +84,7 @@ return require("packer").startup(function(use)
     })
 
     -- Language specific
+    use("daveyarwood/vim-alda")
     use("bfredl/nvim-luadev")
     use("ap/vim-css-color")
     use("dag/vim-fish")
@@ -78,6 +101,8 @@ return require("packer").startup(function(use)
     use("feline-nvim/feline.nvim")
 
     -- Visuals
+    use('code-biscuits/nvim-biscuits')
+    use("karb94/neoscroll.nvim")
     use("nathanaelkane/vim-indent-guides")
     use("camspiers/animate.vim")
     use("ryanoasis/vim-devicons")
@@ -89,6 +114,8 @@ return require("packer").startup(function(use)
         "lukas-reineke/indent-blankline.nvim",
         config = function() require('indent_blankline').setup({}) end
     })
+    use("mvllow/modes.nvim")
+
     -- use("khzaw/vim-conceal")
     use("/Users/patrickhaller/Temp/vim-conceal")
     use("rcarriga/nvim-notify")
@@ -115,7 +142,6 @@ return require("packer").startup(function(use)
     use("AndrewRadev/splitjoin.vim")
     use("pechorin/any-jump.vim")
     use("unblevable/quick-scope")
-    use("preservim/tagbar")
     use("folke/which-key.nvim")
     use("matbme/JABS.nvim")
     use("skywind3000/asyncrun.vim")
@@ -131,6 +157,7 @@ return require("packer").startup(function(use)
     use("vim-test/vim-test")
 
     -- Colortheme
+    use("/Users/patrickhaller/Projects/mosel.nvim")
     use("tjdevries/colorbuddy.nvim")
     use("morhetz/gruvbox")
     use({
@@ -141,17 +168,26 @@ return require("packer").startup(function(use)
     })
     use("mrjones2014/lighthaus.nvim")
     use("folke/tokyonight.nvim")
-
+    use "EdenEast/nightfox.nvim"
     -- use("hzchirs/vim-material")
     -- use("pineapplegiant/spaceduck")
     -- use("relastle/bluewery.vim")
     -- use("1612492/github.vim")
     -- use("rakr/vim-one")
 
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+    -- Latex
+    use('lervag/vimtex')
+    use('xuhdev/vim-latex-live-preview')
     use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.nvim_exec("mkdp#util#install()") end
-    }) -- , { 'do': { -> mkdp#util#install() } }
+        'jakewvincent/texmagic.nvim',
+        config = function()
+            require('texmagic').setup({
+                -- Config goes here; leave blank for defaults
+            })
+        end
+    })
 
     -- Commenting
     use {
@@ -169,4 +205,7 @@ return require("packer").startup(function(use)
 
     -- Snippet engine
     use("L3MON4D3/LuaSnip")
+    use("rafamadriz/friendly-snippets")
+
+    use('lewis6991/impatient.nvim')
 end)

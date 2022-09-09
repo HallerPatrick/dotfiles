@@ -4,9 +4,8 @@ function M.has_words_before()
 
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and
-               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
-                                                                          col)
-                   :match("%s") == nil
+               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") ==
+               nil
 end
 
 function M.setup()
@@ -47,12 +46,16 @@ function M.setup()
             {
                 name = 'nvim_lsp'
             }, {
+                name = 'nvim_lua'
+            }, {
+                name = 'luasnip'
+            }, {
                 name = 'buffer',
                 keyword_length = 2
             }, {
                 name = 'path'
             }, {
-                name = 'luasnip'
+                name = 'emoji'
             }
         },
         experimental = {
@@ -63,15 +66,26 @@ function M.setup()
             ['<CR>'] = cmp.mapping.confirm({
                 select = true
             }),
-            ["<Tab>"] = complete_select_down,
-            ["<S-Tab>"] = complete_select_up,
-            ["<C-n"] = complete_select_down,
-            ["<C-p"] = complete_select_up
+
+            ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {'i'}),
+
+            -- Doesn't work in Mac Terminal
+            -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'})
+
+            ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 'c'}),
+            ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'})
         },
         formatting = {
             format = lspkind.cmp_format({
                 with_text = true,
-                maxwidth = 70
+                maxwidth = 70,
+                mode = "symbol_text",
+                menu = ({
+                    buffer = "[Buffer]",
+                    nvim_lsp = "[LSP]",
+                    luasnip = "[LuaSnip]",
+                    nvim_lua = "[Lua]",
+                })
             })
         }
 
