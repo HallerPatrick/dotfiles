@@ -23,6 +23,22 @@ local movement_keymaps = {
     }
 }
 
+local lsp_keymaps = {
+    {
+        'gd',
+        vim.lsp.buf.definition,
+        description = 'Jump to defintion'
+    }, {
+        'gD',
+        vim.lsp.buf.declaration,
+        description = 'Jump to declaration'
+    }, {
+        'K',
+        vim.lsp.buf.hover,
+        description = 'Hover docs'
+    }
+}
+
 local leader_keymaps = {
     {
         '<leader>q',
@@ -80,6 +96,10 @@ local leader_keymaps = {
         description = 'Show refactoring options',
         mode = {"v"}
     }, {
+        '<leader>rf',
+        "<Esc><cmd>lua require('telescope').extensions.recent_files.pick()<CR>",
+        description = 'Show recent files'
+    }, {
         '<leader>t',
         ":JABSOpen<cr>",
         description = 'Show open buffers'
@@ -116,6 +136,10 @@ local telescope_keymaps = {
         '<leader>ca',
         ":Telescope lsp_code_actions<cr>",
         description = 'Display code actions'
+    }, {
+        '<leader>fu',
+        ":Telescope lsp_references<cr>",
+        description = 'Find usages of symbol under cursor'
     }
 }
 
@@ -140,10 +164,14 @@ local misc_keymaps = {
     }
 }
 
-require('legendary').bind_keymaps(movement_keymaps)
-require('legendary').bind_keymaps(leader_keymaps)
-require('legendary').bind_keymaps(telescope_keymaps)
-require('legendary').bind_keymaps(misc_keymaps)
+
+local legendary = require('legendary')
+
+legendary.keymaps(movement_keymaps)
+legendary.keymaps(leader_keymaps)
+legendary.keymaps(lsp_keymaps)
+legendary.keymaps(telescope_keymaps)
+legendary.keymaps(misc_keymaps)
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
     expr = true

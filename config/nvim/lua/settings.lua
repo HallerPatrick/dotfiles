@@ -3,8 +3,8 @@ local utils = require("utils")
 local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
-cmd("colorscheme nightfox")
--- cmd("colorscheme lighthaus")
+cmd("colorscheme gruvbox")
+-- cmd("colorscheme sacredforest")
 
 -- utils.opt('o', 'visualbell', true)
 -- utils.opt('o', 'noerrorbells', true)

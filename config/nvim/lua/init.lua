@@ -1,11 +1,7 @@
--- Reduce Startup Time
 
--- require('impatient').enable_profile()
-require("impatient")
-
+-- require("impatient")
+require("plugins")
 require("settings")
 require("keymappings")
-require("plugins")
 require("lsp")
-
--- require("colortheme")
+require("statusline")

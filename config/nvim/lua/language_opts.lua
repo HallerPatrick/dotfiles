@@ -75,6 +75,6 @@ M.latex = {
     }
 }
 
-function M.rust_setup() require("rust-tools").setup(M.rust) end
+-- function M.rust_setup() require("rust-tools").setup(M.rust) end
 
 return M
