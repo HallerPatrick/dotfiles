@@ -1,3 +1,5 @@
+local tterm = require("tterm")
+
 vim.g.mapleader = " "
 
 -- Movement based keymaps
@@ -24,18 +26,23 @@ local movement_keymaps = {
 }
 
 local lsp_keymaps = {
+    -- {
+    --     'gd',
+    --     vim.lsp.buf.definition,
+    --     description = 'Jump to defintion'
+    -- },
     {
         'gd',
-        vim.lsp.buf.definition,
-        description = 'Jump to defintion'
-    }, {
-        'gD',
         vim.lsp.buf.declaration,
         description = 'Jump to declaration'
     }, {
         'K',
         vim.lsp.buf.hover,
         description = 'Hover docs'
+    }, {
+      'gD',
+      require("utils").open_split_buffer_goto_definition,
+      description = "Jump to defintion in a new or existing split window"
     }
 }
 
@@ -83,10 +90,6 @@ local leader_keymaps = {
         ":TestNearest<cr>",
         description = 'Run nearest tests to cursor'
     }, {
-        '<leader>b',
-        ":TagbarToggle<cr>",
-        description = 'Toggle tagbar of current file'
-    }, {
         '<leader>j',
         ":AnyJump<cr>",
         description = 'Jump..anywhere'
@@ -100,13 +103,23 @@ local leader_keymaps = {
         "<Esc><cmd>lua require('telescope').extensions.recent_files.pick()<CR>",
         description = 'Show recent files'
     }, {
-        '<leader>t',
-        ":JABSOpen<cr>",
-        description = 'Show open buffers'
-    }, {
         '<leader>rn',
         ":lua vim.lsp.buf.rename()<CR>",
         description = 'Rename variable under cursor'
+    }, {
+       '<leader>pr',
+       ":PyRun<CR>",
+       description = "Run current python buffer with venv"
+    }, {
+      '<leader>sv',
+      ":'<,'>ToggleTermSendVisualSelection<CR>",
+      description = "Send visual selection to toggle term",
+      mode = { "v" }
+    },
+    {
+      '<leader>ip',
+      ":lua require('tterm').create_ipython()<CR>",
+      description = "",
     }
 }
 
@@ -121,7 +134,7 @@ local telescope_keymaps = {
         ":Telescope live_grep<cr>",
         description = 'In-file search'
     }, {
-        '<leader>bb',
+        '<leader>b',
         ":Telescope buffers<cr>",
         description = 'Show all open buffers'
     }, {
@@ -172,17 +185,4 @@ legendary.keymaps(leader_keymaps)
 legendary.keymaps(lsp_keymaps)
 legendary.keymaps(telescope_keymaps)
 legendary.keymaps(misc_keymaps)
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {
-    expr = true
-})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {
-    expr = true
-})
 

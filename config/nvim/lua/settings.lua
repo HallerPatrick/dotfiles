@@ -2,20 +2,10 @@ local utils = require("utils")
 
 local cmd = vim.cmd
 
-cmd("filetype plugin indent on")
-cmd("colorscheme gruvbox")
--- cmd("colorscheme sacredforest")
 
--- utils.opt('o', 'visualbell', true)
--- utils.opt('o', 'noerrorbells', true)
--- utils.opt("o", "background", "light")
--- utils.opt('o', 'noshowmode', true)
--- utils.opt('o', 'nowrap', true)
--- utils.opt('o', 'nojoinspaces', true)
--- utils.opt('o', 'foldmethod', "indent")
--- utils.opt('o', 'nobackup', true)
--- Some servers have issues with backup files, see #649
--- utils.opt("o", "nowritebackup", true)
+cmd("filetype plugin indent on")
+-- cmd("colorscheme gruvbox")
+cmd("colorscheme oh-lucy-evening")
 
 -- Global status line
 utils.opt("o", "laststatus", 3)
@@ -77,17 +67,17 @@ vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
 vim.g.qs_highlight_on_keys = {'f', 'F'}
 
 
-vim.g.dashboard_default_executive = 'telescope'
+-- vim.g.dashboard_default_executive = 'telescope'
 vim.g.indentLine_fileTypeExclude = 'dashboard'
-vim.g.dashboard_custom_header = {
-    "", "", "", "",
-    "   ▄████▄        ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒",
-    "  ███▄█▀        ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒",
-    " ▐████  █  █    ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
-    "  █████▄        ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
-    "    ████▀       ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒",
-    "", "", "", ""
-}
+-- vim.g.dashboard_custom_header = {
+--     "", "", "", "",
+--     "   ▄████▄        ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒",
+--     "  ███▄█▀        ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒",
+--     " ▐████  █  █    ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+--     "  █████▄        ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+--     "    ████▀       ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒",
+--     "", "", "", ""
+-- }
 
 vim.g.asyncrun_open = 6
 
@@ -113,10 +103,3 @@ vim.api.nvim_create_autocmd("FileType",{
   command = [[ setlocal shiftwidth=2 softtabstop=2 expandtab ]]
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
-
--- autocmd FileType lv setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4

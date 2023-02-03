@@ -1,2 +1,1 @@
 require("bufferline").setup {}
-
