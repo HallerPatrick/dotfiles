@@ -61,7 +61,13 @@ require("py_lsp").setup({
     -- capabilities = capabilities,
     on_server_ready = function(venv_path, venv_name) end,
     source_strategies = {"default", "poetry", "system", "env_path"},
-    default_venv_name = "venv"
+    default_venv_name = "venv",
+    plugins = {
+      notify = {
+        use = false
+      }
+    }
+
 })
 --
 -- require("mason").setup()

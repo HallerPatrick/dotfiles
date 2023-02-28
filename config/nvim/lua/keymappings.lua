@@ -120,7 +120,12 @@ local leader_keymaps = {
       '<leader>ip',
       ":lua require('tterm').create_ipython()<CR>",
       description = "",
-    }
+    },
+    {
+        '<leader>ca',
+        ":lua vim.lsp.buf.code_action()<cr>",
+        description = 'Display code actions'
+    },
 }
 
 -- Telescope mappings
@@ -145,11 +150,7 @@ local telescope_keymaps = {
         '<leader>ts',
         ":Telescope lsp_document_symbols<cr>",
         description = 'Show document symbols under cursor'
-    }, {
-        '<leader>ca',
-        ":Telescope lsp_code_actions<cr>",
-        description = 'Display code actions'
-    }, {
+    },  {
         '<leader>fu',
         ":Telescope lsp_references<cr>",
         description = 'Find usages of symbol under cursor'
@@ -165,11 +166,13 @@ local misc_keymaps = {
         'Q:',
         "<Nop>",
         description = 'Disable Ex Mode entering cause of typo'
-    }, {
-        '/',
-        ":SearchBoxIncSearch<cr>",
-        description = 'Display little input box for search'
-    }, {
+    }, 
+    -- {
+    --     '/',
+    --     ":SearchBoxIncSearch<cr>",
+    --     description = 'Display little input box for search'
+    -- },
+    {
         '<Esc>',
         "<C-\\><C-n>",
         description = 'Escape insert mode in terminal mode',

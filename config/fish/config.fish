@@ -22,6 +22,9 @@
 # export HSTR_CONFIG=hicolor       # get more colors
 # bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
+
+export PYTHONBREAKPOINT="pudb.set_trace"
+
 export EDITOR='nvim'
 
 alias vim="nvim"
@@ -55,3 +58,4 @@ end
 # Created by `pipx` on 2022-02-07 16:05:19
 set PATH $PATH /Users/patrickhaller/.local/bin
 set PATH $PATH /Users/patrickhaller/.cargo/bin
+fish_add_path /Users/patrickhaller/.spicetify

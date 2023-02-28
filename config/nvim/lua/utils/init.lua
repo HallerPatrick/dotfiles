@@ -66,4 +66,5 @@ function utils.open_split_buffer_goto_definition()
     vim.lsp.buf.definition()
 end
 
+
 return utils

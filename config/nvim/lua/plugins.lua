@@ -28,7 +28,11 @@ require("lazy").setup({
     "lukas-reineke/cmp-rg", {
         "/Users/patrickhaller/Projects/py_lsp.nvim",
         dev = true
-    }, -- use {
+    }, {
+        "/Users/patrickhaller/Projects/sounder.nvim",
+        dev = true,
+        config = function(_) require("sounder") end
+    }, "hrsh7th/cmp-nvim-lsp-document-symbol", -- use {
     --   "HallerPatrick/py_lsp.nvim", tag="v0.0.1"
     -- }
     "nvim-lua/lsp_extensions.nvim", "ray-x/lsp_signature.nvim",
@@ -39,9 +43,8 @@ require("lazy").setup({
     }, -- Code Style, Refactoring, etc..
     -- "mfussenegger/nvim-lint",
     "sbdchd/neoformat", -- Language specific
-    "stsewd/isort.nvim",
-    "daveyarwood/vim-alda", "bfredl/nvim-luadev", "ap/vim-css-color",
-    "dag/vim-fish", "abecodes/tabout.nvim", -- Terminal
+    "stsewd/isort.nvim", "daveyarwood/vim-alda", "bfredl/nvim-luadev",
+    "ap/vim-css-color", "dag/vim-fish", "abecodes/tabout.nvim", -- Terminal
     "akinsho/toggleterm.nvim", -- Bufferline
     "akinsho/bufferline.nvim", {
         "petertriho/nvim-scrollbar",
@@ -50,7 +53,11 @@ require("lazy").setup({
     -- use("feline-nvim/feline.nvim")
     {
         "nvim-lualine/lualine.nvim",
-        config = function(_) require("lualine").setup({}) end
+        config = function(_) require("lualine").setup({
+          options = {
+            theme = "vito"
+          }
+        }) end
     }, "WhoIsSethDaniel/lualine-lsp-progress.nvim", -- Visuals
     "karb94/neoscroll.nvim", "lukas-reineke/indent-blankline.nvim",
     "camspiers/animate.vim", "ryanoasis/vim-devicons",
@@ -60,10 +67,11 @@ require("lazy").setup({
         event = "VimEnter",
         config = function(_) require("startup") end
     }, "mvllow/modes.nvim", -- "simrat39/symbols-outline.nvim",
-    "rcarriga/nvim-notify", {
-        'VonHeikemen/searchbox.nvim',
-        dependencies = {'MunifTanjim/nui.nvim'}
-    }, {
+    "rcarriga/nvim-notify", -- {
+    --     'VonHeikemen/searchbox.nvim',
+    --     dependencies = {'MunifTanjim/nui.nvim'}
+    -- }, 
+    {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         config = function(_) require("todo-comments").setup({}) end
@@ -77,13 +85,16 @@ require("lazy").setup({
     }, "smartpde/telescope-recent-files", "airblade/vim-rooter",
     "dstein64/vim-startuptime", "chrisbra/unicode.vim",
     "AndrewRadev/splitjoin.vim", "pechorin/any-jump.vim",
-    "folke/which-key.nvim", "skywind3000/asyncrun.vim",
-    'mfussenegger/nvim-dap', "mrjones2014/legendary.nvim",
-    "stevearc/dressing.nvim", -- "github/copilot.vim",
+    "folke/which-key.nvim", "skywind3000/asyncrun.vim", 'mfussenegger/nvim-dap',
+    "mrjones2014/legendary.nvim", "stevearc/dressing.nvim", -- "github/copilot.vim",
     -- Language stuff
     "vim-test/vim-test", -- Colortheme
-    'rktjmp/lush.nvim', 'Yazeed1s/oh-lucy.nvim',
-    -- "tjdevries/colorbuddy.nvim",
+    'rktjmp/lush.nvim', 'Yazeed1s/oh-lucy.nvim', 
+    {
+        "/Users/patrickhaller/Projects/vito.nvim",
+        dependencies = {"tjdevries/colorbuddy.nvim"},
+        dev = true
+    }, -- "tjdevries/colorbuddy.nvim",
     "morhetz/gruvbox", "sainnhe/everforest", "mrjones2014/lighthaus.nvim",
     "folke/tokyonight.nvim", "EdenEast/nightfox.nvim", "katawful/kat.nvim",
     "karoliskoncevicius/sacredforest-vim", {
@@ -96,10 +107,13 @@ require("lazy").setup({
         'numToStr/Comment.nvim',
         config = function(_) require("Comment").setup() end
     }, -- TPope stuff
-    "tpope/vim-surround", "tpope/vim-abolish", "tpope/vim-fugitive",
-    "tpope/vim-eunuch", "airblade/vim-gitgutter", "Raimondi/delimitMate",
-
-    -- Snippet engine
+    -- "tpope/vim-surround",
+    {
+        "kylechui/nvim-surround",
+        tag = "*",
+        config = function(_) require("nvim-surround").setup({}) end
+    }, "tpope/vim-abolish", "tpope/vim-fugitive", "tpope/vim-eunuch",
+    "airblade/vim-gitgutter", --[[ "Raimondi/delimitMate", ]] -- Snippet engine
     'dcampos/nvim-snippy', 'dcampos/cmp-snippy', 'honza/vim-snippets',
     -- 'dcampos/nvim-snippy',
 
@@ -124,6 +138,19 @@ vim.opt.listchars:append "eol:↴"
 require("indent_blankline").setup {
     show_end_of_line = true
 }
+
+require("vito").setup {
+  comment_italics = true,
+  float_background = false,
+  reverse_visual = false,
+}
+
+-- require("notify").setup({
+--   background_color = require("vito.colors").themes.lowBackground
+-- })
+--
+-- vim.cmd [[ set termguicolors ]]
+
 
 local dap = require('dap')
 dap.configurations.python = {

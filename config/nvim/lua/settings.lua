@@ -2,10 +2,7 @@ local utils = require("utils")
 
 local cmd = vim.cmd
 
-
 cmd("filetype plugin indent on")
--- cmd("colorscheme gruvbox")
-cmd("colorscheme oh-lucy-evening")
 
 -- Global status line
 utils.opt("o", "laststatus", 3)

@@ -8,19 +8,26 @@ function M.setup()
     cmp.setup({
         snippet = {
             expand = function(args)
-              require("snippy").expand_snippet(args.body)
+                require("snippy").expand_snippet(args.body)
             end
         },
         sources = {
-            { name = "snippy"   },
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lua' },
             {
+                name = "snippy"
+            }, {
+                name = 'nvim_lsp'
+            }, {
+                name = 'nvim_lua'
+            }, {
                 name = 'buffer',
                 keyword_length = 2
-            },
-            { name = 'path' },
-            { name = 'emoji' }
+            }, {
+                name = 'path'
+            }, {
+                name = 'emoji'
+            }, {
+                name = "nvim_lsp_document_symbol"
+            }
         },
         experimental = {
             ghost_text = true
@@ -49,7 +56,31 @@ function M.setup()
                 })
             })
         }
+    })
 
+    cmp.setup.cmdline('/', {
+        sources = cmp.config.sources({
+            {
+                name = 'nvim_lsp_document_symbol'
+            }
+        }, {
+            {
+                name = 'buffer'
+            }
+        })
+    })
+
+    cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+            {
+                name = 'path'
+            }
+        }, {
+            {
+                name = 'cmdline'
+            }
+        })
     })
 
 end
