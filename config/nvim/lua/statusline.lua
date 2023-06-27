@@ -5,7 +5,7 @@
 local function lsp_provider(_)
     local clients = {}
 
-    for _, client in pairs(vim.lsp.buf_get_clients()) do
+    for _, client in pairs(vim.lsp.get_active_clients()) do
         if client.name == "pyright" then
             if client.config.settings.python["pythonPath"] ~= nil then
                 local venv_name = client.config.settings.python.venv_name

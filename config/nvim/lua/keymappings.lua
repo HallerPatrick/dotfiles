@@ -126,6 +126,32 @@ local leader_keymaps = {
         ":lua vim.lsp.buf.code_action()<cr>",
         description = 'Display code actions'
     },
+    {
+        '<leader>do',
+        ":lua require('dapui').open()<cr>",
+        description = 'Open DAP UI'
+    },
+    {
+        '<leader>dc',
+        ":lua require('dapui').close()<cr>",
+        description = 'Close DAP UI'
+    },
+    {
+        '<leader>bp',
+        ":lua require('dap').toggle_breakpoint()<cr>",
+        description = 'Toggle breakpoint for DAP'
+    },
+    {
+        '<leader>p',
+        ":lua require('dropbar.api').pick()<cr>",
+        description = 'Open dropbar'
+    },
+    {
+        '<leader>rpn',
+        ":'<,'>s/\n/\\n/g<cr>",
+        description = 'Replace visual newline with character',
+        mode = {"v"}
+    },
 }
 
 -- Telescope mappings
@@ -177,6 +203,12 @@ local misc_keymaps = {
         "<C-\\><C-n>",
         description = 'Escape insert mode in terminal mode',
         mode = {"t"}
+    },
+    {
+        '-',
+        require("oil").open_float,
+        description = 'Open oil float window',
+        mode = {"n"}
     }
 }
 
@@ -189,3 +221,6 @@ legendary.keymaps(lsp_keymaps)
 legendary.keymaps(telescope_keymaps)
 legendary.keymaps(misc_keymaps)
 
+vim.api.nvim_create_user_command('RemoveWhitespace',function()
+  vim.cmd([[%s/\s\+$//e]])
+end,{})

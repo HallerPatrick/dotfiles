@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+vim.loader.enable()
 
 require("lazy").setup({
     "karoliskoncevicius/sacredforest-vim", {
@@ -21,27 +22,25 @@ require("lazy").setup({
     -- Lsp related
     "neovim/nvim-lspconfig", {
         "williamboman/mason.nvim",
-        config = function() require("mason").setup() end
-    }, "williamboman/mason-lspconfig.nvim", "onsails/lspkind-nvim",
+       config = function() require("mason").setup() end
+    }, {
+      "williamboman/mason-lspconfig.nvim",
+       config = function() require("mason-lspconfig").setup() end
+    }, "onsails/lspkind-nvim",
     "hrsh7th/nvim-cmp", 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path', "hrsh7th/cmp-emoji", 'hrsh7th/cmp-nvim-lua',
-    "lukas-reineke/cmp-rg", {
-        "/Users/patrickhaller/Projects/py_lsp.nvim",
-        dev = true
-    }, {
-        "/Users/patrickhaller/Projects/sounder.nvim",
-        dev = true,
-        config = function(_) require("sounder") end
-    }, "hrsh7th/cmp-nvim-lsp-document-symbol", -- use {
-    --   "HallerPatrick/py_lsp.nvim", tag="v0.0.1"
-    -- }
+    "lukas-reineke/cmp-rg",
+    "stevearc/oil.nvim",
+    {
+        dir = "/home/phmaker/Projects/py_lsp.nvim",
+    },
+    "hrsh7th/cmp-nvim-lsp-document-symbol",
     "nvim-lua/lsp_extensions.nvim", "ray-x/lsp_signature.nvim",
     "glepnir/lspsaga.nvim", 'simrat39/rust-tools.nvim', "folke/lsp-colors.nvim",
     "folke/trouble.nvim", {
         "SmiteshP/nvim-gps",
         dependencies = "nvim-treesitter/nvim-treesitter"
     }, -- Code Style, Refactoring, etc..
-    -- "mfussenegger/nvim-lint",
     "sbdchd/neoformat", -- Language specific
     "stsewd/isort.nvim", "daveyarwood/vim-alda", "bfredl/nvim-luadev",
     "ap/vim-css-color", "dag/vim-fish", "abecodes/tabout.nvim", -- Terminal
@@ -53,24 +52,13 @@ require("lazy").setup({
     -- use("feline-nvim/feline.nvim")
     {
         "nvim-lualine/lualine.nvim",
-        config = function(_) require("lualine").setup({
-          options = {
-            theme = "vito"
-          }
-        }) end
-    }, "WhoIsSethDaniel/lualine-lsp-progress.nvim", -- Visuals
+    },
+    { 'Bekaboo/dropbar.nvim' },
     "karb94/neoscroll.nvim", "lukas-reineke/indent-blankline.nvim",
     "camspiers/animate.vim", "ryanoasis/vim-devicons",
     "kyazdani42/nvim-web-devicons", "junegunn/goyo.vim",
-    "norcalli/nvim-colorizer.lua", {
-        "glepnir/dashboard-nvim",
-        event = "VimEnter",
-        config = function(_) require("startup") end
-    }, "mvllow/modes.nvim", -- "simrat39/symbols-outline.nvim",
+    "mvllow/modes.nvim",
     "rcarriga/nvim-notify", -- {
-    --     'VonHeikemen/searchbox.nvim',
-    --     dependencies = {'MunifTanjim/nui.nvim'}
-    -- }, 
     {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
@@ -85,15 +73,48 @@ require("lazy").setup({
     }, "smartpde/telescope-recent-files", "airblade/vim-rooter",
     "dstein64/vim-startuptime", "chrisbra/unicode.vim",
     "AndrewRadev/splitjoin.vim", "pechorin/any-jump.vim",
-    "folke/which-key.nvim", "skywind3000/asyncrun.vim", 'mfussenegger/nvim-dap',
-    "mrjones2014/legendary.nvim", "stevearc/dressing.nvim", -- "github/copilot.vim",
-    -- Language stuff
-    "vim-test/vim-test", -- Colortheme
-    'rktjmp/lush.nvim', 'Yazeed1s/oh-lucy.nvim', 
+    "folke/which-key.nvim", "skywind3000/asyncrun.vim",
+
     {
-        "/Users/patrickhaller/Projects/vito.nvim",
+      "chipsenkbeil/distant.nvim",
+      branch = "v0.2",
+      config = function()
+        require('distant').setup {
+          ['*'] = require('distant.settings').chip_default()
+        }
+      end
+    },
+
+    -- Debugging
+    "folke/neodev.nvim",
+    "mfussenegger/nvim-dap",
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
+    "mrjones2014/legendary.nvim", "stevearc/dressing.nvim", -- 
+    -- Language stuff
+    "zbirenbaum/copilot.lua",
+    "lervag/vimtex",
+    "evanleck/vim-svelte",
+    {
+      "zbirenbaum/copilot-cmp",
+      dependencies = {{ "zbirenbaum/copilot.lua" }},
+      config = function ()
+        require("copilot_cmp").setup()
+      end
+    },
+
+    "huggingface/hfcc.nvim",
+    "elkowar/yuck.vim",
+    "vim-test/vim-test",
+    -- Colortheme
+    'rakr/vim-two-firewatch',
+    'yashguptaz/calvera-dark.nvim',
+    "Everblush/nvim",
+    'arcticicestudio/nord-vim',
+    'rktjmp/lush.nvim',
+    'Yazeed1s/oh-lucy.nvim',
+    {
+        "HallerPatrick/vito.nvim",
         dependencies = {"tjdevries/colorbuddy.nvim"},
-        dev = true
     }, -- "tjdevries/colorbuddy.nvim",
     "morhetz/gruvbox", "sainnhe/everforest", "mrjones2014/lighthaus.nvim",
     "folke/tokyonight.nvim", "EdenEast/nightfox.nvim", "katawful/kat.nvim",
@@ -115,14 +136,11 @@ require("lazy").setup({
     }, "tpope/vim-abolish", "tpope/vim-fugitive", "tpope/vim-eunuch",
     "airblade/vim-gitgutter", --[[ "Raimondi/delimitMate", ]] -- Snippet engine
     'dcampos/nvim-snippy', 'dcampos/cmp-snippy', 'honza/vim-snippets',
-    -- 'dcampos/nvim-snippy',
-
-    'lewis6991/impatient.nvim'
-
 })
 
+
 utils.setup_plugins({
-    "trouble", "tabout", "Comment", "toggleterm", "neoscroll", "modes"
+    "trouble", "tabout", "Comment", "toggleterm", "neoscroll", "modes", "dapui", "oil"
 })
 
 require("which-key").setup({
@@ -145,14 +163,35 @@ require("vito").setup {
   reverse_visual = false,
 }
 
--- require("notify").setup({
---   background_color = require("vito.colors").themes.lowBackground
--- })
---
--- vim.cmd [[ set termguicolors ]]
-
 
 local dap = require('dap')
+
+dap.adapters.python = function(cb, config)
+  if config.request == 'attach' then
+    ---@diagnostic disable-next-line: undefined-field
+    local port = (config.connect or config).port
+    ---@diagnostic disable-next-line: undefined-field
+    local host = (config.connect or config).host or '127.0.0.1'
+    cb({
+      type = 'server',
+      port = assert(port, '`connect.port` is required for a python `attach` configuration'),
+      host = host,
+      options = {
+        source_filetype = 'python',
+      },
+    })
+  else
+    cb({
+      type = 'executable',
+      command = '/home/phmaker/.conda/envs/nvim/bin/python',
+      args = { '-m', 'debugpy.adapter' },
+      options = {
+        source_filetype = 'python',
+      },
+    })
+  end
+end
+
 dap.configurations.python = {
     {
         -- The first three options are required by nvim-dap
@@ -168,4 +207,35 @@ dap.configurations.python = {
         end
     }
 }
+
+require("copilot").setup({
+  suggestion = { enabled = true },
+  panel = { enabled = true },
+})
+
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
+
+
+-- local hfcc = require('hfcc')
+--
+-- hfcc.setup({
+--   api_token = "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",
+--   model = "bigcode/starcoder",
+--   query_params = {
+--     max_new_tokens = 60,
+--     temperature = 0.2,
+--     top_p = 0.95,
+--     stop_token = "<|endoftext|>",
+--   },
+--   -- set this if the model supports fill in the middle
+--   fim = {
+--     enabled = true,
+--     prefix = "<fim_prefix>",
+--     middle = "<fim_middle>",
+--     suffix = "<fim_suffix>",
+--   },
+--   accept_keymap = "<Tab>",
+-- })
 

@@ -13,6 +13,8 @@ function M.setup()
         },
         sources = {
             {
+                name = "copilot"
+            }, {
                 name = "snippy"
             }, {
                 name = 'nvim_lsp'
@@ -37,7 +39,7 @@ function M.setup()
             ['<CR>'] = cmp.mapping.confirm({
                 select = true
             }),
-            ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {'i'}),
+            -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), {'i'}),
             ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 'c'}),
             ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'})
         },
@@ -47,6 +49,7 @@ function M.setup()
                 maxwidth = 70,
                 mode = "symbol_text",
                 menu = ({
+                    copilot = "[Copilot]",
                     buffer = "[Buffer]",
                     nvim_lsp = "[LSP]",
                     snippy = "[Snippy]",
@@ -70,19 +73,19 @@ function M.setup()
         })
     })
 
-    cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-            {
-                name = 'path'
-            }
-        }, {
-            {
-                name = 'cmdline'
-            }
-        })
-    })
-
+    -- cmp.setup.cmdline(':', {
+    --     mapping = cmp.mapping.preset.cmdline(),
+    --     sources = cmp.config.sources({
+    --         {
+    --             name = 'path'
+    --         }
+    --     }, {
+    --         {
+    --             name = 'cmdline'
+    --         }
+    --     })
+    -- })
+    --
 end
 
 return M

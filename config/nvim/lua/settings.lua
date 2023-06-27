@@ -3,6 +3,7 @@ local utils = require("utils")
 local cmd = vim.cmd
 
 cmd("filetype plugin indent on")
+-- cmd("colorscheme lush")
 
 -- Global status line
 utils.opt("o", "laststatus", 3)
@@ -38,7 +39,12 @@ utils.opt("o", "tabstop", 4)
 utils.opt("o", "cmdheight", 2)
 utils.opt("o", "updatetime", 300)
 utils.opt("o", "signcolumn", "yes")
-utils.opt("o", "guifont", "JetBrains Mono:h14")
+
+if vim.g.neovide then
+  utils.opt("o", "guifont", "JetBrains Mono:h10")
+else
+  utils.opt("o", "guifont", "JetBrains Mono:h14")
+end
 
 
 if vim.fn.executable("rg") then
@@ -51,7 +57,7 @@ end
 -- Autoformat on save
 -- cmd("autocmd! BufWritePre * | Neoformat")
 
-vim.g.python3_host_prog = '/Users/patrickhaller/.pyenv/versions/neovim3/bin/python'
+vim.g.python3_host_prog = '/home/phmaker/.python_venv/bin/python'
 vim.g.rustfmt_autosave = 1
 
 vim.g.neoformat_enabled_python = {"black"}
@@ -82,6 +88,7 @@ vim.g.asyncrun_open = 6
 vim.g.vimtex_view_method = 'zathura'
 vim.g.livepreview_previewer = 'zathura'
 vim.g.livepreview_engine = 'latexmk -xelatex -f'
+vim.g.vimtex_quickfix_enabled = 0
 
 
 -- AuGroups
@@ -99,4 +106,24 @@ vim.api.nvim_create_autocmd("FileType",{
   pattern = {"tex", "lua", "cpp"},
   command = [[ setlocal shiftwidth=2 softtabstop=2 expandtab ]]
 })
+function Sad(line_nr, from, to, fname)
+  vim.cmd(string.format("silent !sed -i '%ss/%s/%s/' %s", line_nr, from, to, fname)) 
+end
 
+function IncreasePadding() 
+  Sad('07', 0, 20, '~/dotfiles/alacritty/alacritty.windows.yml')
+  Sad('08', 0, 20, '~/dotfiles/alacritty/alacritty.windows.yml')
+end
+
+function DecreasePadding()
+  Sad('07', 20, 0, '~/dotfiles/alacritty/alacritty.windows.yml')
+  Sad('08', 20, 0, '~/dotfiles/alacritty/alacritty.windows.yml')
+end
+
+vim.cmd[[
+  augroup ChangeAlacrittyPadding
+   au! 
+   au VimEnter * lua DecreasePadding()
+   au VimLeavePre * lua IncreasePadding()
+  augroup END 
+]]

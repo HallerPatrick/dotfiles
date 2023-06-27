@@ -2,7 +2,7 @@ local format = string.format
 
 local toggleterm = require("toggleterm")
 local Terminal = require("toggleterm.terminal").Terminal
-local py_lsp = require("py_lsp.lsp")
+local py_lsp = nil -- require("py_lsp.lsp")
 
 local M = {
   terminal_id = nil

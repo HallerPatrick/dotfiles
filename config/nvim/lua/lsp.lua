@@ -1,24 +1,12 @@
-local nvim_lsp_configs = require "lspconfig.configs"
 local nvim_lsp = require("lspconfig")
 local lang_opts = require("language_opts")
 
 require("completion").setup()
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol
-                                                                      .make_client_capabilities())
-
--- Other servers
--- require("Nvim-lsp-installer").on_server_ready(function(server)
---     local opts = {}
---     server:setup(opts)
--- end)
-
--- RUST
--- lang_opts.rust_setup({})
 nvim_lsp.rust_analyzer.setup({})
 
 -- LUA
-nvim_lsp.sumneko_lua.setup(lang_opts.lua)
+nvim_lsp.lua_ls.setup({})
 
 -- LATEX
 nvim_lsp.texlab.setup(lang_opts.latex)
@@ -26,33 +14,6 @@ nvim_lsp.texlab.setup(lang_opts.latex)
 -- C++
 nvim_lsp.clangd.setup({})
 
--- nvim_lsp_configs["jedi_language_server"] = {
---     default_config = {
---         cmd = {"jedi-language-server"},
---
---         -- Depending on your environment
---         root_dir = nvim_lsp.util.root_pattern(".git", "setup.py",
---                                               "pyproject.toml"),
---         filetypes = {"python"}
---     }
--- }
---
--- nvim_lsp.pylsp.setup({
---     settings = {
---         pylsp = {
---             plugins = {
---                 pycodestyle = {
---                     ignore = {'W391'},
---                     maxLineLength = 100
---                 },
---                 jedi = {
---                     environment = "/Users/patrickhaller/Projects/GERPT/venv"
---                 },
---                 jedi_completion = {enabled = true}
---             }
---         }
---     }
--- })
 
 -- PYTHON
 require("py_lsp").setup({
@@ -70,4 +31,7 @@ require("py_lsp").setup({
 
 })
 --
--- require("mason").setup()
+require("mason").setup()
+
+nvim_lsp.tsserver.setup({})
+nvim_lsp.svelte.setup({})
